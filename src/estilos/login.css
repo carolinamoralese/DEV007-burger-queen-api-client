@@ -23,14 +23,13 @@ body {
 
 .container-login {
   display: grid;
-  grid-template-columns: 1 1;
-  grid-template-rows: 1;
-  grid-area: form, logo;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "uno dos";
 }
 
 .container-form {
   position: relative;
-  grid-area: form;
+  grid-area: uno;
 }
 
 .titulo {
@@ -39,10 +38,10 @@ body {
 
 .container-logo {
   position: relative;
-  grid-area: logo;
+  grid-area: dos;
 }
 
 .logo {
-  width: 500px;
-  height: 500px;
+  width: 650px;
+  height: 650px;
 }
