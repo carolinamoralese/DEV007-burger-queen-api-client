@@ -25,7 +25,6 @@ function Login() {
     <div className='container-logo'>
     <img src={logo} className='logo'/>
     </div>
-    
     </div>
     )
 }
