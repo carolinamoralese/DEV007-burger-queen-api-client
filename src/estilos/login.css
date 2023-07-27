@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,7 +7,6 @@
   transition: all 0.25s;
 }
 
-html,
 body {
   min-height: 100vh;
   width: 100%;
@@ -23,25 +24,62 @@ body {
 
 .container-login {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-template-areas: "uno dos";
+  align-items: center;
+  justify-content: center;
 }
 
 .container-form {
   position: relative;
   grid-area: uno;
+  top: 75px;
+  right: 10px;
 }
 
 .titulo {
   color: white;
+  font-family: "Metal Mania", cursive;
+  font-size: 62px;
 }
 
+.ingresar {
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #e81694;
+  color: rgb(0, 0, 0);
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  justify-content: center;
+}
+
+.ingresar::placeholder {
+  position: relative;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.ingresarDatos {
+  width: 250px;
+  height: 50px;
+  border-radius: 20px;
+  background-color: #ffd930;
+}
 .container-logo {
   position: relative;
+  display: flex;
   grid-area: dos;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
+  display: flex;
+  position: relative;
+  top: 50px;
+  right: -20px;
   width: 650px;
   height: 650px;
 }
