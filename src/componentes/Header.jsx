@@ -6,10 +6,10 @@ function Encabezado() {
     return (
         <div className="containerHeader">
             <div className="header">
-                <div className='logo'>
-                <img src={logo} className='logo'/>
+                <div className='containerLogo'>
+                <img src={logo} className='logoPequeño'/>
                 </div>
-                <div className='botones'>
+                <div className='containerBotones'>
                 <button className='boton'>HOME</button>
                 <button className='boton'>PEDIDOS</button>
                 <button className='boton'>SALIR</button>

@@ -6,10 +6,6 @@ function Product() {
     return (
     <>
     <Encabezado  />
-        <h1 className='product'>
-        Aqui va el menu
-        </h1>
-        
     </>
     )
 }

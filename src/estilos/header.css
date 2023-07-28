@@ -1,27 +1,54 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  transition: all 0.25s;
-}
-
-body {
-  min-height: 100vh;
-  width: 100%;
-  background-color: black;
-  margin: 0;
-}
-
-#root {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-}
-
 .containerHeader {
   margin: 0;
   width: 100%;
-  height: 20%;
-  background-color: yellow;
+  height: 12%;
   display: flex;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2% 2% 0 2%;
+}
+
+.containerLogo {
+  position: relative;
+}
+
+.logoPequeño {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.containerBotones {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5% 0 0;
+  gap: 20px;
+}
+
+.boton {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+}
+
+.foto {
+  position: relative;
+}
+
+.usuario {
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
