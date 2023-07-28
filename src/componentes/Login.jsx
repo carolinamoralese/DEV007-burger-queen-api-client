@@ -1,13 +1,49 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../estilos/login.css'
 import logo from '../Imagenes/logo.png'
-import PeticionLogin, {  GetUsers }  from './Peticion'
+import {  GetUsers }  from './Peticion'
+import { useNavigate } from 'react-router-dom'
 
 
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    //const {setUser} = props;
+    const navigate = useNavigate()
+    const [user, setUser] = useState(null);
 
+useEffect(() => {
+    if (user) {
+        navigate('/Menu')
+    }
+}, [user])
+
+    function PeticionLogin() {
+
+            const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: email,
+                password: password,
+            }),
+            };
+
+            fetch("http://localhost:8080/login", requestOptions)
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+                if(responseJson.user){
+                    setUser(true);
+                }
+                else {
+                    console.log("Autenticacion fallida");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        }
 
     return (
     <div className='container-login'>
