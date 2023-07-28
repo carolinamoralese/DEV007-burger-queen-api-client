@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom'
 import './App.css'
 import Login from './componentes/Login'
-import Product from './componentes/Product'
+import Desayunos from './componentes/Desayunos'
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   return (
     <Routes>
       <Route path='/login' element={<Login  />} />
-      <Route path='/Menu' element={<Product />} />
+      <Route path='/Menu' element={<Desayunos />} />
     </Routes>
   )
 }
