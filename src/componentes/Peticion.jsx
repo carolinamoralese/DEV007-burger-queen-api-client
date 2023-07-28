@@ -1,5 +1,5 @@
 import {useState} from "react";
-export default function PeticionLogin(email, password) {
+/*export default function PeticionLogin(email, password) {
 
   const requestOptions = {
     method: "POST",
@@ -17,7 +17,7 @@ export default function PeticionLogin(email, password) {
     .catch((error) => {
       console.error(error);
     });
-}
+}*/
 
 export function GetUsers() {
     const requestOptions = {
