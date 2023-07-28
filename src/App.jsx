@@ -5,17 +5,17 @@ import Product from './componentes/Product'
 
 
 function App() {
+  
+
+  //if(user){
+    //return <Login setUser={setUser} />;
+  //}
 
   return (
-    
     <Routes>
-      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<Login  />} />
       <Route path='/Menu' element={<Product />} />
     </Routes>
-    /*<>
-    <Login />;
-    <Product />;
-    </>*/
   )
 }
 
