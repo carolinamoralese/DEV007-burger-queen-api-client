@@ -1,5 +1,23 @@
-import cafe from'../Imagenes/cafe.png'
-import '../estilos/desayunos.css'
+import '../estilos/desayunos.css';
+import data from '../data.js';
+
+function Prueba() {
+  const productos = data.productos;
+  const productosJSX = productos.map((producto) => (
+    <div key={producto.id} className='product'>
+      <img className='imagen' src={producto.imagen} alt='Coffee'></img>
+      <div className='container-description'>
+        <p className='description'>
+          {producto.producto}<br />{producto.precio}
+        </p>
+        <button className='add'>+</button>
+      </div>
+    </div>
+  ));
+
+  return <div>{productosJSX}</div>;
+}
+
 
 
 function Desayuno() {
@@ -14,8 +32,10 @@ function Desayuno() {
         <button className='dinner'>COMIDAS</button>
       </div>
 
-      <div className='container-menu'>
-        <div className='product'>
+      <div className='container-menu' id='carta'>
+      <Prueba/>
+
+        {/*<div className='product'>
             <img className='imagen' src={cafe}></img>
             <div className='container-description'>
             <p className='description'>Cafe Americano<br />$5.00</p>
@@ -39,7 +59,7 @@ function Desayuno() {
             <img src=''></img>
             <p></p>
             <button></button>
-        </div>
+  </div>*/}
       </div>
 
     </div>
