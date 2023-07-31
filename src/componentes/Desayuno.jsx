@@ -5,7 +5,7 @@ import '../estilos/desayunos.css'
 function Desayuno() {
   return (
     <div className='container-home'>
-      <div className='container-title'>
+      <div className='titulo'>
         <h1 className='title'>DESAYUNOS</h1>
       </div>
 
@@ -14,11 +14,13 @@ function Desayuno() {
         <button className='dinner'>COMIDAS</button>
       </div>
 
-      <section className='container-menu'>
+      <div className='container-menu'>
         <div className='product'>
             <img className='imagen' src={cafe}></img>
+            <div className='container-description'>
             <p className='description'>Cafe Americano<br />$5.00</p>
             <button className='add'>+</button>
+            </div>
         </div>
         
         <div className='product'>
@@ -38,7 +40,7 @@ function Desayuno() {
             <p></p>
             <button></button>
         </div>
-      </section>
+      </div>
 
     </div>
   );
