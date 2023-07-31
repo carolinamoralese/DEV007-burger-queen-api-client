@@ -23,34 +23,35 @@ body {
 }
 
 .container-login {
+  width: 100%;
+  height: 100vh;
   display: grid;
-  grid-template-areas: "uno dos";
   align-items: center;
   justify-content: center;
+  grid-template-areas: "uno dos";
 }
 
 .container-form {
   position: relative;
   grid-area: uno;
-  top: 75px;
-  right: 10px;
 }
 
 .titulo {
   color: white;
   font-family: "Metal Mania", cursive;
-  font-size: 62px;
+  font-size: 50px;
 }
 
 .ingresar {
   width: 250px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #e81694;
   color: rgb(0, 0, 0);
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 10px;
   justify-content: center;
+  border: none;
 }
 
 .ingresar::placeholder {
@@ -64,9 +65,10 @@ body {
 .ingresarDatos {
   width: 250px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #ffd930;
 }
+
 .container-logo {
   position: relative;
   display: flex;
@@ -78,8 +80,6 @@ body {
 .logo {
   display: flex;
   position: relative;
-  top: 50px;
-  right: -20px;
   width: 650px;
   height: 650px;
 }
