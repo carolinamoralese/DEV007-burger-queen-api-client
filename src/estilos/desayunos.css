@@ -1,17 +1,104 @@
-.container-home{
-  width: 100%;
-  height: calc(100% - 12%);
-  background-color: yellow;
- 
-};
-
-.container-title{
+.container-home {
   width: 50%;
-  background-color: rgb(255, 127, 127);
+  height: calc(100% - 15%);
+}
+
+.titulo {
+  display: flex;
+  width: 200%;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  font-size: 50px;
+}
+
+.container-buttons {
+  width: 100%;
+  height: 70px;
+  align-items: center;
+  justify-content: space-around;
   display: flex;
 }
 
-.title{
-  font-size: 10px;
- 
+.break-fast,
+.dinner {
+  width: 250px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  align-items: center;
+}
+
+.break-fast {
+  background-color: #dd158c;
+}
+
+.dinner {
+  background-color: #c4d600;
+}
+
+.container-menu {
+  display: flex;
+  width: 100%;
+  height: 75%;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.product {
+  padding-top: 10px;
+  background-color: aliceblue;
+  width: 250px;
+  height: 250px;
+  justify-content: center;
+  border-radius: 10px;
+  display: grid;
+  grid-template-areas:
+    "imagen"
+    "texto";
+}
+
+.imagen {
+  grid-area: imagen;
+  width: 240px;
+  height: 180px;
+  border-radius: 15px;
+}
+
+.container-description {
+  grid-area: texto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 60% 40%;
+  grid-template-areas: "description boton";
+}
+
+.description {
+  grid-area: description;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.add {
+  position: relative;
+  display: flex;
+  grid-area: boton;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+  font-weight: bolder;
+  color: rgb(173, 20, 179);
+  background-color: black;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 0 0 0;
+  text-align: center;
 }
