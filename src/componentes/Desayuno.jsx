@@ -5,7 +5,7 @@ import '../estilos/desayunos.css'
 function Desayuno() {
   return (
     <div className='container-home'>
-      <div className='titulo'>
+      <div className='titulo-desayunos'>
         <h1 className='title'>DESAYUNOS</h1>
       </div>
 
