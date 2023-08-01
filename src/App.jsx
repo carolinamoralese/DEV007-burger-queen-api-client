@@ -5,15 +5,10 @@ import Home from './componentes/Home'
 
 
 function App() {
-  
-
-  //if(user){
-    //return <Login setUser={setUser} />;
-  //}
 
   return (
     <Routes>
-      <Route path='/login' element={<Login  />} />
+      <Route path='/' element={<Login  />} />
       <Route path='/Menu' element={<Home />} />
     </Routes>
   )
