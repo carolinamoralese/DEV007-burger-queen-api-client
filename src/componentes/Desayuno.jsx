@@ -1,7 +1,10 @@
 import '../estilos/desayunos.css';
 import { Desayunos } from './utils';
 
-function Desayuno() {
+function Desayuno(props) {
+
+  console.log(props, 8888)
+  
   return (
     <div className='container-home'>
       <div className='titulo-desayunos'>
@@ -14,7 +17,7 @@ function Desayuno() {
       </div>
 
       <div className='container-menu' id='carta'>
-      <Desayunos/>
+      <Desayunos productos={props.productos}/>
 
         {/*<div className='product'>
             <img className='imagen' src={cafe}></img>
