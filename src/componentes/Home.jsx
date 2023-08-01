@@ -1,4 +1,3 @@
-
 import '../estilos/desayunos.css'
 import Encabezado from './Header';
 import Desayuno from './Desayuno';
@@ -8,6 +7,7 @@ import { getRequestOptions } from './utils';
 function Home() {
     const [productos, setProductos] = useState([])
 
+    useEffect(() => {
     fetch("http://localhost:8080/products", getRequestOptions("GET"))
     .then((response) => response.json())
     .then((responseJson) => {
@@ -17,6 +17,7 @@ function Home() {
     .catch((error) => {
         console.error(error.mensaje);
     });
+    }, [])
 
     return (
     <>
