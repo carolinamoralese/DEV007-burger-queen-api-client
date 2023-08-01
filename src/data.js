@@ -40,7 +40,7 @@ export default {
     },
     {
       id: 6,
-      carta: "desayuno",
+      carta: "comida",
       producto: "Hamburgesa doble",
       precio: "$15.00",
       imagen:
