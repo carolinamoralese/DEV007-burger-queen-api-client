@@ -2,18 +2,26 @@
 
 //export function Productos() {
 
-export const requestOptions = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    authorization:
-      "Bearer " +
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkxNzIxOCwiZXhwIjoxNjkwOTIwODE4LCJzdWIiOiIyIn0.tsTnxWWTXyx5wDoWHyWE5gLMKcoJNb8QhhnPXodqkCw",
-  }, // debe ser variable el bearer cada que se ha
+
+export function getRequestOptions(method, bearerToken=null){
+    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkyODk2MywiZXhwIjoxNjkwOTMyNTYzLCJzdWIiOiIyIn0.5QbQe1p7ri2fkc2T7u2zZO5TmhFXaB0nQt0483l-X0U"
+    let requestOptions = {
+        method: method,
+        headers: {
+        "Content-Type": "application/json",
+        "authorization": "Bearer " 
+            
+        }, // debe ser variable el bearer cada que se ha
+    }
+
+    if(true==true){
+        requestOptions['headers']['authorization'] = "Bearer " + tokenMock
+    }
+
+    return requestOptions
+  
 };
 
-
-const productos = requestOptions;
 
 // return (
 //     productos.map((producto) => (
@@ -30,24 +38,31 @@ const productos = requestOptions;
 // );
 //}
 
-export function Desayunos() {
-  const breakfast = productos.filter(
-    (producto) => producto.carta === "desayuno"
-  );
+export function Desayunos(props) {
+    console.log(props.productos)
+//   const breakfast = productos.productos.filter(
+//     (producto) => producto.carta === "desayuno"
+//   );
 
-  return breakfast.map((producto) => (
-    <div key={producto.id} className="product">
-      <img className="imagen" src={producto.image} alt="Coffee"></img>
-      <div className="container-description">
-        <p className="description">
-          {producto.name}
-          <br />
-          {producto.price}
-        </p>
-        <button className="add">+</button>
-      </div>
-    </div>
-  ));
+    console.log(props.productos, 666)
+    if(props.productos.length > 0){
+        
+        return props.productos.map((producto) => (
+            <div key={producto.id} className="product">
+              <img className="imagen" src={producto.image} alt="Coffee"></img>
+              <div className="container-description">
+                <p className="description">
+                  {producto.name}
+                  <br />
+                  {producto.price}
+                </p>
+                <button className="add">+</button>
+              </div>
+            </div>
+          ));
+    }
+
+  
 }
 /// productos debe venir por props
 ///
