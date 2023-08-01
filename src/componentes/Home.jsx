@@ -8,15 +8,11 @@ import { getRequestOptions } from './utils';
 function Home() {
     const [productos, setProductos] = useState([])
 
-    useEffect(() => {
-    
-    }, [productos])
-
     fetch("http://localhost:8080/products", getRequestOptions("GET"))
     .then((response) => response.json())
     .then((responseJson) => {
         console.log(responseJson, 15);
-        setProductos(responseJson.productos)
+        setProductos(responseJson)
     })
     .catch((error) => {
         console.error(error.mensaje);

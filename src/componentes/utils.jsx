@@ -4,7 +4,7 @@
 
 
 export function getRequestOptions(method, bearerToken=null){
-    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkyODk2MywiZXhwIjoxNjkwOTMyNTYzLCJzdWIiOiIyIn0.5QbQe1p7ri2fkc2T7u2zZO5TmhFXaB0nQt0483l-X0U"
+    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkzMjY1OSwiZXhwIjoxNjkwOTM2MjU5LCJzdWIiOiIyIn0.NEErT-oQ1ext9EBXBraiNaWhr46QbiVCV2jYKN2XZ4Q"
     let requestOptions = {
         method: method,
         headers: {
