@@ -60,9 +60,5 @@ export function Desayunos(props) {
               </div>
             </div>
           ));
-    }
-
-  
+    }  
 }
-/// productos debe venir por props
-///
