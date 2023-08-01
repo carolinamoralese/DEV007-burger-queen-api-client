@@ -1,24 +1,5 @@
 import '../estilos/desayunos.css';
-import data from '../data.js';
-
-function Prueba() {
-  const productos = data.productos;
-  const productosJSX = productos.map((producto) => (
-    <div key={producto.id} className='product'>
-      <img className='imagen' src={producto.imagen} alt='Coffee'></img>
-      <div className='container-description'>
-        <p className='description'>
-          {producto.producto}<br />{producto.precio}
-        </p>
-        <button className='add'>+</button>
-      </div>
-    </div>
-  ));
-
-  return <div>{productosJSX}</div>;
-}
-
-
+import { Desayunos } from './utils';
 
 function Desayuno() {
   return (
@@ -33,7 +14,7 @@ function Desayuno() {
       </div>
 
       <div className='container-menu' id='carta'>
-      <Prueba/>
+      <Desayunos/>
 
         {/*<div className='product'>
             <img className='imagen' src={cafe}></img>
