@@ -17,7 +17,7 @@ function GetOrder(props) {
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
           <p className="info-pedidos">
-            $<span>{props.products}</span>
+            $<span>{props.productos}</span>
           </p>
           <button className="boton-orden">CREAR ORDEN</button>
         </div>
