@@ -1,8 +1,8 @@
 import "../estilos/comanda.css";
 
-function getInfoOrder() {}
 
-function GetOrder() {
+
+function GetOrder(props) {
   return (
     <div className="container-principal">
       <div className="container-order">
@@ -14,10 +14,10 @@ function GetOrder() {
           <p className="info-cantidad">CANTIDAD</p>
         </div>
         <div></div>
-        <div >
+        <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
           <p className="info-pedidos">
-            $<span>{getInfoOrder}</span>
+            $<span>{props.products}</span>
           </p>
           <button className="boton-orden">CREAR ORDEN</button>
         </div>
@@ -27,3 +27,5 @@ function GetOrder() {
 }
 
 export default GetOrder;
+
+//probar la funcion haciendo un boton para ver producto por producto, llamarlo order,
