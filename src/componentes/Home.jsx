@@ -11,6 +11,7 @@ function Home() {
 
   function addProducts(product) {
     setOrder({ ...order, productos: [...order.productos, product] });
+    console.log(order)
   }
 
   {
@@ -27,13 +28,17 @@ function Home() {
         console.error(error.mensaje);
       });
   }, []);
-
+  
   return (
     <>
-    <button onClick={addProducts}>botonprueba</button>
-      {order.productos.map((producto) => (
-        <>{producto} </>
-      ))}
+    <button onClick={() => addProducts(productos)}>botonprueba</button>
+    {order.productos.map((producto, index) => (
+  <div key={index}>
+    <p>{producto.nombre}</p>
+    <p>{producto.precio}</p>
+    <p>{producto.cantidad}</p>
+  </div>
+))}
       <Encabezado />
       <Desayuno productos={productos} />
       <GetOrder order={order} />
@@ -42,3 +47,4 @@ function Home() {
 }
 
 export default Home;
+
