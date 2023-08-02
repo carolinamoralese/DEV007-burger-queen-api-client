@@ -1,3 +1,10 @@
+.container-principal{
+  display: flex;
+  justify-content: right;
+  margin-top: -50%;
+  margin-left: 20%;
+}
+
 .container-order {
   display: grid;
   background-color: #4d263d;
@@ -6,7 +13,8 @@
   grid-template-areas:
     "orden-pedido"
     "cliente"
-    "container-pedido";
+    "container-pedido"
+    "container-total";
 }
 .orden-pedido {
   align-content: right;
@@ -16,7 +24,7 @@
 }
 .cliente {
   width: 40%;
-  height: 10%;
+  height: 100%;
   grid-area: cliente;
 }
 
@@ -33,5 +41,17 @@
 }
 
 .info-pedidos {
+  color: white;
+}
+
+.container-total {
+  grid-area: container-total;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-direction: row;
+  height: 100%;
+  padding: 15px;
+  gap: 50px;
   color: white;
 }
