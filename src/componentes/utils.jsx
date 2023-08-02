@@ -1,54 +1,16 @@
-//import data from '../data.js';
+import '../estilos/desayunos.css';
 
-//export function Productos() {
-
-
-export function getRequestOptions(method, bearerToken=null){
-    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkzMjY1OSwiZXhwIjoxNjkwOTM2MjU5LCJzdWIiOiIyIn0.NEErT-oQ1ext9EBXBraiNaWhr46QbiVCV2jYKN2XZ4Q"
-    let requestOptions = {
-        method: method,
-        headers: {
-        "Content-Type": "application/json",
-        "authorization": "Bearer " 
-            
-        }, // debe ser variable el bearer cada que se ha
-    }
-
-    if(true==true){
-        requestOptions['headers']['authorization'] = "Bearer " + tokenMock
-    }
-
-    return requestOptions
-  
-};
+/*--------------------------------- FUNCIÓN PROVISIONAL PARA USAR TOKEN ------------------------------------------------*/
 
 
-// return (
-//     productos.map((producto) => (
-//     <div key={producto.id} className='product'>
-//     <img className='imagen' src={producto.image} alt='Coffee'></img>
-//     <div className='container-description'>
-//         <p className='description'>
-//         {producto.name}<br />{producto.price}
-//         </p>
-//         <button className='add'>+</button>
-//     </div>
-//     </div>
-//     ))
-// );
-//}
-
+/*--------------------------------- FUNCIÓN MOSTRAR DESAYUNOS EN MENU ------------------------------------------------*/
 export function Desayunos(props) {
-    console.log(props.productos, 42)
-     const breakfast = props.productos.filter(
-     (producto) => producto.type === "Desayuno"
-   );
-
-    console.log(breakfast, 666)
-    if(props.productos.length > 0){
-        
+  const productos = props.productos;
+    const breakfast = productos.filter(
+    (producto) => producto.type === "Desayuno"
+  );
         return breakfast.map((producto) => (
-            <div key={producto.id} className="product">
+          <div key={producto.id} className="product">
               <img className="imagen" src={producto.image} alt="Coffee"></img>
               <div className="container-description">
                 <p className="description">
@@ -60,5 +22,61 @@ export function Desayunos(props) {
               </div>
             </div>
           ));
-    }  
+} 
+
+/*--------------------------------- FUNCIÓN MOSTRAR COMIDAS EN MENU ------------------------------------------------*/
+export function Comidas(props) {
+  const productos = props.productos;
+  const dinner = productos.filter(
+  (comida) => comida.type === "Almuerzo"
+);
+  if(props.productos.length > 0){
+      return dinner.map((comida) => (
+          <div key={comida.id} className="product">
+            <img className="imagen" src={comida.image} alt="Coffee"></img>
+            <div className="container-description">
+              <p className="description">
+                {comida.name}
+                <br />
+                {comida.price}
+              </p>
+              <button className="add">+</button>
+            </div>
+          </div>
+        ));
+  }  
 }
+
+
+
+/* export function Desayunos(props) {
+  const menuDiv = document.getElementById('carta')
+  menuDiv.innerHTML = ''; 
+  const productos = props.productos;
+    //console.log(props.productos, 42)
+    const breakfast = productos.filter(
+    (producto) => producto.type === "Desayuno"
+    
+  );
+  //console.log(breakfast, 666)
+  return breakfast 
+      if(props.productos.length > 0){ 
+        return breakfast.map((producto) => (
+          menuDiv.innerHTML += ` 
+          <div key={producto.id} className="product">
+              <img className="imagen" src={producto.image} alt="Coffee"></img>
+              <div className="container-description">
+                <p className="description">
+                  {producto.name}
+                  <br />
+                  {producto.price}
+                </p>
+                <button className="add">+</button>
+              </div>
+            </div>
+          ` 
+          ));
+    }    
+}  */
+
+
