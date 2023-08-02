@@ -34,6 +34,7 @@ useEffect(() => {
             .then((responseJson) => {
                 console.log(responseJson);
                 if(responseJson.user){
+                    localStorage.setItem("token", responseJson.accessToken)
                     setUser(true);
                 }
                 else {
