@@ -59,7 +59,7 @@
   padding: 10px;
   background-color: aliceblue;
   width: 250px;
-  height: max-content;
+  height: 250px;
   justify-content: center;
   border-radius: 10px;
   display: grid;
@@ -86,7 +86,7 @@
 
 .description {
   grid-area: description;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   margin-left: 10px;

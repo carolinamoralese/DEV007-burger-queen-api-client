@@ -1,31 +1,46 @@
-.container-principal{
+.container-principal {
   display: flex;
   justify-content: right;
-  margin-top: -50%;
+  margin-top: -47%;
   margin-left: 20%;
 }
 
 .container-order {
+  padding: 5px;
   display: grid;
   background-color: #4d263d;
-  height: 100%;
+  height: 500px;
   width: 60%;
+  grid-template-rows: 80px 50px 1fr 80px;
   grid-template-areas:
     "orden-pedido"
     "cliente"
     "container-pedido"
     "container-total";
 }
+
 .orden-pedido {
-  align-content: right;
-  justify-content: right;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: aliceblue;
   grid-area: orden-pedido;
 }
+
 .cliente {
-  width: 40%;
-  height: 100%;
+  display: flex;
+  position: relative;
+  width: 90%;
+  height: 80%;
   grid-area: cliente;
+  left: 20px;
+}
+
+.cliente::placeholder {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .container-pedido {
@@ -38,10 +53,14 @@
   padding: 15px;
   gap: 50px;
   color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .info-pedidos {
   color: white;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .container-total {
@@ -54,4 +73,16 @@
   padding: 15px;
   gap: 50px;
   color: white;
+}
+
+.boton-orden {
+  width: 120px;
+  height: 40px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  background-color: rgb(57, 223, 6);
 }
