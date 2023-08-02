@@ -4,7 +4,7 @@
 
 
 export function getRequestOptions(method, bearerToken=null){
-    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkyODk2MywiZXhwIjoxNjkwOTMyNTYzLCJzdWIiOiIyIn0.5QbQe1p7ri2fkc2T7u2zZO5TmhFXaB0nQt0483l-X0U"
+    const tokenMock = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdyYWNlLmhvcHBlckBzeXN0ZXJzLnh5eiIsImlhdCI6MTY5MDkzMjY1OSwiZXhwIjoxNjkwOTM2MjU5LCJzdWIiOiIyIn0.NEErT-oQ1ext9EBXBraiNaWhr46QbiVCV2jYKN2XZ4Q"
     let requestOptions = {
         method: method,
         headers: {
@@ -39,15 +39,15 @@ export function getRequestOptions(method, bearerToken=null){
 //}
 
 export function Desayunos(props) {
-    console.log(props.productos)
-//   const breakfast = productos.productos.filter(
-//     (producto) => producto.carta === "desayuno"
-//   );
+    console.log(props.productos, 42)
+     const breakfast = props.productos.filter(
+     (producto) => producto.type === "Desayuno"
+   );
 
-    console.log(props.productos, 666)
+    console.log(breakfast, 666)
     if(props.productos.length > 0){
         
-        return props.productos.map((producto) => (
+        return breakfast.map((producto) => (
             <div key={producto.id} className="product">
               <img className="imagen" src={producto.image} alt="Coffee"></img>
               <div className="container-description">
@@ -60,9 +60,5 @@ export function Desayunos(props) {
               </div>
             </div>
           ));
-    }
-
-  
+    }  
 }
-/// productos debe venir por props
-///
