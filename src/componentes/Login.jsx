@@ -53,10 +53,10 @@ useEffect(() => {
         Comida todo el día, <br></br>todos los días
         </h1><br></br><br></br><br></br>
         <div>
-            <input className='ingresar' type='email' id='email' value={email} placeholder='CORREO' onChange={(e) => {
+            <input className='ingresar' type='email' id='email' value={email} placeholder='INGRESA CORREO' onChange={(e) => {
                 setEmail(e.target.value)
             }}></input><br></br><br></br><br></br>
-            <input className='ingresar' type='password' id='password' value={password} placeholder='CONTRASEÑA' onChange={(e) => {
+            <input className='ingresar' type='password' id='password' value={password} placeholder='INGRESA CONTRASEÑA' onChange={(e) => {
                 setPassword(e.target.value)
             }}></input><br></br><br></br><br></br>
             
