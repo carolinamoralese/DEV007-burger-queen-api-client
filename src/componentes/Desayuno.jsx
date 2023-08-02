@@ -1,9 +1,11 @@
+import { useState } from 'react'; //NUEVO
 import '../estilos/desayunos.css';
-import { Desayunos } from './utils';
+import {ButtonDesayunos, ButtonComidas} from './BotonesMenu';
+import{ Desayunos, Comidas} from './utils';
 
 function Desayuno(props) {
-
-  console.log(props, 8888)
+  const [mostrarDesayunos, setMostrarDesayunos] = useState(false); //MANEJA EL ESTADO DE LOS DESAYUNOS DEL MENU
+  const [mostrarComidas, setMostrarComidas] = useState(false); //MANEJA EL ESTADO DE LAS COMIDAS DEL MENU
   
   return (
     <div className='container-home'>
@@ -12,38 +14,14 @@ function Desayuno(props) {
       </div>
 
       <div className='container-buttons'>
-        <button className='break-fast'>DESAYUNOS</button>
-        <button className='dinner'>COMIDAS</button>
+        <ButtonDesayunos onClick={() => [setMostrarDesayunos(true), setMostrarComidas(false)]}>DESAYUNOS</ButtonDesayunos>  
+        <ButtonComidas onClick={() => [setMostrarComidas(true), setMostrarDesayunos(false)]}>COMIDAS</ButtonComidas> 
+        {/* SE AGREGA EL onClick para cambiar el estado de comidas y desayunos */}
       </div>
 
-      <div className='container-menu' id='carta'>
-      <Desayunos productos={props.productos}/>
-
-        {/*<div className='product'>
-            <img className='imagen' src={cafe}></img>
-            <div className='container-description'>
-            <p className='description'>Cafe Americano<br />$5.00</p>
-            <button className='add'>+</button>
-            </div>
-        </div>
-        
-        <div className='product'>
-            <img src=''></img>
-            <p></p>
-            <button></button>
-        </div>
-
-        <div className='product'>
-            <img src=''></img>
-            <p></p>
-            <button></button>
-        </div>
-
-        <div className='product'>
-            <img src=''></img>
-            <p></p>
-            <button></button>
-  </div>*/}
+      <div className='container-menu' id='carta' >
+      {mostrarDesayunos && <Desayunos productos={props.productos} />} {/* PASAMOS PROPS A CADA COMPONENTE */}
+      {mostrarComidas && <Comidas productos={props.productos} />}
       </div>
 
     </div>
@@ -51,6 +29,3 @@ function Desayuno(props) {
 }
 
 export default Desayuno;
-
-
-//
