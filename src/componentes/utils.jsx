@@ -39,15 +39,15 @@ export function getRequestOptions(method, bearerToken=null){
 //}
 
 export function Desayunos(props) {
-    console.log(props.productos)
-//   const breakfast = productos.productos.filter(
-//     (producto) => producto.carta === "desayuno"
-//   );
+    console.log(props.productos, 42)
+     const breakfast = props.productos.filter(
+     (producto) => producto.type === "Desayuno"
+   );
 
-    console.log(props.productos, 666)
+    console.log(breakfast, 666)
     if(props.productos.length > 0){
         
-        return props.productos.map((producto) => (
+        return breakfast.map((producto) => (
             <div key={producto.id} className="product">
               <img className="imagen" src={producto.image} alt="Coffee"></img>
               <div className="container-description">
