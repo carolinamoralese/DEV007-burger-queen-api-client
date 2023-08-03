@@ -7,7 +7,7 @@ function GetOrder(props) {
     <div className="container-principal">
       <div className="container-order">
         <h1 className="orden-pedido">PEDIDOS</h1>
-        <input className="cliente" placeholder="CLIENTE"></input>
+        <input className="cliente" placeholder="Cliente"></input>
         <div className="container-pedido">
           <p className="info-producto">PRODUCTO</p>
           <p className="info-precio">PRECIO</p>

@@ -1,7 +1,7 @@
 import { useState } from 'react'; //NUEVO
 import '../estilos/desayunos.css';
 import {ButtonDesayunos, ButtonComidas} from './BotonesMenu';
-import{ Desayunos, Comidas} from './utils';
+import{ Desayunos, Comidas} from './FiltroMenu';
 
 function Desayuno(props) {
   const [mostrarDesayunos, setMostrarDesayunos] = useState(false); //MANEJA EL ESTADO DE LOS DESAYUNOS DEL MENU
