@@ -1,8 +1,5 @@
 import '../estilos/desayunos.css';
 
-/*--------------------------------- FUNCIÓN PROVISIONAL PARA USAR TOKEN ------------------------------------------------*/
-
-
 /*--------------------------------- FUNCIÓN MOSTRAR DESAYUNOS EN MENU ------------------------------------------------*/
 export function Desayunos(props) {
   const productos = props.productos;
@@ -46,37 +43,5 @@ export function Comidas(props) {
         ));
   }  
 }
-
-
-
-/* export function Desayunos(props) {
-  const menuDiv = document.getElementById('carta')
-  menuDiv.innerHTML = ''; 
-  const productos = props.productos;
-    //console.log(props.productos, 42)
-    const breakfast = productos.filter(
-    (producto) => producto.type === "Desayuno"
-    
-  );
-  //console.log(breakfast, 666)
-  return breakfast 
-      if(props.productos.length > 0){ 
-        return breakfast.map((producto) => (
-          menuDiv.innerHTML += ` 
-          <div key={producto.id} className="product">
-              <img className="imagen" src={producto.image} alt="Coffee"></img>
-              <div className="container-description">
-                <p className="description">
-                  {producto.name}
-                  <br />
-                  {producto.price}
-                </p>
-                <button className="add">+</button>
-              </div>
-            </div>
-          ` 
-          ));
-    }    
-}  */
 
 
