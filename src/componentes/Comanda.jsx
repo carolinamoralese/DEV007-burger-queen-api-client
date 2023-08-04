@@ -1,8 +1,20 @@
+import { useState } from "react"; //NUEVO
 import "../estilos/comanda.css";
 
 
 
-function GetOrder(props) {
+function  Comanda(props) {
+  const [order, setOrder] = useState([]);
+
+
+  window.addEventListener('storage', (event) => {
+    const orderLocalStorage = JSON.parse(localStorage.getItem("order"))
+    console.log(orderLocalStorage.productos, 5555);
+    setOrder(orderLocalStorage.productos);
+    console.log(order);
+  });
+  
+  
   return (
     <div className="container-principal">
       <div className="container-order">
@@ -13,7 +25,15 @@ function GetOrder(props) {
           <p className="info-precio">PRECIO</p>
           <p className="info-cantidad">CANTIDAD</p>
         </div>
-        <div></div>
+        
+    
+        {order.map((producto, index) => (
+      <div key={index}>
+        <p>{producto.name}</p>
+        </div>
+      ))}
+        
+      
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
           <p className="info-pedidos">
@@ -26,6 +46,6 @@ function GetOrder(props) {
   );
 }
 
-export default GetOrder;
+export default Comanda;
 
 //probar la funcion haciendo un boton para ver producto por producto, llamarlo order,
