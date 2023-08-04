@@ -1,19 +1,19 @@
 import "../estilos/desayunos.css";
 import Encabezado from "./Header";
-import Desayuno from "./Desayuno";
+import Menu from "./Menu";
 import { useEffect, useState } from "react";
 import { getRequestOptions } from "../servicios/getRequestOptions";
-import GetOrder from "./Comanda";
+import Comanda from "./Comanda";
 
 function Home() {
 const [productos, setProductos] = useState([]);
 const [order, setOrder] = useState({ productos: [] });
-const [selectProduct, setSelectProduct] = useState(null);
+//const [selectProduct, setSelectProduct] = useState(null);
 
-function addProducts(product) {
-    setOrder({ ...order, productos: [...order.productos, product] });
-    console.log(selectProduct);
-}
+// function addProducts(product) {
+//     setOrder({ ...order, productos: [...order.productos, product] });
+//     console.log(selectProduct);
+// }
 
 {
     /* PETICIÓN A LA API PARA MOSTRAR LOS OBJETOS EN LA INTERFAZ */
@@ -33,28 +33,28 @@ useEffect(() => {
 return (
     <>
 
-    {productos.map((producto, index) => (
+    {/* {productos.map((producto, index) => (
     //<button onClick={() => addProducts(productos)}>botonprueba</button>
     //{order.productos.map((producto, index) => (
         <div key={index}>
         <p>{producto.name}</p>
         <p>{producto.price}</p>
         {/*<p>{producto.cantidad}</p>*/}
-        <button onClick={() => setSelectProduct(producto)}>Seleccionar</button>
+        {/* <button onClick={() => setSelectProduct(producto)}>Seleccionar</button>
         </div>
-    ))}
+    ))} */} 
 
-    {selectProduct && (
+    {/* {selectProduct && (
         <div>
             <p>{selectProduct.name}</p>
             <p>{selectProduct.price}</p>
             <button onClick={() => addProducts(selectProduct)}>Agregar</button>
         </div>
-    )}
+    )} */}
 
     <Encabezado />
-    <Desayuno productos={productos} />
-    <GetOrder order={order} />
+    <Menu productos={productos} />
+    <Comanda order={order} />
     </>
 );
 }
