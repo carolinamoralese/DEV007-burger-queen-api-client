@@ -18,6 +18,8 @@ useEffect(() => {
     }
 }, [user])
 
+//// el u
+
     function PeticionLogin() {
 
             const requestOptions = {

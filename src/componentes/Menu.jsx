@@ -7,7 +7,7 @@ import { ButtonDesayunos, ButtonComidas } from "./BotonesMenu";
 function Menu(props) {
   const [mostrarDesayunos, setMostrarDesayunos] = useState(false); //MANEJA EL ESTADO DE LOS DESAYUNOS DEL MENU
   const [mostrarComidas, setMostrarComidas] = useState(false); //MANEJA EL ESTADO DE LAS COMIDAS DEL MENU
-  const [order, setOrder] = useState({ productos: [] });
+ 
 
 
   const breakFast = props.productos.filter(
@@ -17,16 +17,13 @@ function Menu(props) {
   const dinner = props.productos.filter(
     (producto) => producto.type === "Almuerzo"
   );
-
-  function addProducts(product) {
-    setOrder({ ...order, productos: [...order.productos, product] });
-    console.log(product)
-    console.log(JSON.stringify(order))
-    localStorage.setItem("order", JSON.stringify(order))
-
-    window.dispatchEvent(new Event('storage'))/// publica un evento de que se actualizo estorage(almacenamiento local)
+ ///    localStorage.setItem("order", JSON.stringify({ ...order, productos: [...order.productos, product] }))
+  function addProduct(product) {
+    props.onAddProduct(product);
 }
-
+///compartir estado entre dos componente
+/// centralizar la info para que ambos esados conozcan los estads
+/// nombre a las variables, props, calbacks se deben hacer para entender
 
   
 
@@ -41,7 +38,7 @@ function Menu(props) {
                     <br />
                     {producto.price}
                   </p>
-                  <button className="add" onClick={() => addProducts(producto)}>+</button>
+                  <button className="add" onClick={() => addProduct(producto)}>+</button>
                 </div>
               </div>
             ));

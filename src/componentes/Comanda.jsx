@@ -1,20 +1,32 @@
-import { useState } from "react"; //NUEVO
+import { useState, useEffect } from "react"; //NUEVO
 import "../estilos/comanda.css";
 
 
 
-function  Comanda(props) {
-  const [order, setOrder] = useState([]);
+function  Comanda({onMount, order}) {
 
 
-  window.addEventListener('storage', (event) => {
-    const orderLocalStorage = JSON.parse(localStorage.getItem("order"))
-    console.log(orderLocalStorage.productos, 5555);
-    setOrder(orderLocalStorage.productos);
-    console.log(order);
-  });
-  
-  
+
+  useEffect(() => {
+    onMount()
+}, [])
+  /// react agrega eventos, el manejo del dom lo debe hacer react
+  /// react debe escuchar eventos con el api react
+  /// manejo de dom react
+
+  ///los componente son fnciones par crear elem en el dom, no hay control total de cuantas veces es llamada la funcion
+  /// el codigo que esta en el componente se ejecuta n cantidad de veces
+  ///windos.addEve... no se puede hacer en el cuerpo de componente
+
+
+  /// investigar: ciclo de vida de un componente en react
+  ///es componente es montado en el nav, aparece en el dom , cuando se monta se renderiza por primera vez y se puede rerenderizar tantas veces sea neceseario
+  ///renderizar de la mejor manera
+  //inmont - se desmonta el componente del dom, se desaparece
+  /// se debe hacer una vez y remover evelintenes durante el mont
+  /// se debe usar usesEffect y no windos.addE... 
+  /// forma segura de utilizarlo, es usarlo para ejecutar algo en el primer render
+
   return (
     <div className="container-principal">
       <div className="container-order">
@@ -27,7 +39,7 @@ function  Comanda(props) {
         </div>
         
     
-        {order.map((producto, index) => (
+        {order.productos.map((producto, index) => (
       <div key={index}>
         <p>{producto.name}</p>
         </div>
