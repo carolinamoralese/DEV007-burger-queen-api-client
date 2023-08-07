@@ -6,12 +6,12 @@
 }
 
 .container-order {
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
   display: grid;
   background-color: #4d263d;
   height: max-content;
   width: 60%;
-  grid-template-rows: 50px 40px 50px auto 1fr;
+  grid-template-rows: 50px 50px 50px auto 1fr;
   grid-template-areas:
     "orden-pedido"
     "cliente"
@@ -32,36 +32,45 @@
   display: flex;
   position: relative;
   width: 90%;
-  height: 80%;
+  height: 50%;
   grid-area: cliente;
   left: 20px;
+  top: 10px;
 }
 
 .cliente::placeholder {
   color: black;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
 }
 
 .container-pedido {
+  position: relative;
   grid-area: container-pedido;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   align-items: baseline;
-  flex-direction: row;
   height: 100%;
-  padding: 15px;
-  gap: 50px;
   color: white;
   font-size: 20px;
   font-weight: bold;
+  grid-template-columns: 220px 100px 170px;
+  grid-template-areas: "producto costo cantidad";
 }
 
-.info-pedidos {
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
+.info-producto {
+  grid-area: producto;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.info-precio {
+  grid-area: costo;
+}
+
+.info-cantidad {
+  grid-area: cantidad;
 }
 
 .lista-productos {
@@ -73,13 +82,21 @@
   display: grid;
   width: 100%;
   height: 100%;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 220px 100px 170px;
   grid-template-areas: "nombre precio botonesCantidad";
 }
 
 .nombre {
   grid-area: nombre;
   color: white;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.listaComida {
+  color: white;
+  font-size: 20px;
 }
 
 .container-precio {
@@ -89,45 +106,16 @@
 
 .precio {
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .botonesCantidad {
   grid-area: botonesCantidad;
 }
 
-.listaComida {
-  color: white;
-  font-size: 20px;
-}
-
-.container-total {
-  grid-area: container-total;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-direction: row;
-  height: 100%;
-  padding: 15px;
-  gap: 50px;
-  color: white;
-}
-
-.boton-orden {
-  width: 120px;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  background-color: rgb(57, 223, 6);
-}
-
 .mas {
   position: relative;
-  justify-content: center;
-  align-items: flex-end;
   width: 20px;
   height: 20px;
   font-size: 20px;
@@ -135,7 +123,6 @@
   color: #ffffff;
   background-color: #dd158c;
   border-radius: 50%;
-  text-align: center;
   border: none;
 }
 
@@ -165,4 +152,45 @@
   background-color: #df0101;
   text-align: center;
   border: none;
+}
+
+.container-total {
+  grid-area: container-total;
+  display: grid;
+  padding: 10px 5px 5px 0;
+  color: white;
+  grid-template-columns: 220px 130px 130px;
+  grid-template-areas: "info-pedidos info-total boton-orden";
+}
+
+.info-pedidos {
+  grid-area: info-pedidos;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.info-total {
+  grid-area: info-total;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 15px;
+}
+
+.boton-orden {
+  grid-area: boton-orden;
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
+  background-color: rgb(57, 223, 6);
 }
