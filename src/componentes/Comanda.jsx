@@ -27,7 +27,7 @@ function Comanda({ onMount, order }) {
              </div>
              <div className="botonesCantidad">
             <button className="mas">+</button>
-            {cantidad}
+            <p className="suma">{cantidad}</p>
             <button className="menos">-</button>
             <button className="eliminar">Eliminar</button>
             </div>
