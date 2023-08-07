@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "../estilos/comanda.css";
 
-function Comanda({ onMount, order }) {
+function Comanda({ onMount, order, onDeleteItem }) {
   useEffect(() => {
     onMount();
   }, []);
@@ -23,13 +23,13 @@ function Comanda({ onMount, order }) {
             <p className="listaComida">{producto.name}</p>
             </div>
             <div className="container-precio">
-             <p className="precio">{producto.price}</p>
-             </div>
-             <div className="botonesCantidad">
+            <p className="precio">{producto.price}</p>
+            </div>
+            <div className="botonesCantidad">
             <button className="mas">+</button>
             <p className="suma">{cantidad}</p>
             <button className="menos">-</button>
-            <button className="eliminar">Eliminar</button>
+            <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>
         ))}
