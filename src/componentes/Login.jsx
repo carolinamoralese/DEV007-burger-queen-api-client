@@ -85,9 +85,9 @@ function Login() {
           >
             INGRESAR
           </button>
-          <button className="ingresarDatos" onClick={() => GetUsers()}>
+          {/* <button className="ingresarDatos" onClick={() => GetUsers()}>
             INGRESAR
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="container-logo">
