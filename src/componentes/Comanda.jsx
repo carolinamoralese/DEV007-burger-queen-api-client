@@ -10,7 +10,7 @@ function Comanda({ onMount, order }) {
     <div className="container-principal">
       <div className="container-order">
         <h1 className="orden-pedido">PEDIDOS</h1>
-        <input className="cliente" placeholder="Cliente"></input>
+        <input className="cliente" placeholder="NOMBRE CLIENTE"></input>
         <div className="container-pedido">
           <p className="info-producto">PRODUCTO</p>
           <p className="info-precio">PRECIO</p>
@@ -23,7 +23,7 @@ function Comanda({ onMount, order }) {
             <p className="listaComida">{producto.name}</p>
             </div>
             <div className="container-precio">
-             <p className="precio" {...producto.price}></p>
+             <p className="precio">{producto.price}</p>
              </div>
              <div className="botonesCantidad">
             <button className="mas">+</button>
@@ -36,7 +36,7 @@ function Comanda({ onMount, order }) {
         </div>
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
-          <p className="info-pedidos">
+          <p className="info-total">
             <span>$</span>
           </p>
           <button className="boton-orden">CREAR ORDEN</button>
