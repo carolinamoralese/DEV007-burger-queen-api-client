@@ -5,7 +5,7 @@ function Comanda({ onMount, order }) {
   useEffect(() => {
     onMount();
   }, []);
-
+  let cantidad = 1
   return (
     <div className="container-principal">
       <div className="container-order">
@@ -16,13 +16,24 @@ function Comanda({ onMount, order }) {
           <p className="info-precio">PRECIO</p>
           <p className="info-cantidad">CANTIDAD</p>
         </div>
-
+        <div className="lista-productos">
         {order.productos.map((producto, index) => (
-          <div key={index}>
-            <p>{producto.name}</p>
+          <div className="container-lista" key={index}>
+            <div className="nombre">
+            <p className="listaComida">{producto.name}</p>
+            </div>
+            <div className="container-precio">
+             <p className="precio" {...producto.price}></p>
+             </div>
+             <div className="botonesCantidad">
+            <button className="mas">+</button>
+            {cantidad}
+            <button className="menos">-</button>
+            <button className="eliminar">Eliminar</button>
+            </div>
           </div>
         ))}
-
+        </div>
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
           <p className="info-pedidos">
