@@ -1,30 +1,24 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
 
-function Comanda({ onMount, order, onDeleteItem }) {
+
+function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
   useEffect(() => {
     onMount();
   }, []);
-  
-  //let cantidad = 1
-
-  const [cantidad, setCantidad] = useState(1); //Declaramos cantidad de forma correcta
 
   // Calcula el total de los productos en la orden
   const totalCuenta = order.productos.reduce((suma, producto) => (
     suma + (cantidad * producto.price)
   ), 0);
+ 
+function addProduct(product) {
+    onAddProduct(product);
+  }
 
-  const aumentar = () => {
-    setCantidad(cantidad + 1);
-  };
-
-  const disminuir = () => {
-    if (cantidad > 1) {
-      setCantidad(cantidad - 1);
-    }
-  };
-
+function lessProduct(product) {
+  onLessProduct(product);
+  }
 
   return (
     <div className="container-principal">
@@ -43,12 +37,14 @@ function Comanda({ onMount, order, onDeleteItem }) {
             <p className="listaComida">{producto.name}</p>
             </div>
             <div className="container-precio">
-            <p className="precio">{producto.price}</p>
-            </div>
-            <div className="botonesCantidad">
-            <button className="mas" onClick={aumentar}>+</button>
-            <p className="suma">{cantidad}</p>
-            <button className="menos" onClick={disminuir}>-</button>
+
+             <p className="precio">{producto.price}</p>
+             </div>
+             <div className="botonesCantidad">
+            <button className="mas" onClick={() => addProduct(producto)}>+</button>
+            {producto.quantity}
+            <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
+
             <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>

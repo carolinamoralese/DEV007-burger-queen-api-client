@@ -9,12 +9,19 @@ function Home() {
 const [productos, setProductos] = useState([]);
 const [order, setOrder] = useState({ productos: [] });
 
-const handleAddProduct = (product) => {
-    setOrder((prevOrder) => ({
-    ...prevOrder,
-    productos: [...prevOrder.productos, product],
-    }));
-};
+
+  const handleAddProduct = (product) => {
+    if(!order.productos.includes(product)){
+      product['quantity'] = 1;
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        productos: [...prevOrder.productos, product],
+      }));
+    }else{
+      plusProduct(product.id)
+    }
+    
+  };
 
 const handleComandaMount = () => {
     if (!order.productos.length) {
@@ -32,6 +39,33 @@ const DeleteItem = (indexItem) => {
     productos: prevOrder.productos.filter((product, index) => index !== indexItem)
 }));
 };
+
+
+  const plusProduct = (productId) => {
+   const newOrderProducts = order.productos.map(function(product){
+    if(product.id == productId){
+      product.quantity += 1;
+      return product
+    }else{
+      return product
+    }
+  });
+   setOrder({ productos: newOrderProducts });
+  };
+
+
+  const lessProduct = (productId) => {
+    const newOrderProducts = order.productos.map(function(product){
+     if(product.id == productId){
+       product.quantity -= 1;
+       return product
+     }else{
+       return product
+     }
+   });
+    setOrder({ productos: newOrderProducts });
+   };
+
 
   /* PETICIÓN A LA API PARA MOSTRAR LOS OBJETOS EN LA INTERFAZ */
 useEffect(() => {
@@ -53,9 +87,9 @@ useEffect(() => {
 
 return (
     <>
-    <Encabezado />
-    <Menu productos={productos} onAddProduct={handleAddProduct} />
-    <Comanda order={order} onMount={handleComandaMount} onDeleteItem={DeleteItem} />
+      <Encabezado />
+      <Menu productos={productos} onAddProduct={handleAddProduct} />
+      <Comanda order={order} onMount={handleComandaMount}  onDeleteItem={DeleteItem} onAddProduct={handleAddProduct} onLessProduct={lessProduct} />
     </>
 );
 }
