@@ -49,8 +49,10 @@ const DeleteItem = (indexItem) => {
     }else{
       return product
     }
+    
   });
    setOrder({ productos: newOrderProducts });
+   console.log(newOrderProducts)
   };
 
 

@@ -7,9 +7,11 @@ function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) 
     onMount();
   }, []);
 
+
+
   // Calcula el total de los productos en la orden
   const totalCuenta = order.productos.reduce((suma, producto) => (
-    suma + (cantidad * producto.price)
+    suma + (producto.quantity * producto.price)
   ), 0);
  
 function addProduct(product) {
