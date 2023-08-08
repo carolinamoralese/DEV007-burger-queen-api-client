@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
+import Reloj from "./reloj";
 
 
 function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
@@ -7,6 +8,7 @@ function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) 
     onMount();
   }, []);
 
+  
 
 
   // Calcula el total de los productos en la orden
@@ -26,6 +28,7 @@ function lessProduct(product) {
     <div className="container-principal">
       <div className="container-order">
         <h1 className="orden-pedido">PEDIDOS</h1>
+        < Reloj/>
         <input className="cliente" placeholder="NOMBRE CLIENTE"></input>
         <div className="container-pedido">
           <p className="info-producto">PRODUCTO</p>
@@ -39,7 +42,7 @@ function lessProduct(product) {
             <p className="listaComida">{producto.name}</p>
             </div>
             <div className="container-precio">
-
+            
              <p className="precio">{producto.price}</p>
              </div>
              <div className="botonesCantidad">
