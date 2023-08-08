@@ -1,11 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
 
-function Comanda({ onMount, order }) {
+
+function Comanda({ onMount, order, onAddProduct, onLessProduct }) {
   useEffect(() => {
     onMount();
   }, []);
-  let cantidad = 1
+ 
+function addProduct(product) {
+    onAddProduct(product);
+  }
+
+function lessProduct(product) {
+  onLessProduct(product);
+  }
+
   return (
     <div className="container-principal">
       <div className="container-order">
@@ -26,9 +35,9 @@ function Comanda({ onMount, order }) {
              <p className="precio">{producto.price}</p>
              </div>
              <div className="botonesCantidad">
-            <button className="mas">+</button>
-            {cantidad}
-            <button className="menos">-</button>
+            <button className="mas" onClick={() => addProduct(producto)}>+</button>
+            {producto.quantity}
+            <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
             <button className="eliminar">Eliminar</button>
             </div>
           </div>
