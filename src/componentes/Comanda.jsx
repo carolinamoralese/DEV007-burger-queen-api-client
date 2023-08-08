@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
 
 
-function Comanda({ onMount, order, onAddProduct, onLessProduct }) {
+function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
   useEffect(() => {
     onMount();
   }, []);
@@ -38,7 +38,7 @@ function lessProduct(product) {
             <button className="mas" onClick={() => addProduct(producto)}>+</button>
             {producto.quantity}
             <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
-            <button className="eliminar">Eliminar</button>
+            <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>
         ))}
