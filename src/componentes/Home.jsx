@@ -9,7 +9,6 @@ function Home() {
 const [productos, setProductos] = useState([]);
 const [order, setOrder] = useState({ productos: [] });
 
-<<<<<<< HEAD
 
   const handleAddProduct = (product) => {
     if(!order.productos.includes(product)){
@@ -23,14 +22,6 @@ const [order, setOrder] = useState({ productos: [] });
     }
     
   };
-=======
-const handleAddProduct = (product) => {
-    setOrder((prevOrder) => ({
-    ...prevOrder,
-    productos: [...prevOrder.productos, product],
-    }));
-};
->>>>>>> aedfcfb2ac8bb963cfabf6584f9a2c0f2d317800
 
 const handleComandaMount = () => {
     if (!order.productos.length) {
