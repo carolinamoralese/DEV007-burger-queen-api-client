@@ -25,7 +25,7 @@ const [order, setOrder] = useState({ productos: [] });
 
 const handleComandaMount = () => {
     if (!order.productos.length) {
-    console.log(localStorage.getItem("order"));
+    //console.log(localStorage.getItem("order"));
     const localStorageOrder = JSON.parse(localStorage.getItem("order"));
     if (localStorageOrder) {
         setOrder(localStorageOrder);
