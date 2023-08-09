@@ -12,6 +12,14 @@ function Encabezado() {
     navigate("/");
   }
 
+  // function pedidos() {
+  //   useEffect(() => {
+  //     if (user) {
+  //       navigate("/Menu");
+  //     }
+  //   }, [user]);
+  //   navigate("/Pedidos");
+  // }
   return (
     <div className="containerHeader">
       <div className="header">
@@ -20,8 +28,8 @@ function Encabezado() {
         </div>
         <div className="containerBotones">
           <button className="boton">HOME</button>
-          <button className="boton">PEDIDOS</button>
-          <button className="boton" onClick={()=> LogOut()}>
+          <button className="boton" onClick={()=> LogOut()}>PEDIDOS</button>
+          <button className="boton" onClick={()=> pedidos()}>
             SALIR
           </button>
         </div>
