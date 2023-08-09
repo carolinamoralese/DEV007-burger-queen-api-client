@@ -25,9 +25,9 @@ function Home() {
 
   const handleComandaMount = () => {
     if (!order.productos.length) {
-      console.log(localStorage.getItem("order"));
-      const localStorageOrder = JSON.parse(localStorage.getItem("order"));
-      if (localStorageOrder) {
+    //console.log(localStorage.getItem("order"));
+    const localStorageOrder = JSON.parse(localStorage.getItem("order"));
+    if (localStorageOrder) {
         setOrder(localStorageOrder);
       }
     }
