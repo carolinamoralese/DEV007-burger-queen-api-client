@@ -10,18 +10,18 @@ const [productos, setProductos] = useState([]);
 const [order, setOrder] = useState({ productos: [] });
 
 
-  const handleAddProduct = (product) => {
+const handleAddProduct = (product) => {
     if(!order.productos.includes(product)){
-      product['quantity'] = 1;
-      setOrder((prevOrder) => ({
+        product['quantity'] = 1;
+        setOrder((prevOrder) => ({
         ...prevOrder,
         productos: [...prevOrder.productos, product],
-      }));
+        }));
     }else{
-      plusProduct(product.id)
+        plusProduct(product.id)
     }
     
-  };
+};
 
 const handleComandaMount = () => {
     if (!order.productos.length) {
@@ -41,32 +41,32 @@ const DeleteItem = (indexItem) => {
 };
 
 
-  const plusProduct = (productId) => {
-   const newOrderProducts = order.productos.map(function(product){
+const plusProduct = (productId) => {
+    const newOrderProducts = order.productos.map(function(product){
     if(product.id == productId){
-      product.quantity += 1;
-      return product
+        product.quantity += 1;
+        return product
     }else{
-      return product
+        return product
     }
     
-  });
-   setOrder({ productos: newOrderProducts });
-   console.log(newOrderProducts)
-  };
-
-
-  const lessProduct = (productId) => {
-    const newOrderProducts = order.productos.map(function(product){
-     if(product.id == productId){
-       product.quantity -= 1;
-       return product
-     }else{
-       return product
-     }
-   });
+    });
     setOrder({ productos: newOrderProducts });
-   };
+    console.log(newOrderProducts)
+};
+
+
+const lessProduct = (productId) => {
+    const newOrderProducts = order.productos.map(function(product){
+        if(product.id == productId){
+        product.quantity -= 1;
+        return product
+        }else{
+        return product
+        }
+    });
+    setOrder({ productos: newOrderProducts });
+};
 
 
   /* PETICIÓN A LA API PARA MOSTRAR LOS OBJETOS EN LA INTERFAZ */
@@ -89,9 +89,9 @@ useEffect(() => {
 
 return (
     <>
-      <Encabezado />
-      <Menu productos={productos} onAddProduct={handleAddProduct} />
-      <Comanda order={order} onMount={handleComandaMount}  onDeleteItem={DeleteItem} onAddProduct={handleAddProduct} onLessProduct={lessProduct} />
+        <Encabezado />
+        <Menu productos={productos} onAddProduct={handleAddProduct} />
+        <Comanda order={order} onMount={handleComandaMount}  onDeleteItem={DeleteItem} onAddProduct={handleAddProduct} onLessProduct={lessProduct} />
     </>
 );
 }
