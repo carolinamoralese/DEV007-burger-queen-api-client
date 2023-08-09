@@ -26,22 +26,37 @@
     color: white;
 }
 
-.container-productos {
+.container-comandas {
     font-size: 20px;
     font-weight: bold;
-    background-color: #4d263d;
+    /* background-color: #4d263d; */
     height: max-content;
-    width: 60%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.pedido{
+    background-color: #4d263d;
+    width: 40%;
+    height: 400px;
     display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     /*grid-template-columns: 50px 50px 100px 100px;*/
     grid-template-areas: 
-    "litapedidos"
-    "listacantidad"
+    "nombre-cliente"
+    "header-comanda"
     "estado"
-    "btnEstado";
+    "btnEstado"
 }
 
-.orden{
+.container-client{
+display: flex;
+justify-content: center;
+grid-area: nombre-cliente;
+}
+
+.name-client{
     /*grid-area: nombre;*/
     height: auto;
     width: 100%;
@@ -53,7 +68,8 @@
 
 .header-comanda {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-area: header-comanda;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 
     "info-producto"
     "info-precio";
@@ -66,6 +82,7 @@
     /*display: flex;*/
     justify-content: flex-start;
     padding-left: 10px;
+    grid-area: info-producto;
 }
 
 .info-precio {
@@ -73,6 +90,7 @@
     /*display: flex;
     justify-content: flex-start;*/
     padding-left: 10px;
+    grid-area: info-precio;
 }
 
 .litapedidos {
@@ -90,3 +108,4 @@
     justify-content: flex-start;
     padding-left: 10px;
 }
+
