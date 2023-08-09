@@ -43,7 +43,6 @@ function Pedidos() {
       <div className="Encabezado">
         <Encabezado />
       </div>
-      <div></div>
       <div className="titulo-pedidos">
         <h1 className="title">PEDIDOS</h1>
       </div>

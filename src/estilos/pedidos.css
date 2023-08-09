@@ -5,7 +5,8 @@
     grid-template-areas: 
     "Encabezado"
     "titulo-pedidos"
-    "container-productos";
+    "container-productos"
+    "header-comanda";
 }
 
 .Encabezado {
@@ -50,19 +51,27 @@
     padding-left: 10px;
 }
 
+.header-comanda {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+    "info-producto"
+    "info-precio";
+}
+
 .info-producto {
     height: auto;
     width: 150%;
     color: white;
-    display: flex;
+    /*display: flex;*/
     justify-content: flex-start;
     padding-left: 10px;
 }
 
 .info-precio {
     color: white;
-    display: flex;
-    justify-content: flex-start;
+    /*display: flex;
+    justify-content: flex-start;*/
     padding-left: 10px;
 }
 
