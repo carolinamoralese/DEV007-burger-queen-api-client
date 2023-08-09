@@ -2,7 +2,7 @@ import "../estilos/desayunos.css";
 import Encabezado from "./Header";
 import Menu from "./Menu";
 import { useEffect, useState } from "react";
-import { getRequestOptions } from "../servicios/getRequestOptions";
+import { getProducts } from "../servicios/products";
 import { useNavigate } from "react-router-dom";
 import Comanda from "./Comanda";
 
@@ -37,7 +37,7 @@ function Home() {
     setOrder((prevOrder) => ({
       ...prevOrder,
       productos: prevOrder.productos.filter(
-        (product, index) => index !== indexItem
+        (_, index) => index !== indexItem
       ),
     }));
   };
@@ -46,10 +46,8 @@ function Home() {
     const newOrderProducts = order.productos.map(function (product) {
       if (product.id === productId) {
         product.quantity += 1;
-        return product;
-      } else {
-        return product;
       }
+    return product;
     });
     setOrder({ productos: newOrderProducts });
     console.log(newOrderProducts);
@@ -80,14 +78,8 @@ function Home() {
       navigate("/");
       return;
     }
-
-    fetch("http://localhost:8080/products", getRequestOptions("GET"))
-      .then((response) => response.json())
-      .then((responseJson) => {
+    getProducts().then((responseJson) => {
         setProductos(responseJson);
-      })
-      .catch((error) => {
-        console.error(error.mensaje);
       });
   }, []);
 
