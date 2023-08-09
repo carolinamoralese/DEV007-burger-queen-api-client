@@ -48,7 +48,7 @@ function PeticionPostOrders() {
         client: client,
         products: order.productos, 
         status: "pending",
-        dataEntry: '2022-03-05 15:00',
+        dataEntry: new Date(),
         cantidad: order.quantity
         })
       } 

@@ -56,7 +56,7 @@ function Pedidos() {
               <div className="nombre">
                 {/* <p className="listaComida">{order.client}</p> */}
               </div>
-              {order.products.map((producto) => (
+              {order.products.map((producto, index) => (
                 <div className="container-lista" key={index}>
                   <div className="nombre">
                     <p className="listaComida">{producto.name}</p>
