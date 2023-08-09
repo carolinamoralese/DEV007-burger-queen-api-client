@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 export default function Reloj() {
   const h1 = useRef();
-  const ti = () => {
+  const hora = () => {
     const fechahora = new Date();
     const hora = fechahora.getHours();
     const minuto = fechahora.getMinutes();
@@ -12,13 +12,13 @@ export default function Reloj() {
   };
   useEffect(() => {
     const cl = setInterval(() => {
-      h1.current.innerHTML = `${ti()}`;
+      h1.current.innerHTML = `${hora()}`;
     }, 1000);
     return () => clearInterval(cl);
   }, []);
   return (
     <div className="App">
-      <h1 ref={h1}>{ti()}</h1>
+      <h1 ref={h1}>{hora()}</h1>
     </div>
   );
 }
