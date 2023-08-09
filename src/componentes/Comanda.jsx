@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
 import Reloj from "./reloj";
-import PeticionGetOrders from "./PeticionGetOrders";
 
 
 function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
