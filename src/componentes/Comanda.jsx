@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
 import Reloj from "./reloj";
+import PeticionGetOrders from "./PeticionGetOrders";
 
 
 function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
   useEffect(() => {
     onMount();
   }, []);
-
-  
-
 
   // Calcula el total de los productos en la orden
   const totalCuenta = order.productos.reduce((suma, producto) => (
