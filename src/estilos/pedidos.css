@@ -1,0 +1,83 @@
+.container-pedidos {
+    height: calc(100% - 15%);
+    display: grid;
+    grid-template-rows: auto 20% 100%;
+    grid-template-areas: 
+    "Encabezado"
+    "titulo-pedidos"
+    "container-productos";
+}
+
+.Encabezado {
+    margin-top: 2%;
+}
+
+.titulo-pedidos {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 50px;
+    color: white;
+}
+
+.container-productos {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #4d263d;
+    height: max-content;
+    width: 60%;
+    display: grid;
+    /*grid-template-columns: 50px 50px 100px 100px;*/
+    grid-template-areas: 
+    "litapedidos"
+    "listacantidad"
+    "estado"
+    "btnEstado";
+}
+
+.orden{
+    /*grid-area: nombre;*/
+    height: auto;
+    width: 100%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.info-producto {
+    height: auto;
+    width: 150%;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.info-precio {
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.litapedidos {
+    /*grid-area: nombre;*/
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}
+
+.listacantidad {
+    /*grid-area: nombre;*/
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 10px;
+}

@@ -13,7 +13,7 @@ function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) 
   const totalCuenta = order.productos.reduce((suma, producto) => (
     suma + (producto.quantity * producto.price)
   ), 0);
- 
+
 function addProduct(product) {
     onAddProduct(product);
   }
@@ -41,13 +41,12 @@ function lessProduct(product) {
             </div>
             <div className="container-precio">
             
-             <p className="precio">{producto.price}</p>
-             </div>
-             <div className="botonesCantidad">
+            <p className="precio">{producto.price}</p>
+            </div>
+            <div className="botonesCantidad">
             <button className="mas" onClick={() => addProduct(producto)}>+</button>
             {producto.quantity}
             <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
-
             <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>
