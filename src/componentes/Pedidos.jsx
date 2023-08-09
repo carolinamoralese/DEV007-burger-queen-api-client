@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../estilos/pedidos.css";
 import Encabezado from "./Header";
-//import PeticionGetOrders from "./PeticionGetOrders";
+
 
 function Pedidos() {
   const [orders, setOrders] = useState([]);
@@ -86,3 +86,4 @@ function Pedidos() {
 }
 
 export default Pedidos;
+/// este es un comentario
