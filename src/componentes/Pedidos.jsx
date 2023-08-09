@@ -2,6 +2,7 @@
 //import { useNavigate } from "react-router-dom";
 import "../estilos/pedidos.css";
 import Encabezado from "./Header";
+import PeticionGetOrders from "./PeticionGetOrders";
 
 function Pedidos() {
   return (
@@ -9,7 +10,7 @@ function Pedidos() {
       <div className="Encabezado">
         <Encabezado />
       </div>
-
+      <div><PeticionGetOrders/></div>
       <div className="titulo-pedidos">
         <h1 className="title">PEDIDOS</h1>
       </div>
