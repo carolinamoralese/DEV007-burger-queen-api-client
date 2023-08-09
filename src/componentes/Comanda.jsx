@@ -83,12 +83,12 @@ function PeticionPostOrders() {
             </div>
             <div className="container-precio">
             
-            <p className="precio">{producto.price}</p>
+            <p className="precio">{producto.price}</p> {/* usar P sólo cuando sean párrafos */}
             </div>
             <div className="botonesCantidad">
             <button className="mas" onClick={() => addProduct(producto)}>+</button>
             {producto.quantity}
-            <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
+            <button className="menos"  onClick={() => lessProduct(producto.id)} aria-label="Restar un XXX">-</button>
             <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>

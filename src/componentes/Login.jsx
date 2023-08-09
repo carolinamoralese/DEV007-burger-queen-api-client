@@ -16,7 +16,7 @@ function Login() {
     }
   }, [user]);
 
-  function PeticionLogin() {
+  function handleLoginClick() {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -81,7 +81,7 @@ function Login() {
 
           <button
             className="ingresarDatos"
-            onClick={() => PeticionLogin(email, password)}
+            onClick={() => handleLoginClick()}
           >
             INGRESAR
           </button>
