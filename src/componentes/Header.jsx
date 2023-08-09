@@ -1,8 +1,18 @@
 import logo from "../Imagenes/logo.png";
 import usuario from "../Imagenes/usuario.jpg";
 import { useNavigate } from "react-router-dom";
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../estilos/header.css";
+
+// function pedidos() {
+//   const [user, setUser] = useState(null);
+  // const navigate = useNavigate();
+//   useEffect(() => {
+//     if (user) {
+//       navigate("/Pe");
+//     }
+//   }, [user]);
+// }
 
 function Encabezado() {
   const navigate = useNavigate();
@@ -12,14 +22,6 @@ function Encabezado() {
     navigate("/");
   }
 
-  // function pedidos() {
-  //   useEffect(() => {
-  //     if (user) {
-  //       navigate("/Menu");
-  //     }
-  //   }, [user]);
-  //   navigate("/Pedidos");
-  // }
   return (
     <div className="containerHeader">
       <div className="header">
@@ -27,9 +29,11 @@ function Encabezado() {
           <img src={logo} className="logoPequeño" />
         </div>
         <div className="containerBotones">
-          <button className="boton">HOME</button>
-          <button className="boton" onClick={()=> LogOut()}>PEDIDOS</button>
-          <button className="boton" onClick={()=> pedidos()}>
+          <button className="boton"onClick={() => navigate("/Menu")}>HOME</button>
+          <button className="boton" onClick={() => navigate("/Pedidos")}>
+            PEDIDOS
+          </button>
+          <button className="boton" onClick={() => LogOut()}>
             SALIR
           </button>
         </div>
@@ -42,3 +46,4 @@ function Encabezado() {
 }
 
 export default Encabezado;
+/// este es un comentario
