@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
-//import PeticionPostOrders from "./PeticionPostOrder";
-//import Reloj from "./reloj";
+import Reloj from "./reloj";
+import PeticionGetOrders from "./PeticionGetOrders";
 
 
 function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
@@ -14,7 +14,6 @@ function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) 
     suma + (producto.quantity * producto.price)
   ), 0);
 
-  //Manejan los botones + y - de la comanda
 function addProduct(product) {
     onAddProduct(product);
   }
@@ -85,13 +84,12 @@ function PeticionPostOrders() {
             </div>
             <div className="container-precio">
             
-             <p className="precio">{producto.price}</p>
-             </div>
-             <div className="botonesCantidad">
+            <p className="precio">{producto.price}</p>
+            </div>
+            <div className="botonesCantidad">
             <button className="mas" onClick={() => addProduct(producto)}>+</button>
             {producto.quantity}
             <button className="menos"  onClick={() => lessProduct(producto.id)}>-</button>
-
             <button className="eliminar" onClick={() => onDeleteItem(index)}>Eliminar</button>
             </div>
           </div>

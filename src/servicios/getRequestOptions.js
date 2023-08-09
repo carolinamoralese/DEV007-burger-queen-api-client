@@ -1,5 +1,5 @@
 export function getRequestOptions(method) {
-  const tokenMock = localStorage.getItem("token");
+  const bearerToken = localStorage.getItem("token");
   let requestOptions = {
     method: method,
     headers: {
@@ -7,8 +7,8 @@ export function getRequestOptions(method) {
       authorization: "Bearer ",
     },
   };
-  if (tokenMock) {
-    requestOptions["headers"]["authorization"] = "Bearer " + tokenMock;
+  if (bearerToken) {
+    requestOptions["headers"]["authorization"] = "Bearer " + bearerToken;
   }
   return requestOptions;
 }
