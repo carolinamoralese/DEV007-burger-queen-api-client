@@ -1,16 +1,49 @@
-//import { useEffect } from "react";
-//import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../estilos/pedidos.css";
 import Encabezado from "./Header";
-import PeticionGetOrders from "./PeticionGetOrders";
+//import PeticionGetOrders from "./PeticionGetOrders";
 
 function Pedidos() {
+
+  
+  const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    const bearerToken = localStorage.getItem("token");
+    if (!bearerToken) {
+      navigate("/");
+      return;
+    }
+
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + bearerToken,
+      },
+    };
+
+    fetch("http://localhost:8080/orders", requestOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log('respuesta exitosa',responseJson)
+        setOrders(responseJson);
+      })
+      .catch((error) => {
+        console.error("error en la peticion", error);
+      });
+  },[]);
+  
+  
   return (
     <div className="container-pedidos">
       <div className="Encabezado">
         <Encabezado />
       </div>
-      <div><PeticionGetOrders/></div>
+      <div></div>
       <div className="titulo-pedidos">
         <h1 className="title">PEDIDOS</h1>
       </div>
@@ -26,8 +59,26 @@ function Pedidos() {
       </div>
 
       <div className="container-pedidos">
-        <p className="litapedidos">cafe</p>
-        <p className="listacantidad">1</p>
+        {/* <p className="litapedidos">cafe</p>
+        <p className="listacantidad">1</p> */}
+     {orders.map((order, index) => (
+          <div className="container-lista" key={index}>
+            <div className="nombre">
+            <p className="listaComida">{order.client}</p>
+            </div>
+            {order.products.map((producto) => (
+              <div className="container-lista" key={index}>
+              <div className="nombre">
+              <p className="listaComida">{producto.name}</p>
+              </div>
+              <div className="container-precio">
+              
+              <p className="precio">{producto.price}</p>
+              </div>
+            </div>
+            ))}
+          </div>
+        ))}
       </div>
 
       <div className="estado">
