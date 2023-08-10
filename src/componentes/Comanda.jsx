@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../estilos/comanda.css";
-import Reloj from "./reloj";
+
 
 
 function Comanda({ onMount, order, onAddProduct, onLessProduct, onDeleteItem }) {
@@ -48,8 +48,8 @@ function PeticionPostOrders() {
         client: client,
         products: order.productos, 
         status: "pending",
-        dataEntry: new Date(),
-        cantidad: order.quantity
+        dataEntry: new Date().toLocaleString(),
+        cantidad: order.quantity,
         })
       } 
   fetch("http://localhost:8080/orders", requestOptions)
