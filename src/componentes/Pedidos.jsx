@@ -39,9 +39,9 @@ function Pedidos() {
   }, []);
 
  
-  function calculateOrderTime(dataEntry) {
+  function calculateOrderTime(startTime) {
     const now = new Date();
-    const orderTimeDifference = now - new Date(dataEntry);
+    const orderTimeDifference = now - new Date(startTime);
     const seconds = Math.floor(orderTimeDifference / 1000);
     const minutes = Math.trunc(seconds / 60)
     return `${minutes} Minutos`; // Cambia esto según tu necesidad
