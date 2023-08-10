@@ -50,6 +50,7 @@ function PeticionPostOrders() {
         status: "pending",
         dataEntry: new Date().toLocaleString(),
         cantidad: order.quantity,
+        startTime: new Date(),
         })
       } 
   fetch("http://localhost:8080/orders", requestOptions)
