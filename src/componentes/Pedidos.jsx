@@ -62,41 +62,35 @@ function Pedidos() {
         {orders.map((order, index) => (
           <div className="pedido" key={index}>
             <div className="container-client">
-              <p className="name-client">Orden:{order.client}</p>
+              <p className="name-client">Orden: {order.client}</p>
             </div>
             <div className="header-comanda">
-              <p className="info-producto">PRODUCTO</p>
-              <p className="info-precio">CANTIDAD</p>
-            </div>
-            <div className="nombre">
-              {/* <p className="listaComida">{order.client}</p> */}
+              <p className="pedido-producto">PRODUCTO</p>
+              <p className="pedido-cantidad">CANTIDAD</p>
+              <p className="pedido-precio">PRECIO</p>
             </div>
             <div className="tiempo-transcurrido">
               Tiempo transcurrido: {calculateOrderTime(order.startTime)}
             </div>
             {order.products.map((producto, index) => (
-              <div className="container-lista" key={index}>
-                <div className="nombre">
-                  <p className="listaComida">{producto.name}</p>
-                </div>
-                <div className="container-precio">
-                  <p className="precio">{producto.price}</p>
-                </div>
-                <div className="container-precio">
-                  <p className="precio">{producto.price}</p>
-                </div>
+              <div className="container-comida" key={index}>
+              <div className="listado-comida">
+                  <p className="pedido-food">{producto.name}</p>
+                  </div>
+                  <p className="pedido-price">{producto.price}</p>
+                  <p className="pedido-qty">{producto.quantity}</p>
+              
               </div>
             ))}
-          </div>
-        ))}
-      </div>
-
-      <div className="estado">
+            <div className="estado">
         <p>pendiente</p>
       </div>
 
-      <div className="btnEstado">
-        <button>ESTADO</button>
+      <div className="container-btnEstado">
+        <button className="btnEstado">ESTADO</button>
+      </div>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -29,7 +29,6 @@
 .container-comandas {
     font-size: 20px;
     font-weight: bold;
-    /* background-color: #4d263d; */
     height: max-content;
     width: 100%;
     display: flex;
@@ -42,71 +41,93 @@
     width: 40%;
     height: 400px;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    /*grid-template-columns: 50px 50px 100px 100px;*/
+    padding: 15px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: 
     "nombre-cliente"
     "header-comanda"
+    "container-comida"
+    "tiempo-transcurrido"
     "estado"
     "btnEstado"
 }
 
 .container-client{
 display: flex;
-justify-content: center;
+width: 100%;
+justify-content: flex-start;
 grid-area: nombre-cliente;
 }
 
 .name-client{
-    /*grid-area: nombre;*/
     height: auto;
-    width: 100%;
     color: white;
     display: flex;
-    justify-content: flex-start;
-    padding-left: 10px;
+    font-size: 25px;
+    text-transform: uppercase;
+    padding-left: 20px;
 }
 
 .header-comanda {
     display: grid;
+    width: 100%;
     grid-area: header-comanda;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: 
-    "info-producto"
-    "info-precio";
+    "pedido-producto pedido-cantidad pedido-precio";
+    justify-content: space-between;
 }
 
-.info-producto {
-    height: auto;
-    width: 150%;
+.pedido-producto {
     color: white;
-    /*display: flex;*/
-    justify-content: flex-start;
-    padding-left: 10px;
-    grid-area: info-producto;
+    grid-area: pedido-producto;
 }
 
-.info-precio {
-    color: white;
-    /*display: flex;
-    justify-content: flex-start;*/
-    padding-left: 10px;
-    grid-area: info-precio;
+.container-comida{
+    grid-area: container-comida;
+    display: flex;
+    flex-direction: column;
 }
 
-.litapedidos {
-    /*grid-area: nombre;*/
+.listado-comida {
+    grid-area: pedido-food;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* grid-template-areas: 
+    "pedido-food pedido-qty pedido-price"
+    ; */
+}
+
+.listaComida {
     color: white;
     display: flex;
+    width: 100%;
     justify-content: flex-start;
-    padding-left: 10px;
+    flex-direction: column;
 }
 
-.listacantidad {
-    /*grid-area: nombre;*/
+.pedido-qty {
+    grid-area: pedido-qty;
     color: white;
     display: flex;
+    width: 100%;
     justify-content: flex-start;
-    padding-left: 10px;
 }
 
+.pedido-price {
+    color: white;
+    width: 100%;
+    grid-area: pedido-price;
+}
+
+
+
+
+.estado {
+grid-area: estado;
+}
+
+.container-btnEstado {
+    grid-area: btnEstado;
+}
