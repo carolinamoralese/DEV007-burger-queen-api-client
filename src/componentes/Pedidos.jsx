@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "../estilos/pedidos.css";
 import Encabezado from "./Header";
 
-
 function Pedidos() {
   const [orders, setOrders] = useState([]);
+  const [currentTime, setCurrentTime] = useState(new Date()); // Estado para la hora actual
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,7 +32,20 @@ function Pedidos() {
       .catch((error) => {
         console.error("error en la peticion", error);
       });
+
+    setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // Actualizar cada segundo
   }, []);
+
+ 
+  function calculateOrderTime(dataEntry) {
+    const now = new Date();
+    const orderTimeDifference = now - new Date(dataEntry);
+    const seconds = Math.floor(orderTimeDifference / 1000);
+    const minutes = Math.trunc(seconds / 60)
+    return `${minutes} Minutos`; // Cambia esto según tu necesidad
+  }
 
   return (
     <div className="container-pedidos">
@@ -43,44 +56,48 @@ function Pedidos() {
         <h1 className="title">PEDIDOS</h1>
       </div>
 
-      <div className="container-comandas"> {/* este es espacio que contiene todos los pedidos*/}
-          {orders.map((order, index) => (
-            <div className="pedido" key={index}>
-              <div className="container-client">
-                <p className="name-client">Orden:{order.client}</p>
-              </div>
-              <div className="header-comanda">
-                <p className="info-producto">PRODUCTO</p>
-                <p className="info-precio">CANTIDAD</p>
-              </div>
-              <div className="nombre">
-                {/* <p className="listaComida">{order.client}</p> */}
-              </div>
-              {order.products.map((producto, index) => (
-                <div className="container-lista" key={index}>
-                  <div className="nombre">
-                    <p className="listaComida">{producto.name}</p>
-                  </div>
-                  <div className="container-precio">
-                    <p className="precio">{producto.price}</p>
-                  </div>
-                  <div className="container-precio">
-                    <p className="precio">{producto.price}</p>
-                  </div>
-                </div>
-              ))}
+      <div className="container-comandas">
+        {" "}
+        {/* este es espacio que contiene todos los pedidos*/}
+        {orders.map((order, index) => (
+          <div className="pedido" key={index}>
+            <div className="container-client">
+              <p className="name-client">Orden:{order.client}</p>
             </div>
-          ))}
-        </div>
+            <div className="header-comanda">
+              <p className="info-producto">PRODUCTO</p>
+              <p className="info-precio">CANTIDAD</p>
+            </div>
+            <div className="nombre">
+              {/* <p className="listaComida">{order.client}</p> */}
+            </div>
+            <div className="tiempo-transcurrido">
+              Tiempo transcurrido: {calculateOrderTime(order.startTime)}
+            </div>
+            {order.products.map((producto, index) => (
+              <div className="container-lista" key={index}>
+                <div className="nombre">
+                  <p className="listaComida">{producto.name}</p>
+                </div>
+                <div className="container-precio">
+                  <p className="precio">{producto.price}</p>
+                </div>
+                <div className="container-precio">
+                  <p className="precio">{producto.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
 
-        <div className="estado">
-          <p>pendiente</p>
-        </div>
+      <div className="estado">
+        <p>pendiente</p>
+      </div>
 
-        <div className="btnEstado">
-          <button>ESTADO</button>
-        </div>
-      
+      <div className="btnEstado">
+        <button>ESTADO</button>
+      </div>
     </div>
   );
 }
