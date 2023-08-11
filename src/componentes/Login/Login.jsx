@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import logo from "../Imagenes/logo.png";
-//import { GetUsers } from "./Peticion";
+import logo from "../../Imagenes/logo.png";
 import { useNavigate } from "react-router-dom";
-import "../estilos/login.css";
+import "./login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,10 +18,10 @@ function Login() {
 
   useEffect(() => {
     //NUEVO
-    if (userRole === "waiter") {
+    if (userRole == "waiter") {
       navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
-    } else if (userRole === "admin") {
-      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es admin
+    } else if (userRole == "chef") {
+      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
     }
   }, [userRole, navigate]);
 

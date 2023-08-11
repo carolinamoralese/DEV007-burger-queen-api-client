@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../estilos/pedidos.css";
-import Encabezado from "./Header";
+import "../Pedidos/pedidos.css";
+import Encabezado from "../Header/Header";
 
 function calculateOrderTime(startTime) {
   const now = new Date();

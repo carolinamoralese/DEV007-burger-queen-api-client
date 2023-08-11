@@ -1,8 +1,8 @@
-import logo from "../Imagenes/logo.png";
-import usuario from "../Imagenes/usuario.jpg";
+import logo from "../../Imagenes/logo.png";
+import usuario from "../../Imagenes/usuario.jpg";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "../estilos/header.css";
+import "./header.css";
 
 function Encabezado() {
   const navigate = useNavigate();
@@ -38,4 +38,3 @@ function Encabezado() {
 }
 
 export default Encabezado;
-/// este es un comentario

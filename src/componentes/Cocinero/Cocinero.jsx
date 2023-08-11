@@ -1,5 +1,5 @@
-import "../estilos/pedidos.css";
-import Pedidos from "./Pedidos";
+import "../Pedidos/pedidos.css";
+import Pedidos from "../Pedidos/Pedidos";
 
 function Cocinero() {
   return (
