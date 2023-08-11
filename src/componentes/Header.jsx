@@ -4,15 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../estilos/header.css";
 
-// function pedidos() {
-//   const [user, setUser] = useState(null);
-  // const navigate = useNavigate();
-//   useEffect(() => {
-//     if (user) {
-//       navigate("/Pe");
-//     }
-//   }, [user]);
-// }
 
 function Encabezado() {
   const navigate = useNavigate();
