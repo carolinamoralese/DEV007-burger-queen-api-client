@@ -11,6 +11,10 @@ function Home() {
   const [order, setOrder] = useState({ productos: [] });
   const navigate = useNavigate();
 
+  function resetOrder (){
+    setOrder({productos: [] })
+  }
+
   const handleAddProduct = (product) => {
     if (!order.productos.includes(product)) {
       product["quantity"] = 1;
@@ -99,6 +103,7 @@ function Home() {
         onDeleteItem={DeleteItem}
         onAddProduct={handleAddProduct}
         onLessProduct={lessProduct}
+        onResetOrder={resetOrder}
       />
     </>
   );
