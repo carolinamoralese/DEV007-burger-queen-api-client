@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../estilos/header.css";
 
-
 function Encabezado() {
   const navigate = useNavigate();
 
@@ -20,7 +19,9 @@ function Encabezado() {
           <img src={logo} className="logoPequeño" />
         </div>
         <div className="containerBotones">
-          <button className="boton"onClick={() => navigate("/Menu")}>HOME</button>
+          <button className="boton" onClick={() => navigate("/Menu")}>
+            HOME
+          </button>
           <button className="boton" onClick={() => navigate("/Pedidos")}>
             PEDIDOS
           </button>
