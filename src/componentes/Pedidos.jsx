@@ -8,7 +8,7 @@ function calculateOrderTime(startTime) {
   const orderTimeDifference = now - new Date(startTime);
   const seconds = Math.floor(orderTimeDifference / 1000);
   const minutes = Math.trunc(seconds / 60);
-  return `${minutes} Minutos`; // Cambia esto según tu necesidad
+  return `${minutes} Minutos`;
 }
 
 function Pedidos() {
@@ -16,6 +16,8 @@ function Pedidos() {
   const [currentTime, setCurrentTime] = useState(new Date()); // Estado para la hora actual
   const navigate = useNavigate();
   const [requestStatus, setRequestStatus] = useState("pending");
+  const userRole = localStorage.getItem("role"); //NUEVO traemos el rol del local
+
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
     if (!bearerToken) {
@@ -39,7 +41,6 @@ function Pedidos() {
         setRequestStatus("success");
       })
       .catch((error) => {
-        /* console.error("error en la peticion", error); */
         setRequestStatus("error");
       });
 
@@ -47,6 +48,13 @@ function Pedidos() {
       setCurrentTime(new Date());
     }, 1000); // Actualizar cada segundo
   }, []);
+
+  const orderStatus = (index, newStatus) => {
+    //NUEVO fx para actualizar el estado de cada orden
+    const updatedOrders = [...orders];
+    updatedOrders[index].status = newStatus;
+    setOrders(updatedOrders);
+  };
 
   return (
     <div className="container-pedidos">
@@ -58,8 +66,6 @@ function Pedidos() {
       </div>
 
       <div className="container-comandas">
-        {" "}
-        {/* este es espacio que contiene todos los pedidos*/}
         {requestStatus === "pending" ? (
           <span style={{ color: "white" }}>CARGANDO</span>
         ) : (
@@ -71,7 +77,9 @@ function Pedidos() {
               <div className="header-comanda">
                 <p className="pedido-producto">PRODUCTO</p>
                 <p className="pedido-cantidad">CANTIDAD</p>
-                <p className="pedido-precio">PRECIO</p>
+                {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                  <p className="pedido-precio">PRECIO</p>
+                )}
               </div>
               <div className="tiempo-transcurrido">
                 Tiempo: {calculateOrderTime(order.startTime)}
@@ -81,16 +89,23 @@ function Pedidos() {
                 {order.products.map((producto, index) => (
                   <div className="container-comida" key={index}>
                     <p className="pedido-food">{producto.name}</p>
-                    <p className="pedido-price">{producto.price}</p>
                     <p className="pedido-qty">{producto.quantity}</p>
+                    {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                      <p className="pedido-price">{producto.price}</p>
+                    )}
                   </div>
                 ))}
               </div>
               <div className="estado">
-                <p>Estado: pendiente</p>
+                <p>{order.status}</p>
               </div>
               <div className="container-btnEstado">
-                <button className="btnEstado">ACTUALIZAR</button>
+                <button
+                  className="btnEstado"
+                  onClick={() => orderStatus(index, "FINALIZADA")}
+                >
+                  ACTUALIZAR
+                </button>
               </div>
             </div>
           ))
@@ -101,4 +116,3 @@ function Pedidos() {
 }
 
 export default Pedidos;
-/// este es un comentario

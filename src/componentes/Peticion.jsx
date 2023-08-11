@@ -12,4 +12,3 @@ export function GetUsers() {
       return error;
     });
 }
-/// este es un comentario

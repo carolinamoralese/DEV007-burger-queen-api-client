@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "../Imagenes/logo.png";
-import { GetUsers } from "./Peticion";
+//import { GetUsers } from "./Peticion";
 import { useNavigate } from "react-router-dom";
 import "../estilos/login.css";
 
@@ -9,12 +9,22 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (user) {
       navigate("/Menu");
     }
-  }, [user]);
+  }, [user]); */
+
+  useEffect(() => {
+    //NUEVO
+    if (userRole === "waiter") {
+      navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
+    } else if (userRole === "admin") {
+      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es admin
+    }
+  }, [userRole, navigate]);
 
   function handleLoginClick() {
     const requestOptions = {
@@ -32,6 +42,7 @@ function Login() {
         console.log(responseJson);
         if (responseJson.user) {
           localStorage.setItem("token", responseJson.accessToken);
+          localStorage.setItem("role", responseJson.user.role); //CAMBIOS
           setUser(true);
         } else {
           console.log("Autenticacion fallida");
@@ -79,15 +90,9 @@ function Login() {
           <br></br>
           <br></br>
 
-          <button
-            className="ingresarDatos"
-            onClick={() => handleLoginClick()}
-          >
+          <button className="ingresarDatos" onClick={() => handleLoginClick()}>
             INGRESAR
           </button>
-          {/* <button className="ingresarDatos" onClick={() => GetUsers()}>
-            INGRESAR
-          </button> */}
         </div>
       </div>
       <div className="container-logo">
@@ -98,4 +103,3 @@ function Login() {
 }
 
 export default Login;
-/// este es un comentario
