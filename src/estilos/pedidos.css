@@ -1,133 +1,174 @@
 .container-pedidos {
-    height: calc(100% - 15%);
-    display: grid;
-    grid-template-rows: auto 20% 100%;
-    grid-template-areas: 
+  height: min-content;
+  display: grid;
+  grid-template-rows: 90px auto 100%;
+  grid-template-areas:
     "Encabezado"
     "titulo-pedidos"
     "container-productos"
     "header-comanda";
 }
 
-.Encabezado {
-    margin-top: 2%;
+.container-encabezado {
+  width: 100%;
+  height: 100%;
 }
 
 .titulo-pedidos {
-    display: flex;
-    width: 100%;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
-.title {
-    font-size: 50px;
-    color: white;
+.title-pedidos {
+  font-size: 50px;
+  color: white;
 }
 
 .container-comandas {
-    font-size: 20px;
-    font-weight: bold;
-    height: max-content;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  height: max-content;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
 }
 
-.pedido{
-    background-color: #4d263d;
-    width: 40%;
-    height: 400px;
-    display: grid;
-    padding: 15px;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: 
+.pedido {
+  background-color: #4d263d;
+  width: 40%;
+  height: max-content;
+  padding: 15px 10px 15px 0;
+  display: grid;
+  grid-template-rows: 50px 50px max-content 1fr 1fr 1fr;
+  grid-template-areas:
     "nombre-cliente"
     "header-comanda"
     "container-comida"
     "tiempo-transcurrido"
     "estado"
-    "btnEstado"
+    "btnEstado";
 }
 
-.container-client{
-display: flex;
-width: 100%;
-justify-content: flex-start;
-grid-area: nombre-cliente;
+.container-client {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  grid-area: nombre-cliente;
 }
 
-.name-client{
-    height: auto;
-    color: white;
-    display: flex;
-    font-size: 25px;
-    text-transform: uppercase;
-    padding-left: 20px;
+.name-client {
+  height: auto;
+  color: white;
+  display: flex;
+  font-size: 25px;
+  text-transform: uppercase;
+  padding-left: 30px;
 }
 
 .header-comanda {
-    display: grid;
-    width: 100%;
-    grid-area: header-comanda;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-    "pedido-producto pedido-cantidad pedido-precio";
-    justify-content: space-between;
+  display: grid;
+  width: 100%;
+  grid-area: header-comanda;
+  grid-template-columns: 1fr 120px 120px;
+  grid-template-areas: "pedido-producto pedido-cantidad pedido-precio";
+  justify-content: space-around;
 }
 
 .pedido-producto {
-    color: white;
-    grid-area: pedido-producto;
+  color: white;
+  grid-area: pedido-producto;
 }
 
-.container-comida{
-    grid-area: container-comida;
-    display: flex;
-    flex-direction: column;
+.pedido-cantidad {
+  color: white;
+  grid-area: pedido-cantidad;
 }
 
-.listado-comida {
-    grid-area: pedido-food;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* grid-template-areas: 
-    "pedido-food pedido-qty pedido-price"
-    ; */
+.pedido-precio {
+  color: white;
+  grid-area: pedido-precio;
 }
 
-.listaComida {
-    color: white;
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    flex-direction: column;
+.listado-comida-container {
+  grid-area: container-comida;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.pedido-qty {
-    grid-area: pedido-qty;
-    color: white;
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
+.container-comida {
+  display: grid;
+  width: 100%;
+  height: auto;
+  padding: 10px 0 20px 0;
+  grid-template-columns: 1fr 120px 120px;
+  grid-template-areas: "pedido-food pedido-qty pedido-price";
+}
+
+.pedido-food {
+  grid-area: pedido-food;
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  left: 10px;
 }
 
 .pedido-price {
-    color: white;
-    width: 100%;
-    grid-area: pedido-price;
+  display: flex;
+  flex-direction: column;
+  grid-area: pedido-price;
+  color: white;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
 }
 
+.pedido-qty {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 100%;
+  grid-area: pedido-qty;
+}
 
-
+.tiempo-transcurrido {
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  left: 35px;
+}
 
 .estado {
-grid-area: estado;
+  grid-area: estado;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  left: 35px;
 }
 
 .container-btnEstado {
-    grid-area: btnEstado;
+  grid-area: btnEstado;
+}
+
+.btnEstado {
+  position: relative;
+  width: 100px;
+  height: 25px;
+  font-size: 10px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
+  background-color: rgb(57, 223, 6);
+  top: 5px;
 }
