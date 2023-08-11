@@ -1,4 +1,4 @@
-import "../estilos/desayunos.css";
+import "./Menu/menu.css";
 import { Comidas } from "./utils";
 
 function ContainerMenu(props) {
@@ -21,4 +21,3 @@ function ContainerMenu(props) {
 }
 
 export default ContainerMenu;
-/// este es un comentario

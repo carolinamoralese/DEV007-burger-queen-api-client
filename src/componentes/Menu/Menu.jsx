@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ButtonDesayunos, ButtonComidas } from "./BotonesMenu";
-import "../estilos/desayunos.css";
+import "../Menu/menu.css";
 
 function Menu(props) {
   const [mostrarDesayunos, setMostrarDesayunos] = useState(false); //MANEJA EL ESTADO DE LOS DESAYUNOS DEL MENU
@@ -64,4 +64,3 @@ function Menu(props) {
 }
 
 export default Menu;
-/// este es un comentario

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import "../estilos/comanda.css";
+import "../Comanda/comanda.css";
 
 function Comanda({
   onMount,
@@ -9,8 +9,7 @@ function Comanda({
   onLessProduct,
   onDeleteItem,
   onResetOrder,
-}) 
-{
+}) {
   useEffect(() => {
     onMount();
   }, []);
@@ -80,10 +79,9 @@ function Comanda({
         .then((response) => response.json())
         .then((responseJson) => {
           showAlertSucces();
-          localStorage.removeItem('order');
+          localStorage.removeItem("order");
           onResetOrder();
-          setClient('')
-          
+          setClient("");
         })
         .catch((error) => {
           console.error(error);
