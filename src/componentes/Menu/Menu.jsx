@@ -25,8 +25,7 @@ function Menu(props) {
         <div className="container-description">
           <p className="description">
             {producto.name}
-            <br />
-            {producto.price}
+            <br />${producto.price}
           </p>
           <button className="add" onClick={() => addProduct(producto)}>
             +
