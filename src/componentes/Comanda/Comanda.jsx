@@ -135,8 +135,11 @@ function Comanda({
                 >
                   ELIMINAR
                 </button> */}
-                <button class="eliminar" onClick={() => onDeleteItem(index)}>
-                  <span class="icono-basura">&#10060;</span>
+                <button
+                  className="eliminar"
+                  onClick={() => onDeleteItem(index)}
+                >
+                  <span className="icono-basura">&#10060;</span>
                 </button>
               </div>
             </div>
@@ -144,9 +147,9 @@ function Comanda({
         </div>
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
-          <p className="info-total">
+          <div className="info-total">
             <p className="suma-precio">${totalCuenta}</p>
-          </p>
+          </div>
           <button className="boton-orden" onClick={PeticionPostOrders}>
             CREAR ORDEN
           </button>
