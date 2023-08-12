@@ -114,14 +114,14 @@ function Comanda({
                 <p className="listaComida">{producto.name}</p>
               </div>
               <div className="container-precio">
-                <p className="precio">{producto.price}</p>{" "}
+                <p className="precio">${producto.price}</p>{" "}
                 {/* usar P sólo cuando sean párrafos */}
               </div>
               <div className="botonesCantidad">
                 <button className="mas" onClick={() => addProduct(producto)}>
                   +
                 </button>
-                {producto.quantity}
+                <p className="suma-cantidad">{producto.quantity}</p>
                 <button
                   className="menos"
                   onClick={() => lessProduct(producto.id)}
@@ -129,11 +129,14 @@ function Comanda({
                 >
                   -
                 </button>
-                <button
+                {/* <button
                   className="eliminar"
                   onClick={() => onDeleteItem(index)}
                 >
-                  Eliminar
+                  ELIMINAR
+                </button> */}
+                <button class="eliminar" onClick={() => onDeleteItem(index)}>
+                  <span class="icono-basura">&#10060;</span>
                 </button>
               </div>
             </div>
@@ -142,7 +145,7 @@ function Comanda({
         <div className="container-total">
           <p className="info-pedidos">TOTAL</p>
           <p className="info-total">
-            <span>${totalCuenta}</span>
+            <p className="suma-precio">${totalCuenta}</p>
           </p>
           <button className="boton-orden" onClick={PeticionPostOrders}>
             CREAR ORDEN
