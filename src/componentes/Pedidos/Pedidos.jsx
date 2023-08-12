@@ -57,61 +57,61 @@ function Pedidos() {
   };
 
   return (
-    <div className="container-pedidos">
-      <div className="container-encabezado">
-        <Encabezado />
-      </div>
-      <div className="titulo-pedidos">
-        <h1 className="title-pedidos">PEDIDOS</h1>
-      </div>
+    <>
+      <Encabezado />
+      <div className="container-pedidos">
+        <div className="titulo-pedidos">
+          <h1 className="title">PEDIDOS</h1>
+        </div>
 
-      <div className="container-comandas">
-        {requestStatus === "pending" ? (
-          <span style={{ color: "white" }}>CARGANDO</span>
-        ) : (
-          orders.map((order, index) => (
-            <div className="pedido" key={index}>
-              <div className="container-client">
-                <p className="name-client">Orden: {order.client}</p>
-              </div>
-              <div className="header-comanda">
-                <p className="pedido-producto">PRODUCTO</p>
-                <p className="pedido-cantidad">CANTIDAD</p>
-                {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
-                  <p className="pedido-precio">PRECIO</p>
-                )}
-              </div>
-              <div className="tiempo-transcurrido">
-                Tiempo: {calculateOrderTime(order.startTime)}
-              </div>
+        <div className="container-comandas">
+          {requestStatus === "pending" ? (
+            <span style={{ color: "white" }}>CARGANDO</span>
+          ) : (
+            orders.map((order, index) => (
+              <div className="pedido" key={index}>
+                <div className="container-client">
+                  <p className="name-client">Orden: {order.client}</p>
+                </div>
+                <div className="header-comanda">
+                  <p className="pedido-producto">PRODUCTO</p>
+                  <p className="pedido-cantidad">CANTIDAD</p>
+                  {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                    <p className="pedido-precio">PRECIO</p>
+                  )}
+                </div>
+                <div className="tiempo-transcurrido">
+                  TIEMPO: {calculateOrderTime(order.startTime)}
+                </div>
 
-              <div className="listado-comida-container">
-                {order.products.map((producto, index) => (
-                  <div className="container-comida" key={index}>
-                    <p className="pedido-food">{producto.name}</p>
-                    <p className="pedido-qty">{producto.quantity}</p>
-                    {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
-                      <p className="pedido-price">{producto.price}</p>
-                    )}
-                  </div>
-                ))}
+                <div className="listado-comida-container">
+                  {order.products.map((producto, index) => (
+                    <div className="container-comida" key={index}>
+                      <p className="pedido-food">{producto.name}</p>
+                      <p className="pedido-qty">{producto.quantity}</p>
+                      {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                        <p className="pedido-price">{producto.price}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="estado">
+                  <p>Estado: {order.status}</p>
+                </div>
+                <div className="container-btnEstado">
+                  <button
+                    className="btnEstado"
+                    onClick={() => orderStatus(index, "FINALIZADA")}
+                  >
+                    ACTUALIZAR
+                  </button>
+                </div>
               </div>
-              <div className="estado">
-                <p>{order.status}</p>
-              </div>
-              <div className="container-btnEstado">
-                <button
-                  className="btnEstado"
-                  onClick={() => orderStatus(index, "FINALIZADA")}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            </div>
-          ))
-        )}
+            ))
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

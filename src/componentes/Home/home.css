@@ -10,3 +10,26 @@ body {
   width: 100%;
   background-color: black;
 } */
+
+/* .container-totalMenu {
+  max-height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 15% 1fr;
+  grid-template-areas:
+    "header header"
+    "carta comanda";
+}
+
+.menu-header {
+  grid-area: header;
+}
+
+.menu-carta {
+  grid-area: carta;
+}
+
+.menu-comanda {
+  grid-area: comanda;
+} */
