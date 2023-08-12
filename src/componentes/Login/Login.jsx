@@ -55,44 +55,38 @@ function Login() {
   return (
     <div className="container-login">
       <div className="container-form">
-        <h1 className="titulo">
-          Comida todo el día, <br></br>todos los días
-        </h1>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div>
-          <input
-            className="ingresar"
-            type="email"
-            id="email"
-            value={email}
-            placeholder="INGRESA CORREO"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          ></input>
-          <br></br>
-          <br></br>
-          <br></br>
-          <input
-            className="ingresar"
-            type="password"
-            id="password"
-            value={password}
-            placeholder="INGRESA CONTRASEÑA"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          ></input>
-          <br></br>
-          <br></br>
-          <br></br>
-
-          <button className="ingresarDatos" onClick={() => handleLoginClick()}>
-            INGRESAR
-          </button>
+        <div className="container-eslogan">
+          <h1 className="eslogan">
+            Comida todo el día, <br></br>
+          </h1>
+          <h1 className="eslogan"> todos los días</h1>
         </div>
+        <br></br>
+        <input
+          className="ingresar-correo"
+          type="email"
+          id="email"
+          value={email}
+          placeholder="INGRESA CORREO"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        ></input>
+        <br></br>
+        <input
+          className="ingresar-contraseña"
+          type="password"
+          id="password"
+          value={password}
+          placeholder="INGRESA CONTRASEÑA"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        ></input>
+        <br></br>
+        <button className="btn-ingresar" onClick={() => handleLoginClick()}>
+          INGRESAR
+        </button>
       </div>
       <div className="container-logo">
         <img src={logo} className="logo" />
