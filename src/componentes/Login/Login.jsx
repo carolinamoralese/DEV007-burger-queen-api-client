@@ -11,14 +11,16 @@ function Login() {
   const [user, setUser] = useState(null);
   const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
+
 useEffect(() => {
+
     if (user) {
       navigate("/Menu");
     }
   }, [user]);
 
 
-/* useEffect(() => {
+  /*  useEffect(() => {
     //NUEVO
     if (userRole == "waiter") {
       navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
@@ -28,6 +30,7 @@ useEffect(() => {
       navigate("/"); // Cambia la ruta a "/menu" si es mesero
     }
   }, [userRole, navigate]); */
+
 
 
   function showAlertLogin () {
