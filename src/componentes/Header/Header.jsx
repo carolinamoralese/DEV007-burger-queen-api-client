@@ -32,6 +32,16 @@ function Encabezado() {
             </button>
           )}
           ;
+          {userRole === "admin" && (
+            <button className="boton">
+              EMPLEADOS
+            </button>
+          )}
+            {userRole === "admin" && (
+            <button className="boton">
+              PRODUCTOS
+            </button>
+          )}
           <button className="boton" onClick={() => LogOut()}>
             SALIR
           </button>

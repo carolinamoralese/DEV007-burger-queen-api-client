@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import "../Comanda/comanda.css";
+import { showAlertOrderConfirm, showAlertError } from "../../alert/alerts";
 
 function Comanda({
   onMount,
@@ -28,37 +28,24 @@ function Comanda({
     onLessProduct(product);
   }
 
-  function showAlertSucces() {
-    Swal.fire({
-      icon: "success",
-      title: "Tu orden ha sido creada con exito!",
-      showConfirmButton: false,
-      timer: 2500,
-    });
-  }
+  // function showAlertSucces() {
+  //   Swal.fire({
+  //     icon: "success",
+  //     title: "Tu orden ha sido creada con exito!",
+  //     showConfirmButton: false,
+  //     timer: 2500,
+  //   });
+  // }
 
-  function showAlertError() {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Error con tu orden, verifica tu pedido!",
-    });
-  }
+  // function showAlertError() {
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Oops...",
+  //     text: "Error con tu orden, verifica tu pedido!",
+  //   });
+  // }
 
-  function showAlertOptions() {
-    Swal.fire({
-      title: "¿Estas seguro de crear esta orden?",
-      showDenyButton: true,
-      confirmButtonText: "Enviar",
-      denyButtonText: "Cancelar",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Orden guardada", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("La orden no se guardò", "", "error");
-      }
-    });
-  }
+
 
   //guarda el nombre del cliente
   const [client, setClient] = useState(""); //declaramos el estado del nombre del cliente
@@ -73,8 +60,15 @@ function Comanda({
   //guarda el pedido
   function PeticionPostOrders() {
     const bearerToken = localStorage.getItem("token");
-    if (client && order.productos.length > 0) {
-      console.log(order, 611111111);
+    //if (client && order.productos.length > 0) {
+      if(!client){
+        showAlertError("Por favor ingrese el nombre del cliente")
+        return 
+      }
+      if(order.productos.length < 1){
+        showAlertError("Por favor seleccione un producto")
+        return
+      }
       const requestOptions = {
         method: "POST",
         headers: {
@@ -90,21 +84,25 @@ function Comanda({
           startTime: new Date(),
         }),
       };
-      fetch("http://localhost:8080/orders", requestOptions)
-        .then((response) => response.json())
-        .then((responseJson) => {
-          showAlertOptions();
-          localStorage.removeItem("order");
-          onResetOrder();
-          setClient("");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      showAlertError();
-      console.log("error");
-    }
+  
+      showAlertOrderConfirm().then((orderConfirmed) => {
+        if(orderConfirmed){
+          fetch("http://localhost:8080/orders", requestOptions)
+            .then((response) => response.json())
+            .then((responseJson) => {
+              
+              localStorage.removeItem("order");
+              onResetOrder();
+              setClient("");
+            })
+            .catch((error) => {
+              console.error(error);
+              
+            });
+        }
+      });
+      
+  
   }
 
   return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { GetUsers } from "../../servicios/users.js";
 import { useNavigate } from "react-router-dom";
-import EncabezadoAdmin from "./EncabezadoAdmin.jsx";
+import Encabezado from "../Header/Header";
 import "../Administrador/empleados.css";
 //import Swal from "sweetalert2";
 import Modal from "../modal/Modal.jsx";
@@ -82,10 +82,22 @@ function Administrador() {
 
   return (
     <>
-      <div className="container-administrador">
-        <EncabezadoAdmin />;
-        <div className="container-title-employe">
-          <h1 className="title">EMPLEADOS</h1>
+      <Encabezado />;
+      <div className="container-employed">
+        <div>
+          <h1 className="title-employe">EMPLEADOS</h1>
+        </div>
+        <div className="info-employe">
+          <div className="title-name">
+          <p >NOMBRE</p>
+          </div>
+          <div  className="title-role">
+          <p>PUESTO</p>
+          </div>
+          <div  className="title-option">
+          <p>OPCIONES</p>
+          </div>
+          
         </div>
         <div className="container-employed">
           <div className="info-employe">
