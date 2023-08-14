@@ -3,6 +3,7 @@ import logo from "../../Imagenes/logo.png";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import Swal from "sweetalert2";
+import { showAlertError } from "../../alert/alerts";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -20,16 +21,18 @@ useEffect(() => {
   }, [user]);
 
 
-  /*  useEffect(() => {
-    //NUEVO
-    if (userRole == "waiter") {
-      navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
-    } else if (userRole == "chef") {
-      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
-    } else {
-      navigate("/"); // Cambia la ruta a "/menu" si es mesero
-    }
-  }, [userRole, navigate]); */
+  //  useEffect(() => {
+  //   //NUEVO
+  //   if (userRole == "waiter") {
+  //     navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
+  //   } else if (userRole == "chef") {
+  //     navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
+  //   } else if (userRole == "admin") {
+  //     navigate("/Administrador"); // Cambia la ruta a "/cocinero" si es chef
+  //   } else {
+  //     navigate("/"); // Cambia la ruta a "/menu" si es mesero
+  //   }
+  // }, [userRole, navigate]); 
 
 
 
@@ -38,20 +41,21 @@ useEffect(() => {
   icon: 'success',
   title: 'Usuario Logeado',
   showConfirmButton: false,
-  timer: 2500,
+  timer: 1000,
 })
-  }
-
-  function showAlertNotlogin() {
-    Swal.fire({
-      icon: "error",
-      title: "Oops...",
-      text: "Error, verifica tus datos de acceso!",
-    });
   }
 
 
   function handleLoginClick() {
+    if(!email){
+      showAlertError("Por favor ingrese su correo")
+      return
+    }
+    if(!password){
+      showAlertError("Por favor ingrese su contraseña")
+      return
+    }
+
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -71,8 +75,7 @@ useEffect(() => {
           setUser(true);
           showAlertLogin();
         } else {
-          showAlertNotlogin();
-          console.log("Autenticacion fallida");
+          showAlertError("Autenticacion fallida,  verifica tus datos de acceso!")
         }
       })
       .catch((error) => {
