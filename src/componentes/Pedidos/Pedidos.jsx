@@ -77,6 +77,29 @@ function Pedidos() {
       });
   }
 
+  //Petición para ELIMINAR la orden
+  function deleteOrder(orderId) {
+    const deleteOrderOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + bearerToken,
+      },
+    };
+
+    fetch(`http://localhost:8080/orders/${orderId}`, deleteOrderOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("eliminación exitosa", responseJson);
+
+        const updatedOrders = orders.filter((order) => order.id !== orderId);
+        setOrders(updatedOrders);
+      })
+      .catch((error) => {
+        setRequestStatus("error");
+      });
+  }
+
   return (
     <>
       <Encabezado />
@@ -120,12 +143,21 @@ function Pedidos() {
                   <p>Estado: {order.status}</p>
                 </div>
                 <div className="container-btnEstado">
-                  {userRole === "chef" && ( //condicional para solo mostrar el boton de actualizar al chef
+                  {userRole === "chef" &&
+                    order.status === "pending" && ( //condicional para solo mostrar el boton de actualizar al chef
+                      <button
+                        className="btnEstado"
+                        onClick={() => updateOrder(order.id, "delivered")}
+                      >
+                        ACTUALIZAR
+                      </button>
+                    )}
+                  {userRole === "waiter" && order.status === "delivered" && (
                     <button
-                      className="btnEstado"
-                      onClick={() => updateOrder(order.id, "delivered")}
+                      className="btn-cerrar-orden"
+                      onClick={() => deleteOrder(order.id)}
                     >
-                      ACTUALIZAR
+                      CERRAR ORDEN
                     </button>
                   )}
                 </div>
@@ -139,10 +171,3 @@ function Pedidos() {
 }
 
 export default Pedidos;
-
-/* onst orderStatus = (index, newStatus) => {
-    //NUEVO fx para actualizar el estado de cada orden
-    const updatedOrders = [...orders];
-    updatedOrders[index].status = newStatus;
-    setOrders(updatedOrders);
-  }; */
