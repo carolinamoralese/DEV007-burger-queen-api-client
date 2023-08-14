@@ -11,35 +11,29 @@ function Login() {
   const [user, setUser] = useState(null);
   const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
-
-useEffect(() => {
-
+  /*  useEffect(() => {
     if (user) {
       navigate("/Menu");
     }
-  }, [user]);
+  }, [user]); */
 
-
-  /*  useEffect(() => {
+  useEffect(() => {
     //NUEVO
     if (userRole == "waiter") {
       navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
     } else if (userRole == "chef") {
       navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
-    } else {
-      navigate("/"); // Cambia la ruta a "/menu" si es mesero
+    } else if (userRole == "admin") {
+      navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
     }
-  }, [userRole, navigate]); */
+  }, [userRole, navigate]);
 
-
-
-  function showAlertLogin () {
-  Swal.fire({
-  icon: 'success',
-  title: 'Usuario Logeado',
-  showConfirmButton: false,
-  timer: 2500,
-})
+  function showAlertLogin() {
+    Swal.fire({
+      icon: "success",
+      title: "Usuario Logeado",
+      showConfirmButton: false,
+    });
   }
 
   function showAlertNotlogin() {
@@ -49,7 +43,6 @@ useEffect(() => {
       text: "Error, verifica tus datos de acceso!",
     });
   }
-
 
   function handleLoginClick() {
     const requestOptions = {

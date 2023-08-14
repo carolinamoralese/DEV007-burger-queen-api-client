@@ -18,38 +18,39 @@ function Administrador() {
       setUsers(users);
     });
   }, []);
+
   return (
     <>
-      <EncabezadoAdmin />;
-      <div className="container-employed">
-        <div>
-          <h1 className="title-employe">EMPLEADOS</h1>
+      <div className="container-administrador">
+        <EncabezadoAdmin />;
+        <div className="container-title-employe">
+          <h1 className="title">EMPLEADOS</h1>
         </div>
-        <div className="info-employe">
-          <div className="title-name">
-          <p >NOMBRE</p>
-          </div>
-          <div  className="title-role">
-          <p>PUESTO</p>
-          </div>
-          <div  className="title-option">
-          <p>OPCIONES</p>
-          </div>
-          
-        </div>
-        {users.map((user, index) => (
-          <div className="container-users" key={index}>
-            <p className="employeName">{user.email}</p>
-            <p className="role">{user.role}</p>
-            <div className="button-option-employe">
-            <button className="button-edit-employe">EDITAR</button>
-            <button className="button-delete-employe">ELIMINAR</button>
+        <div className="container-employed">
+          <div className="info-employe">
+            <div className="title-name">
+              <p>NOMBRE</p>
+            </div>
+            <div className="title-role">
+              <p>PUESTO</p>
+            </div>
+            <div className="title-option">
+              <p>OPCIONES</p>
             </div>
           </div>
-        ))}
-       
+          {users.map((user, index) => (
+            <div className="container-users" key={index}>
+              <p className="employeName">{user.email}</p>
+              <p className="role">{user.role}</p>
+              <div className="button-option-employe">
+                <button className="button-edit-employe">EDITAR</button>
+                <button className="button-delete-employe">ELIMINAR</button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button className="add-employe">AGREGAR EMPLEADOS</button>
       </div>
-      <button className="add-employe">AGREGAR EMPLEADOS</button>
     </>
   );
 }
