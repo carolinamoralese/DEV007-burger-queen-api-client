@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { GetUsers } from "../../servicios/users.js";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../Header/Header";
 import "../Administrador/empleados.css";
+//import Swal from "sweetalert2";
+import Modal from "../modal/Modal.jsx";
 
 function Administrador() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+  const bearerToken = localStorage.getItem("token");
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -18,6 +22,63 @@ function Administrador() {
       setUsers(users);
     });
   }, []);
+
+  //PopUp para editar empleados
+  /* function PopupEditEmployed() {
+    const { value: formValues } = Swal.fire({
+      title: "EDITAR EMPLEADO",
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Ingresa la nueva contraseña">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="Ingresa el nuevo rol">',
+      focusConfirm: false,
+      preConfirm: () => {
+        return [
+          document.getElementById("swal-input1").value,
+          document.getElementById("swal-input2").value,
+        ];
+      },
+    });
+
+    if (formValues) {
+      const idUser = users.find((user) => user.id === userId);
+      const [newPassword, newRole] = formValues;
+      const userId = idUser;
+
+      EditUsers(userId, newPassword, newRole);
+    }
+  } */
+
+  //Fx para editar empleados
+  function EditUsers(userId, newPassword, newRole) {
+    const editUsersOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + bearerToken,
+      },
+      body: JSON.stringify({
+        email: "chef.hopper@systers.xyz",
+        password: newPassword,
+        role: newRole,
+      }),
+    };
+
+    fetch(`http://localhost:8080/orders/${userId}`, editUsersOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("edición exitosa", responseJson);
+        // Actualizar el estado de las órdenes
+        const updatedUsers = users.map((user) =>
+          user.id === userId
+            ? { ...user, password: newPassword, role: newRole }
+            : user
+        );
+        setUsers(updatedUsers);
+      })
+      .catch((error) => {
+        console.log("no sirve");
+      });
+  }
 
   return (
     <>
@@ -55,13 +116,23 @@ function Administrador() {
               <p className="employeName">{user.email}</p>
               <p className="role">{user.role}</p>
               <div className="button-option-employe">
-                <button className="button-edit-employe">EDITAR</button>
+                <button
+                  className="button-edit-employe"
+                  /* onClick={() => EditUsers(user.id, "123456", "chef")} */
+                  /* onClick={EditUsers} */
+                  onClick={() => setModal(true)}
+                >
+                  EDITAR
+                </button>
                 <button className="button-delete-employe">ELIMINAR</button>
               </div>
             </div>
           ))}
         </div>
         <button className="add-employe">AGREGAR EMPLEADOS</button>
+        <Modal isOpen={modal} onClose={() => setModal(false)}>
+          <h2>Probando</h2>
+        </Modal>
       </div>
     </>
   );
