@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GetUsers } from "../../servicios/users.js";
 import { useNavigate } from "react-router-dom";
-import EncabezadoAdmin from "./EncabezadoAdmin.jsx";
+import Encabezado from "../Header/Header";
 import "../Administrador/empleados.css";
 
 function Administrador() {
@@ -20,7 +20,7 @@ function Administrador() {
   }, []);
   return (
     <>
-      <EncabezadoAdmin />;
+      <Encabezado />;
       <div className="container-employed">
         <div>
           <h1 className="title-employe">EMPLEADOS</h1>
