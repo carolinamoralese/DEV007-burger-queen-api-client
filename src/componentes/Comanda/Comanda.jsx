@@ -45,6 +45,21 @@ function Comanda({
     });
   }
 
+  function showAlertOptions() {
+    Swal.fire({
+      title: "¿Estas seguro de crear esta orden?",
+      showDenyButton: true,
+      confirmButtonText: "Enviar",
+      denyButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Orden guardada", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("La orden no se guardò", "", "error");
+      }
+    });
+  }
+
   //guarda el nombre del cliente
   const [client, setClient] = useState(""); //declaramos el estado del nombre del cliente
 
@@ -78,7 +93,7 @@ function Comanda({
       fetch("http://localhost:8080/orders", requestOptions)
         .then((response) => response.json())
         .then((responseJson) => {
-          showAlertSucces();
+          showAlertOptions();
           localStorage.removeItem("order");
           onResetOrder();
           setClient("");
