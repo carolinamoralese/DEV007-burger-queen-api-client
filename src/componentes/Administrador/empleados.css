@@ -1,0 +1,97 @@
+.container-employed {
+  background-color: #4d263d;
+  margin: 15px;
+  padding-bottom: 3%;
+}
+
+.title-employe {
+  color: #b9b9b9;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 30px;
+}
+
+.info-employe {
+  padding: 5%;
+  display: grid;
+  align-items: center;
+  margin-left: 10%;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "title-name title-role title-option";
+}
+
+.title-name {
+  color: #b9b9b9;
+  grid-area: title-name;
+  font-weight: bolder;
+  font-size: 120%;
+}
+.title-role {
+  color: #b9b9b9;
+  grid-area: title-role;
+  font-weight: bolder;
+  margin-left: 20%;
+  font-size: 120%;
+}
+.title-option {
+  color: #b9b9b9;
+  grid-area: title-option;
+  font-weight: bolder;
+  margin-left: 30%;
+  font-size: 120%;
+}
+
+.container-users {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "employeName role button-option-employe";
+}
+.employeName {
+  color: #b9b9b9;
+  grid-area: employeName;
+  font-size: 100%;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: start;
+  margin-left: 10%;
+}
+.role {
+  color: #b9b9b9;
+  grid-area: role;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+}
+.button-option-employe {
+  color: #b9b9b9;
+  grid-area: button-option-employe;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: space-around;
+}
+.button-edit-employe {
+  background-color: yellow;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  padding: 3px;
+  letter-spacing: 1px;
+}
+.button-delete-employe {
+  background-color: red;
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  padding: 3px;
+  letter-spacing: 1px;
+}
+
+.add-employe {
+  background-color: yellow;
+  padding: 0.5rem 1rem;
+  width: 90%;
+  margin-left: 5%;
+  font-weight: bolder;
+  text-align: center;
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
