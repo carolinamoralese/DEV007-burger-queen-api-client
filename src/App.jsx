@@ -3,6 +3,7 @@ import Login from "./componentes/Login/Login";
 import Home from "./componentes/Home/Home";
 import Pedidos from "./componentes/Pedidos/Pedidos";
 import Cocinero from "./componentes/Cocinero/Cocinero";
+import Administrador from "./componentes/Administrador/Administrador"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/Menu" element={<Home />} />
       <Route path="/Pedidos" element={<Pedidos />} />
       <Route path="/Cocinero" element={<Cocinero />} />
+      <Route path="/Administrador" element={<Administrador />} />
     </Routes>
   );
 }
