@@ -17,9 +17,8 @@ function Pedidos() {
   const navigate = useNavigate();
   const [requestStatus, setRequestStatus] = useState("pending");
   const userRole = localStorage.getItem("role"); //NUEVO traemos el rol del local
-
+  const bearerToken = localStorage.getItem("token");
   useEffect(() => {
-    const bearerToken = localStorage.getItem("token");
     if (!bearerToken) {
       navigate("/");
       return;
@@ -49,12 +48,34 @@ function Pedidos() {
     }, 1000); // Actualizar cada segundo
   }, []);
 
-  const orderStatus = (index, newStatus) => {
-    //NUEVO fx para actualizar el estado de cada orden
-    const updatedOrders = [...orders];
-    updatedOrders[index].status = newStatus;
-    setOrders(updatedOrders);
-  };
+  //Petición para actualizar el estado de la orden
+  function updateOrder(orderId, newStatus) {
+    const updateOrderOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + bearerToken,
+      },
+      body: JSON.stringify({
+        id: orderId,
+        status: newStatus,
+      }),
+    };
+
+    fetch(`http://localhost:8080/orders/${orderId}`, updateOrderOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log("respuesta exitosa", responseJson);
+        // Actualizar el estado de las órdenes
+        const updatedOrders = orders.map((order) =>
+          order.id === orderId ? { ...order, status: newStatus } : order
+        );
+        setOrders(updatedOrders);
+      })
+      .catch((error) => {
+        setRequestStatus("error");
+      });
+  }
 
   return (
     <>
@@ -99,12 +120,14 @@ function Pedidos() {
                   <p>Estado: {order.status}</p>
                 </div>
                 <div className="container-btnEstado">
-                  <button
-                    className="btnEstado"
-                    onClick={() => orderStatus(index, "FINALIZADA")}
-                  >
-                    ACTUALIZAR
-                  </button>
+                  {userRole === "chef" && ( //condicional para solo mostrar el boton de actualizar al chef
+                    <button
+                      className="btnEstado"
+                      onClick={() => updateOrder(order.id, "delivered")}
+                    >
+                      ACTUALIZAR
+                    </button>
+                  )}
                 </div>
               </div>
             ))
@@ -116,3 +139,10 @@ function Pedidos() {
 }
 
 export default Pedidos;
+
+/* onst orderStatus = (index, newStatus) => {
+    //NUEVO fx para actualizar el estado de cada orden
+    const updatedOrders = [...orders];
+    updatedOrders[index].status = newStatus;
+    setOrders(updatedOrders);
+  }; */

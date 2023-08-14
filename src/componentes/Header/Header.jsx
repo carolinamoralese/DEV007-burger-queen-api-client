@@ -6,6 +6,7 @@ import "./header.css";
 
 function Encabezado() {
   const navigate = useNavigate();
+  const userRole = localStorage.getItem("role"); //NUEVO traemos el rol del local
 
   function LogOut() {
     localStorage.clear();
@@ -19,12 +20,18 @@ function Encabezado() {
           <img src={logo} className="logoPequeño" />
         </div>
         <div className="containerBotones">
-          <button className="boton" onClick={() => navigate("/Menu")}>
-            HOME
-          </button>
-          <button className="boton" onClick={() => navigate("/Pedidos")}>
-            PEDIDOS
-          </button>
+          {userRole === "waiter" && (
+            <button className="boton" onClick={() => navigate("/Menu")}>
+              HOME
+            </button>
+          )}
+          ;
+          {userRole === "waiter" && (
+            <button className="boton" onClick={() => navigate("/Pedidos")}>
+              PEDIDOS
+            </button>
+          )}
+          ;
           <button className="boton" onClick={() => LogOut()}>
             SALIR
           </button>
