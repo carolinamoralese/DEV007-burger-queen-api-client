@@ -18,41 +18,34 @@ function Login() {
     }
   }, [user]);
 
-
-  /* useEffect(() => {
+  /*  useEffect(() => {
     //NUEVO
     if (userRole == "waiter") {
       navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
     } else if (userRole == "chef") {
       navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
     } else if (userRole == "admin") {
-      navigate("/Administrador"); // Cambia la ruta a "/cocinero" si es chef
-    } else {
-      navigate("/"); // Cambia la ruta a "/menu" si es mesero
+      navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
     }
   }, [userRole, navigate]); */
 
-
-
-
-  function showAlertLogin () {
-  Swal.fire({
-  icon: 'success',
-  title: 'Usuario Logeado',
-  showConfirmButton: false,
-  timer: 1000,
-})
+  function showAlertLogin() {
+    Swal.fire({
+      icon: "success",
+      title: "Usuario Logeado",
+      showConfirmButton: false,
+      timer: 1000,
+    });
   }
 
-
   function handleLoginClick() {
-    if(!email){
-      showAlertError("Por favor ingrese su correo")
-      return
+    if (!email) {
+      showAlertError("Por favor ingrese su correo");
+      return;
     }
-    if(!password){
-      showAlertError("Por favor ingrese su contraseña")
-      return
+    if (!password) {
+      showAlertError("Por favor ingrese su contraseña");
+      return;
     }
 
     const requestOptions = {
@@ -74,7 +67,9 @@ function Login() {
           setUser(true);
           showAlertLogin();
         } else {
-          showAlertError("Autenticacion fallida,  verifica tus datos de acceso!")
+          showAlertError(
+            "Autenticacion fallida,  verifica tus datos de acceso!"
+          );
         }
       })
       .catch((error) => {
