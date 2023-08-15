@@ -1,5 +1,5 @@
 .modal-container {
-  background-color: rgba(255, 4, 4, 0.158);
+  background-color: rgba(255, 4, 4, 0.318);
   position: fixed;
   top: 0;
   left: 0;
@@ -12,10 +12,11 @@
 .modal-body {
   background-color: white;
   width: 80%;
-  height: 70%;
+  height: 60%;
   min-width: 400px;
   position: relative;
   padding: 1rem;
+  display: flex;
 }
 
 .modal-close {
@@ -23,9 +24,12 @@
   top: 0;
   right: 0;
   margin: 1rem;
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
   font-weight: bolder;
   cursor: pointer;
+  background-color: red;
+  border: none;
+  color: white;
 }
