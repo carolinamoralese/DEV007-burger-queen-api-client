@@ -14,6 +14,8 @@
   background-color: #4d263d;
   margin: 15px;
   padding-bottom: 3%;
+  z-index: 2;
+  position: relative;
 }
 
 .info-employe {
@@ -116,4 +118,8 @@
   display: flex;
   font-size: 20px;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+<<<<<<< HEAD
+=======
+  z-index: 1;
+>>>>>>> 6ebdb4ce1e4f1be88c57aa8221a46fe77877f18e
 }
