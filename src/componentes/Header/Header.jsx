@@ -1,7 +1,6 @@
 import logo from "../../Imagenes/logo.png";
 import usuario from "../../Imagenes/usuario.jpg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "./header.css";
 
 function Encabezado() {
@@ -33,12 +32,12 @@ function Encabezado() {
           )}
           ;
           {userRole === "admin" && (
-            <button className="boton">
+            <button className="boton" onClick={() => navigate("/Administrador")}>
               EMPLEADOS
             </button>
           )}
             {userRole === "admin" && (
-            <button className="boton">
+            <button className="boton" onClick={() => navigate("/Inventario")}>
               PRODUCTOS
             </button>
           )}

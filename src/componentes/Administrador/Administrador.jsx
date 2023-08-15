@@ -6,16 +6,14 @@ import "../Administrador/empleados.css";
 import Modal from "../modal/Modal.jsx";
 import EditarEmpleados from "./EditarUsuarios";
 import AgregarEmpleado from "./AgregarEmpleado.jsx";
+import { showAlertError } from "../../alert/alerts";
 
 function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   const [addEmploye, setAddEmploye] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [role, setRole] = useState("")
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -49,9 +47,20 @@ function Administrador() {
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
-  const handleAddUsers = (userId, newPassword, newRole) => {
-    /* console.log("editado:", userId, newPassword, newRole); */
-    EditUsers(userId, newPassword, newRole);
+  const handleAddUsers = (email, password, role) => {
+    if(!email){
+      showAlertError("ingresa el correo")
+      return
+    }
+    if(!password){
+      showAlertError("ingresa una contraseña")
+      return
+    }
+    if(!role){
+      showAlertError("ingresa el rol")
+      return
+    }
+    addUser(email, password, role);
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
@@ -107,8 +116,8 @@ function Administrador() {
         console.log("no sirve");
       });
   }
-
-  function addUser() {
+/*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
+  function addUser(email, password, role) {
     const requestOptions = {
       method: "POST",
       headers: {
@@ -126,10 +135,15 @@ function Administrador() {
         console.log(responseJson, 106);
         if (responseJson) {
           console.log("usuario agregado exitosmente");
+          setAddEmploye(false);
+          GetUsers().then((users) => {
+            setUsers(users);
+          });
         }
       })
       .catch((error) => {
         console.error(error);
+        showAlertError("Error al crear el usuaio")
       });
   }
 
@@ -187,8 +201,8 @@ function Administrador() {
         <button className="add-employe" onClick={() => setAddEmploye(true)}>
           AGREGAR EMPLEADOS
         </button>
-        <Modal isOpen={addEmploye} onClose={()=> setAddEmploye(false)}>
-          <AgregarEmpleado />
+        <Modal isOpen={addEmploye} onClose={() => setAddEmploye(false)}>
+          <AgregarEmpleado onSaveChanges={handleAddUsers} />
         </Modal>
       </div>
     </>
