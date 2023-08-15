@@ -11,6 +11,9 @@ function Administrador() {
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
   const [modal, setModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("")
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -85,6 +88,32 @@ function Administrador() {
       });
   }
 
+  function addUser(){
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        role: role
+      })
+    };
+    fetch("http://localhost:8080/users", requestOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson,106);
+        if(responseJson){
+          console.log("usuario agregado exitosmente")
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+     
+  }
+
   return (
     <>
       <div className="container-administrador">
@@ -123,6 +152,7 @@ function Administrador() {
                   className="button-delete-employe"
                   onClick={() => DeleteUser(user.id)}
                 >
+                  
                   ELIMINAR
                 </button>
               </div>
@@ -136,7 +166,7 @@ function Administrador() {
             </div>
           ))}
         </div>
-        <button className="add-employe">AGREGAR EMPLEADOS</button>
+        <button className="add-employe"  onClick={() => addUser()}>AGREGAR EMPLEADOS</button>
       </div>
     </>
   );
