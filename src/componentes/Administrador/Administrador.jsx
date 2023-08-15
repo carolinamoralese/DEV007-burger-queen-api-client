@@ -6,6 +6,7 @@ import "../Administrador/empleados.css";
 import Modal from "../modal/Modal.jsx";
 import EditarEmpleados from "./EditarUsuarios";
 import AgregarEmpleado from "./AgregarEmpleado.jsx";
+import { showAlertError } from "../../alert/alerts";
 
 function Administrador() {
   const navigate = useNavigate();
@@ -47,6 +48,18 @@ function Administrador() {
   };
 
   const handleAddUsers = (email, password, role) => {
+    if(!email){
+      showAlertError("ingresa el correo")
+      return
+    }
+    if(!password){
+      showAlertError("ingresa una contraseña")
+      return
+    }
+    if(!role){
+      showAlertError("ingresa el rol")
+      return
+    }
     addUser(email, password, role);
     setOpenModalId(null); // Cerrar el modal después de editar
   };
@@ -103,7 +116,7 @@ function Administrador() {
         console.log("no sirve");
       });
   }
-
+/*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
   function addUser(email, password, role) {
     const requestOptions = {
       method: "POST",
@@ -130,6 +143,7 @@ function Administrador() {
       })
       .catch((error) => {
         console.error(error);
+        showAlertError("Error al crear el usuaio")
       });
   }
 

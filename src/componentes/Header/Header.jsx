@@ -1,7 +1,6 @@
 import logo from "../../Imagenes/logo.png";
 import usuario from "../../Imagenes/usuario.jpg";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
 import "./header.css";
 
 function Encabezado() {
