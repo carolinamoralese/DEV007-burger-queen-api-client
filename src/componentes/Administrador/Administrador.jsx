@@ -11,11 +11,8 @@ function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
-  const [modal, setModal] = useState(false);
+  // const [modal, setModal] = useState(false);
   const [addEmploye, setAddEmploye] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [role, setRole] = useState("")
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -49,9 +46,8 @@ function Administrador() {
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
-  const handleAddUsers = (userId, newPassword, newRole) => {
-    /* console.log("editado:", userId, newPassword, newRole); */
-    EditUsers(userId, newPassword, newRole);
+  const handleAddUsers = (email, password, role) => {
+    addUser(email, password, role);
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
@@ -108,7 +104,7 @@ function Administrador() {
       });
   }
 
-  function addUser() {
+  function addUser(email, password, role) {
     const requestOptions = {
       method: "POST",
       headers: {
@@ -126,6 +122,10 @@ function Administrador() {
         console.log(responseJson, 106);
         if (responseJson) {
           console.log("usuario agregado exitosmente");
+          setAddEmploye(false);
+          GetUsers().then((users) => {
+            setUsers(users);
+          });
         }
       })
       .catch((error) => {
@@ -187,8 +187,8 @@ function Administrador() {
         <button className="add-employe" onClick={() => setAddEmploye(true)}>
           AGREGAR EMPLEADOS
         </button>
-        <Modal isOpen={addEmploye} onClose={()=> setAddEmploye(false)}>
-          <AgregarEmpleado />
+        <Modal isOpen={addEmploye} onClose={() => setAddEmploye(false)}>
+          <AgregarEmpleado onSaveChanges={handleAddUsers} />
         </Modal>
       </div>
     </>

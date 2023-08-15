@@ -1,41 +1,47 @@
 import { useState } from "react";
+import "./agregarEmpleados.css";
 
-function AgregarEmpleado (onSaveChanges){
+const AgregarEmpleado = ({onSaveChanges})=>{
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("")
 
   const handleSaveChanges = () => {
-
-    onSaveChanges(newPassword, newRole); //SE LLAMA AL EJECUTAR EL MODAL
+    onSaveChanges(email, password, role); //SE LLAMA AL EJECUTAR EL MODAL
   };
 
   return (
-    <h1>Holajaja</h1>
-  // <div className="container-editor-empleados">
-  //     <h1 className="title-editar">AGREGAR EMPLEADOS</h1>
-  //     <input
-  //       className="nueva-contraseña"
-  //       placeholder="Ingresa nueva contraseña"
-  //       value={email} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
-  //       onChange={(e) => setNewPassword(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
-  //     ></input>
-  //     <select
-  //       className="nuevo-rol"
-  //       value={newRole} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
-  //       onChange={(e) => setNewRole(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
-  //     >
-  //       <option disabled selected>
-  //         ELIGA EL ROL
-  //       </option>
-  //       <option className="option">CHEF</option>
-  //       <option className="option">WAITER</option>
-  //       <option className="option">ADMIN</option>
-  //     </select>
-  //     <button className="btn-aceptar-cambios" onClick={handleSaveChanges}>
-  //       REALIZAR CAMBIOS
-  //     </button>
-  //   </div>
+    // <h1>Holajaja</h1>
+  <div className="container-editor-empleados">
+      <h1 className="title-editar">AGREGAR EMPLEADOS</h1>
+      <input
+        className="correo-user"
+        placeholder="Ingrese el correo"
+        value={email} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
+        onChange={(e) => setEmail(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
+      ></input>
+      <input
+        className="nueva-contraseña"
+        placeholder="Ingrese la contraseña"
+        value={password} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
+        onChange={(e) => setPassword(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
+      ></input>
+      <select
+        className="nuevo-rol"
+        value={role} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
+        onChange={(e) => setRole(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
+      >
+        <option disabled selected>
+          ELIGA EL ROL
+        </option>
+        <option className="option">CHEF</option>
+        <option className="option">WAITER</option>
+        <option className="option">ADMIN</option>
+      </select>
+      <button className="btn-aceptar-cambios" onClick={handleSaveChanges}>
+        AGREGAR EMPLEADO
+      </button>
+    </div>
   )
 }
 
