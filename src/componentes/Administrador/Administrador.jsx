@@ -5,11 +5,17 @@ import Encabezado from "../Header/Header";
 import "../Administrador/empleados.css";
 import Modal from "../modal/Modal.jsx";
 import EditarEmpleados from "./EditarUsuarios";
+import AgregarEmpleado from "./AgregarEmpleado.jsx";
 
 function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [addEmploye, setAddEmploye] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [role, setRole] = useState("")
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -38,6 +44,12 @@ function Administrador() {
 
   //Ejecuta la petición y le pasa los parametros necesarios
   const handleEditUsers = (userId, newPassword, newRole) => {
+    /* console.log("editado:", userId, newPassword, newRole); */
+    EditUsers(userId, newPassword, newRole);
+    setOpenModalId(null); // Cerrar el modal después de editar
+  };
+
+  const handleAddUsers = (userId, newPassword, newRole) => {
     /* console.log("editado:", userId, newPassword, newRole); */
     EditUsers(userId, newPassword, newRole);
     setOpenModalId(null); // Cerrar el modal después de editar
@@ -96,7 +108,31 @@ function Administrador() {
       });
   }
 
-  /*------------------------------------- RENDERIZADO DEL COMPONENTE --------------------------------------*/
+  function addUser() {
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        role: role,
+      }),
+    };
+    fetch("http://localhost:8080/users", requestOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson, 106);
+        if (responseJson) {
+          console.log("usuario agregado exitosmente");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   return (
     <>
       <div className="container-administrador">
@@ -148,7 +184,12 @@ function Administrador() {
             </div>
           ))}
         </div>
-        <button className="add-employe">AGREGAR EMPLEADOS</button>
+        <button className="add-employe" onClick={() => setAddEmploye(true)}>
+          AGREGAR EMPLEADOS
+        </button>
+        <Modal isOpen={addEmploye} onClose={()=> setAddEmploye(false)}>
+          <AgregarEmpleado />
+        </Modal>
       </div>
     </>
   );
