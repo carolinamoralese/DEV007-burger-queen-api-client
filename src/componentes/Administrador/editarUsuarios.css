@@ -1,15 +1,16 @@
 .container-editor-empleados {
-  width: 100%;
+  width: 90%;
   height: 100%;
   display: grid;
-  justify-content: center;
+  left: 5%;
+  position: relative;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 150px 100px 100px 1fr;
   grid-template-areas:
     "titulo titulo"
     "contraseña contraseña"
     "rol rol"
-    "btnVolver btnAceptar";
+    "btnAceptar btnAceptar";
 }
 
 .title-editar {
@@ -56,19 +57,13 @@
 }
 
 .btn-aceptar-cambios {
-  grid-area: btnVolver;
+  grid-area: btnAceptar;
   background-color: rgb(8, 197, 8);
 }
 
-.btn-volver {
-  grid-area: btnAceptar;
-  background-color: rgb(252, 55, 55);
-}
-
-.btn-aceptar-cambios,
-.btn-volver {
+.btn-aceptar-cambios {
   width: 70%;
-  height: 30%;
+  height: 40%;
   position: relative;
   left: 15%;
   top: 20%;

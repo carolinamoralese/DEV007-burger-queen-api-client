@@ -1,5 +1,6 @@
 import "./modal.css";
 
+/*---------------------------- SE CREA LA ESTRUCTURA BÁSICA DEL MODAL PARA PODER REUTILIZARSE -----------------------*/
 const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div
@@ -8,9 +9,10 @@ const Modal = ({ isOpen, onClose, children }) => {
     >
       <div className="modal-body">
         <button className="modal-close" onClick={onClose}>
-          X
+          {" "}
+          {/* Boton en x pa cerrar el modal */}X
         </button>
-        {children}
+        {children} {/* El children permite renderizar cualquier contenido */}
       </div>
     </div>
   );

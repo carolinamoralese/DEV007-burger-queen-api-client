@@ -10,10 +10,13 @@ function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
+<<<<<<< HEAD
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("")
+=======
+>>>>>>> ce37a375cf9ad6980faeedd83c823f08a4e9b124
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -26,7 +29,28 @@ function Administrador() {
     });
   }, []);
 
-  //Fx para editar empleados
+  /*-------------------------------------LÓGICA MODAL Y PETICIÓN PARA EDITAR USERS -----------------------*/
+
+  const [openModalId, setOpenModalId] = useState(null); //maneja el modal con el id del user
+
+  //abre el modal
+  const handleEditClick = (userId) => {
+    setOpenModalId(userId);
+  };
+
+  //cierra el modal
+  const handleCloseModal = () => {
+    setOpenModalId(null);
+  };
+
+  //Ejecuta la petición y le pasa los parametros necesarios
+  const handleEditUsers = (userId, newPassword, newRole) => {
+    /* console.log("editado:", userId, newPassword, newRole); */
+    EditUsers(userId, newPassword, newRole);
+    setOpenModalId(null); // Cerrar el modal después de editar
+  };
+
+  //Petición para editar empleados
   function EditUsers(userId, newPassword, newRole) {
     const editUsersOptions = {
       method: "PATCH",
@@ -44,14 +68,12 @@ function Administrador() {
     fetch(`http://localhost:8080/users/${userId}`, editUsersOptions)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log("edición exitosa", responseJson);
-
+        /* console.log("edición exitosa", responseJson); */
         const updatedUsers = users.map((user) =>
           user.id === userId
             ? { ...user, password: newPassword, role: newRole }
             : user
         );
-
         setUsers(updatedUsers);
       })
       .catch((error) => {
@@ -59,13 +81,7 @@ function Administrador() {
       });
   }
 
-  const handleEditUsers = (userId, newPassword, newRole) => {
-    console.log("EditUsers called with:", userId, newPassword, newRole);
-    EditUsers(userId, newPassword, newRole);
-    setModal(false); // Cerrar el modal después de editar
-  };
-
-  //Petición para eliminar usuario
+  /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
   function DeleteUser(userId) {
     const deleteUserOptions = {
       method: "DELETE",
@@ -79,7 +95,6 @@ function Administrador() {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log("eliminación exitosa", responseJson);
-
         const updatedUsers = users.filter((user) => user.id !== userId);
         setUsers(updatedUsers);
       })
@@ -137,30 +152,30 @@ function Administrador() {
             <div className="container-users" key={index}>
               <p className="employeName">{user.email}</p>
               <p className="role">{user.role}</p>
-
-              <p>{user.id}</p>
               <div className="button-option-employe">
                 <button
                   className="button-edit-employe"
-                  /* onClick={() => EditUsers(user.id, "123456", "chef")} */
-                  /* onClick={EditUsers} */
-                  onClick={() => setModal(true)}
+                  onClick={() => handleEditClick(user.id)} //abre el modal para editar
                 >
                   EDITAR
                 </button>
                 <button
                   className="button-delete-employe"
-                  onClick={() => DeleteUser(user.id)}
+                  onClick={() => DeleteUser(user.id)} //ejecuta la petición para eliminar
                 >
                   
                   ELIMINAR
                 </button>
               </div>
-              <Modal isOpen={modal} onClose={() => setModal(false)}>
-                <EditarEmpleados
-                  onSaveChanges={(userId, newPassword, newRole) =>
-                    handleEditUsers(user.id, newPassword, newRole)
-                  }
+              <Modal //Se renderiza el modal
+                isOpen={openModalId === user.id} //verifica que sólo se abra el modal del user
+                onClose={handleCloseModal} //para cerrarlo
+              >
+                <EditarEmpleados //Se pasa el compo como children para mostrarse dentro del modal
+                  onSaveChanges={(newPassword, newRole) => {
+                    handleEditUsers(user.id, newPassword, newRole);
+                    handleCloseModal();
+                  }}
                 />
               </Modal>
             </div>
@@ -172,28 +187,3 @@ function Administrador() {
   );
 }
 export default Administrador;
-
-//PopUp para editar empleados
-/* function PopupEditEmployed() {
-    const { value: formValues } = Swal.fire({
-      title: "EDITAR EMPLEADO",
-      html:
-        '<input id="swal-input1" class="swal2-input" placeholder="Ingresa la nueva contraseña">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="Ingresa el nuevo rol">',
-      focusConfirm: false,
-      preConfirm: () => {
-        return [
-          document.getElementById("swal-input1").value,
-          document.getElementById("swal-input2").value,
-        ];
-      },
-    });
-
-    if (formValues) {
-      const idUser = users.find((user) => user.id === userId);
-      const [newPassword, newRole] = formValues;
-      const userId = idUser;
-
-      EditUsers(userId, newPassword, newRole);
-    }
-  } */
