@@ -10,13 +10,10 @@ function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
-<<<<<<< HEAD
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("")
-=======
->>>>>>> ce37a375cf9ad6980faeedd83c823f08a4e9b124
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
