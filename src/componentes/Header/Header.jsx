@@ -33,12 +33,12 @@ function Encabezado() {
           )}
           ;
           {userRole === "admin" && (
-            <button className="boton">
+            <button className="boton" onClick={() => navigate("/Administrador")}>
               EMPLEADOS
             </button>
           )}
             {userRole === "admin" && (
-            <button className="boton">
+            <button className="boton" onClick={() => navigate("/Inventario")}>
               PRODUCTOS
             </button>
           )}
