@@ -82,22 +82,10 @@ function Administrador() {
 
   return (
     <>
-      <Encabezado />;
-      <div className="container-employed">
-        <div>
-          <h1 className="title-employe">EMPLEADOS</h1>
-        </div>
-        <div className="info-employe">
-          <div className="title-name">
-          <p >NOMBRE</p>
-          </div>
-          <div  className="title-role">
-          <p>PUESTO</p>
-          </div>
-          <div  className="title-option">
-          <p>OPCIONES</p>
-          </div>
-          
+      <div className="container-administrador">
+        <Encabezado />;
+        <div className="container-title-employe">
+          <h1 className="title">EMPLEADOS</h1>
         </div>
         <div className="container-employed">
           <div className="info-employe">
