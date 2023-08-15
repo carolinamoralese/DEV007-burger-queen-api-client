@@ -1,7 +1,9 @@
+import { useState } from "react";
 import "./modal.css";
 
 /*---------------------------- SE CREA LA ESTRUCTURA BÁSICA DEL MODAL PARA PODER REUTILIZARSE -----------------------*/
 const Modal = ({ isOpen, onClose, children }) => {
+
   return (
     <div
       className="modal-container"
@@ -19,3 +21,6 @@ const Modal = ({ isOpen, onClose, children }) => {
 };
 
 export default Modal;
+
+
+
