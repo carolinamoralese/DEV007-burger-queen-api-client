@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { GetUsers } from "../../servicios/users.js";
+import { GetUsers, editUser, deleteUseRequest } from "../../servicios/servicios.js";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../Header/Header";
 import "../Administrador/empleados.css";
@@ -7,12 +7,12 @@ import Modal from "../modal/Modal.jsx";
 import EditarEmpleados from "./EditarUsuarios";
 import AgregarEmpleado from "./AgregarEmpleado.jsx";
 import { showAlertError } from "../../alert/alerts";
+import { addUser } from "../../servicios/servicios.js";
 
 function Administrador() {
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
   const [users, setUsers] = useState([]);
-  // const [modal, setModal] = useState(false);
   const [addEmploye, setAddEmploye] = useState(false);
 
   useEffect(() => {
@@ -43,109 +43,64 @@ function Administrador() {
   //Ejecuta la petición y le pasa los parametros necesarios
   const handleEditUsers = (userId, newPassword, newRole) => {
     /* console.log("editado:", userId, newPassword, newRole); */
-    EditUsers(userId, newPassword, newRole);
+    editUsers(userId, newPassword, newRole);
     setOpenModalId(null); // Cerrar el modal después de editar
+
   };
 
   const handleAddUsers = (email, password, role) => {
-    if(!email){
-      showAlertError("ingresa el correo")
-      return
+    if (!email) {
+      showAlertError("ingresa el correo");
+      return;
     }
-    if(!password){
-      showAlertError("ingresa una contraseña")
-      return
+    if (!password) {
+      showAlertError("ingresa una contraseña");
+      return;
     }
-    if(!role){
-      showAlertError("ingresa el rol")
-      return
+    if (!role || role == "ELIGA EL ROL") {
+      showAlertError("ingresa el rol");
+      return;
     }
-    addUser(email, password, role);
+    const body = { email, password, role };
+    const options = {
+      onSuccess: () => {
+        setAddEmploye(false);
+        GetUsers().then((users) => {
+          setUsers(users);
+        });
+      },
+    };
+    addUser(body, options);
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
-  //Petición para editar empleados
-  function EditUsers(userId, newPassword, newRole) {
-    const editUsersOptions = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + bearerToken,
+  //funcion para editar empleados
+  function editUsers(userId, newPassword, newRole) {
+    const options = {
+      onSuccess: () => {
+        setAddEmploye(false);
+        GetUsers().then((users) => {
+          setUsers(users);
+        });
       },
-      body: JSON.stringify({
-        id: userId,
-        password: newPassword,
-        role: newRole,
-      }),
     };
-
-    fetch(`http://localhost:8080/users/${userId}`, editUsersOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        /* console.log("edición exitosa", responseJson); */
-        const updatedUsers = users.map((user) =>
-          user.id === userId
-            ? { ...user, password: newPassword, role: newRole }
-            : user
-        );
-        setUsers(updatedUsers);
-      })
-      .catch((error) => {
-        console.log("no sirve");
-      });
+    editUser(userId, newPassword, newRole, bearerToken, options)
   }
 
   /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
-  function DeleteUser(userId) {
-    const deleteUserOptions = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + bearerToken,
+  function deleteUser(userId) {
+    const options = {
+      onSuccess: () => {
+        setAddEmploye(false);
+        GetUsers().then((users) => {
+          setUsers(users);
+        });
       },
     };
+  deleteUseRequest(userId,bearerToken, options);
 
-    fetch(`http://localhost:8080/users/${userId}`, deleteUserOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("eliminación exitosa", responseJson);
-        const updatedUsers = users.filter((user) => user.id !== userId);
-        setUsers(updatedUsers);
-      })
-      .catch((error) => {
-        console.log("no sirve");
-      });
   }
-/*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
-  function addUser(email, password, role) {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-        role: role,
-      }),
-    };
-    fetch("http://localhost:8080/users", requestOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson, 106);
-        if (responseJson) {
-          console.log("usuario agregado exitosmente");
-          setAddEmploye(false);
-          GetUsers().then((users) => {
-            setUsers(users);
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        showAlertError("Error al crear el usuaio")
-      });
-  }
+  /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
 
   return (
     <>
@@ -179,7 +134,7 @@ function Administrador() {
                 </button>
                 <button
                   className="button-delete-employe"
-                  onClick={() => DeleteUser(user.id)} //ejecuta la petición para eliminar
+                  onClick={() => deleteUser(user.id)} //ejecuta la petición para eliminar
                 >
                   ELIMINAR
                 </button>

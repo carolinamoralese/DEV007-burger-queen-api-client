@@ -2,7 +2,7 @@ import "../Home/home.css";
 import Encabezado from "../Header/Header";
 import Menu from "../Menu/Menu";
 import { useEffect, useState } from "react";
-import { getProducts } from "../../servicios/products";
+import { getProducts } from "../../servicios/servicios.js";
 import { useNavigate } from "react-router-dom";
 import Comanda from "../Comanda/Comanda";
 
@@ -29,7 +29,6 @@ function Home() {
 
   const handleComandaMount = () => {
     if (!order.productos.length) {
-      //console.log(localStorage.getItem("order"));
       const localStorageOrder = JSON.parse(localStorage.getItem("order"));
       if (localStorageOrder) {
         setOrder(localStorageOrder);

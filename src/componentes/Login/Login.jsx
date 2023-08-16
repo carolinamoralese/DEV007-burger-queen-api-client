@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import logo from "../../Imagenes/logo.png";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-import Swal from "sweetalert2";
-import { showAlertError } from "../../alert/alerts";
+import { showAlertError, showAlertSucces} from "../../alert/alerts";
+import { peticionLogin } from "../../servicios/servicios";
+
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -18,25 +19,18 @@ function Login() {
     }
   }, [user]);
 
-  /*  useEffect(() => {
-    //NUEVO
-    if (userRole == "waiter") {
-      navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
-    } else if (userRole == "chef") {
-      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
-    } else if (userRole == "admin") {
-      navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
-    }
-  }, [userRole, navigate]); */
+  //   useEffect(() => {
+  //   //NUEVO
+  //   if (userRole == "waiter") {
+  //     navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
+  //   } else if (userRole == "chef") {
+  //     navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
+  //   } else if (userRole == "admin") {
+  //     navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
+  //   }
+  // }, [userRole, navigate]); 
 
-  function showAlertLogin() {
-    Swal.fire({
-      icon: "success",
-      title: "Usuario Logeado",
-      showConfirmButton: false,
-      timer: 1000,
-    });
-  }
+
 
   function handleLoginClick() {
     if (!email) {
@@ -47,33 +41,14 @@ function Login() {
       showAlertError("Por favor ingrese su contraseña");
       return;
     }
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    };
-
-    fetch("http://localhost:8080/login", requestOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        if (responseJson.user) {
-          localStorage.setItem("token", responseJson.accessToken);
-          localStorage.setItem("role", responseJson.user.role); //CAMBIOS
-          setUser(true);
-          showAlertLogin();
+  
+    peticionLogin(email, password, setUser)
+      .then((loginSuccessful) => {
+        if (loginSuccessful) {
+          showAlertSucces("Usuario logueado");
         } else {
-          showAlertError(
-            "Autenticacion fallida,  verifica tus datos de acceso!"
-          );
+          showAlertError("Autenticación fallida, verifica tus datos de acceso!");
         }
-      })
-      .catch((error) => {
-        console.error(error);
       });
   }
 
