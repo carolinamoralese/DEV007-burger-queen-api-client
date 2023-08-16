@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "../Comanda/comanda.css";
-import { showAlertOrderConfirm, showAlertError } from "../../alert/alerts";
+import { showAlertError } from "../../alert/alerts";
+import { peticionPostOrders } from "../../servicios/servicios";
+
 
 function Comanda({
   onMount,
@@ -28,25 +30,6 @@ function Comanda({
     onLessProduct(product);
   }
 
-  // function showAlertSucces() {
-  //   Swal.fire({
-  //     icon: "success",
-  //     title: "Tu orden ha sido creada con exito!",
-  //     showConfirmButton: false,
-  //     timer: 2500,
-  //   });
-  // }
-
-  // function showAlertError() {
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Oops...",
-  //     text: "Error con tu orden, verifica tu pedido!",
-  //   });
-  // }
-
-
-
   //guarda el nombre del cliente
   const [client, setClient] = useState(""); //declaramos el estado del nombre del cliente
 
@@ -58,51 +41,22 @@ function Comanda({
   };
 
   //guarda el pedido
-  function PeticionPostOrders() {
-    const bearerToken = localStorage.getItem("token");
-    //if (client && order.productos.length > 0) {
-      if(!client){
-        showAlertError("Por favor ingrese el nombre del cliente")
-        return 
-      }
-      if(order.productos.length < 1){
-        showAlertError("Por favor seleccione un producto")
-        return
-      }
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + bearerToken,
-        },
-        body: JSON.stringify({
-          client: client,
-          products: order.productos,
-          status: "pending",
-          dataEntry: new Date().toLocaleString(),
-          cantidad: order.quantity,
-          startTime: new Date(),
-        }),
-      };
-  
-      showAlertOrderConfirm().then((orderConfirmed) => {
-        if(orderConfirmed){
-          fetch("http://localhost:8080/orders", requestOptions)
-            .then((response) => response.json())
-            .then((responseJson) => {
-              
-              localStorage.removeItem("order");
-              onResetOrder();
-              setClient("");
-            })
-            .catch((error) => {
-              console.error(error);
-              
-            });
-        }
-      });
-      
-  
+  function PostOrders() {
+    // const bearerToken = localStorage.getItem("token");
+    if (!client) {
+      showAlertError("Por favor ingrese el nombre del cliente");
+      return;
+    }
+    if (order.productos.length < 1) {
+      showAlertError("Por favor seleccione un producto");
+      return;
+    }
+    peticionPostOrders(client, order)
+    .then((responseJson) => {
+      localStorage.removeItem("order");
+      onResetOrder();
+      setClient("");
+    })
   }
 
   return (
@@ -142,12 +96,6 @@ function Comanda({
                 >
                   -
                 </button>
-                {/* <button
-                  className="eliminar"
-                  onClick={() => onDeleteItem(index)}
-                >
-                  ELIMINAR
-                </button> */}
                 <button
                   className="eliminar"
                   onClick={() => onDeleteItem(index)}
@@ -163,7 +111,7 @@ function Comanda({
           <div className="info-total">
             <p className="suma-precio">${totalCuenta}</p>
           </div>
-          <button className="boton-orden" onClick={PeticionPostOrders}>
+          <button className="boton-orden" onClick={PostOrders}>
             CREAR ORDEN
           </button>
         </div>
@@ -173,4 +121,3 @@ function Comanda({
 }
 
 export default Comanda;
-/// este es un comentario

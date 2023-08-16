@@ -24,3 +24,13 @@ export function showAlertError(text) {
       return orderConfirmed
     });
   }
+
+export function showAlertSucces(text) {
+    Swal.fire({
+      icon: "success",
+      title: "Proceso con exito",
+      text:text,
+      showConfirmButton: false,
+      timer: 1000,
+    });
+  }

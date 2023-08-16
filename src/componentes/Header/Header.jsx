@@ -19,24 +19,24 @@ function Encabezado() {
           <img src={logo} className="logoPequeño" />
         </div>
         <div className="containerBotones">
-          {userRole === "waiter" && (
+          {userRole === "WAITER" && (
             <button className="boton" onClick={() => navigate("/Menu")}>
               HOME
             </button>
           )}
           ;
-          {userRole === "waiter" && (
+          {userRole === "WAITER" && (
             <button className="boton" onClick={() => navigate("/Pedidos")}>
               PEDIDOS
             </button>
           )}
           ;
-          {userRole === "admin" && (
+          {userRole === "ADMIN" && (
             <button className="boton" onClick={() => navigate("/Administrador")}>
               EMPLEADOS
             </button>
           )}
-            {userRole === "admin" && (
+            {userRole === "ADMIN" && (
             <button className="boton" onClick={() => navigate("/Inventario")}>
               PRODUCTOS
             </button>

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./modal.css";
 
 /*---------------------------- SE CREA LA ESTRUCTURA BÁSICA DEL MODAL PARA PODER REUTILIZARSE -----------------------*/
