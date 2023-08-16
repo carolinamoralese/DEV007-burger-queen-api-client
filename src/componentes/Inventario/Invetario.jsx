@@ -20,42 +20,42 @@ function Inventario() {
     });
   }, []);
 
-return (
+  return (
     <>
-    <div className="container-inventario">
-    <Encabezado />
-    <div className="container-title-productos">
-        <h1 className="title">PRODUCTOS</h1>
-    </div>
+      <div className="container-inventario">
+        <Encabezado />
+        <div className="container-title-productos">
+          <h1 className="title">PRODUCTOS</h1>
+        </div>
         <div className="container-allproducts">
-            <div className="info-products">
-                <div className="title-product">
-                <p>PRODUCTO</p>
-                </div>
-                <div className="title-qty">
-                <p>CANTIDAD</p>
-                </div>
-                <div className="title-price">
-                <p>PRECIO</p>
-                </div>
-                <div className="title-options">
-                <p>OPCIONES</p>
-                </div>
+          <div className="info-products">
+            <div className="title-product">
+              <p>PRODUCTO</p>
             </div>
-            {products.map((product, index) => (
+            <div className="title-qty">
+              <p>CANTIDAD</p>
+            </div>
+            <div className="title-price">
+              <p>PRECIO</p>
+            </div>
+            <div className="title-options">
+              <p>OPCIONES</p>
+            </div>
+          </div>
+          {products.map((product, index) => (
             <div className="container-listproducts" key={index}>
-                <p className="productName">{product.name}</p>
-                <p className="productQty">{product.quantity}</p>
-                <p className="productPrice">{product.price}</p>
-                <div className="button-option-product">
+              <p className="productName">{product.name}</p>
+              <p className="productQty">{product.quantity}</p>
+              <p className="productPrice">{product.price}</p>
+              <div className="button-option-product">
                 <button className="button-edit-product">EDITAR</button>
                 <button className="button-delete-product">ELIMINAR</button>
-                </div>
+              </div>
             </div>
-        ))}
+          ))}
         </div>
         <button className="add-product">AGREGAR PRODUCTO</button>
-    </div>
+      </div>
     </>
   );
 }
