@@ -38,13 +38,13 @@ const handleCloseModal = () => {
 };
 
     //Ejecuta la petición y le pasa los parametros necesarios
-const handleEditProducts = (productId, newPrice, newQuantity) => {
-    EditProducts(productId, newPrice, newQuantity);
+const handleEditProducts = (productId, newPrice) => {
+    EditProducts(productId, newPrice);
     setOpenModalId(null);
 };
 
     //Peticion para editar produtos
-    function EditProducts(productId, newPrice, newQuantity) {
+    function EditProducts(productId, newPrice) {
     const EditProductOptions = {
         method: "PATCH",
         headers: {
@@ -53,17 +53,16 @@ const handleEditProducts = (productId, newPrice, newQuantity) => {
           },
           body: JSON.stringify({
             id: productId,
-            password: newPrice,
-            role: newQuantity,
+            price: newPrice,
           }),
     };
 
-    fetch(`http://localhost:8080/users/${productIdId}`, EditProductOptions)
+    fetch(`http://localhost:8080/products/${productId}`, EditProductOptions)
     .then((response) => response.json())
     .then((responseJson) => {
         const updateProducts = products.map((product) =>
         product.id === productId
-        ? { ...product, price: newPrice, quantity: newQuantity }
+        ? { ...product, price: newPrice }
         : product
         );
         setProductos(updateProducts);
@@ -72,10 +71,6 @@ const handleEditProducts = (productId, newPrice, newQuantity) => {
         console.log("no se ejecuta")
     });
 }
-
-
-
-
 
 
 //Peticion para eliminar producto
@@ -113,11 +108,11 @@ return (
     </div>
         <div className="container-allproducts">
             <div className="info-products">
+                <div className="title-id">
+                <p>ID</p>
+                </div>
                 <div className="title-product">
                 <p>PRODUCTO</p>
-                </div>
-                <div className="title-qty">
-                <p>CANTIDAD</p>
                 </div>
                 <div className="title-price">
                 <p>PRECIO</p>
@@ -128,11 +123,10 @@ return (
             </div>
             {products.map((product, index) => (
             <div className="container-listproducts" key={index}>
+                <p className="productId">{product.id}</p>
                 <p className="productName">{product.name}</p>
-                <p className="productQty">{product.quantity}</p>
                 <p className="productPrice">{product.price}</p>
-                <p>{product.id}</p>
-                <div className="button-option-product" onClick={() => DeleteProduct(product.id)}>
+                <div className="button-option-product">
                 <button className="button-edit-product"
                 onClick={() => handleEditClick(product.id)}
                 >EDITAR
@@ -142,25 +136,14 @@ return (
                 onClose={handleCloseModal}
                 >
                 <EditarProductos
-                onSaveChanges={(newPrice, newQuantity) => {
-                    handleEditProducts(product.id, newPrice, newQuantity);
+                onSaveChanges={(newPrice) => {
+                    handleEditProducts(product.id, newPrice);
                     handleCloseModal();
                 }}
                 />
                 </Modal>
-                <button className="button-delete-product">ELIMINAR</button>
+                <button className="button-delete-product" onClick={() => DeleteProduct(product.id)}>ELIMINAR</button>
                 </div>
-                {/* <Modal 
-                isOpen={openModalId === product.id}
-                onClose={handleCloseModal}
-                >
-                <EditarProductos
-                onSaveChanges={(newPrice, newQuantity) => {
-                    handleEditProducts(product.id, newPrice, newQuantity);
-                    handleCloseModal();
-                }}
-                />
-                </Modal> */}
             </div>
         ))}
         </div>

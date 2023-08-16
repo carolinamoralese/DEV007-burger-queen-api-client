@@ -22,7 +22,7 @@
     padding: 2%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "title-product title-qty title-price title-options";
+    grid-template-areas: "title-id title-product title-price title-options";
     font-family: "Metal Mania", cursive;
     letter-spacing: 10px;
     color: rgb(255, 255, 255);
@@ -30,15 +30,15 @@
     margin-bottom: 10px;
 }
 
-.title-product {
-    grid-area: title-product;
+.title-id {
+    grid-area: title-id;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.title-qty {
-    grid-area: title-qty;
+.title-product {
+    grid-area: title-product;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,14 +51,28 @@
     justify-content: center;
 }
 
+.title-options {
+    grid-area: title-option;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .container-listproducts {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "productName productQty productPrice button-option-product";
+    grid-template-areas: "productId productName productPrice button-option-product";
     color: white;
     font-size: 18px;
     font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
     margin-bottom: 20px;
+}
+
+.productId {
+    grid-area: productId;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
 }
 
 .productName {
@@ -66,13 +80,6 @@
     display: flex;
     justify-content: start;
     margin-left: 15%;
-}
-
-.productQty {
-    grid-area: productQty;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
 }
 
 .productPrice {

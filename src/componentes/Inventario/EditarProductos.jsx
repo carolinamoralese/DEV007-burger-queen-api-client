@@ -1,14 +1,14 @@
 import { useState } from "react";
+import "./editarProductos.css";
 
 
 /*---------------------------- COMPONENTE QUE MUESTRA EL FORM PARA ACTULIZAR DATOS DEL PRODUCTO -----------------------*/
 
 const EditarProductos = ({ onSaveChanges }) => {
     const [newPrice, setNewPrice] = useState("");
-    const [newQuantity, setNewQuantity] = useState("");
     
     const handleSaveChanges = () => {
-        onSaveChanges(newPrice, newQuantity);
+        onSaveChanges(newPrice);
     };
 
     return (
@@ -18,12 +18,6 @@ const EditarProductos = ({ onSaveChanges }) => {
             className="nuevo-precio"
             placeholder="Ingresa nuevo precio"
             value={newPrice}
-            onChange={(e) => setNewPrice(e.target.value)}
-            ></input>
-            <input 
-            className="nueva-cantidad"
-            placeholder="Ingresa nueva cantidad"
-            value={newQuantity}
             onChange={(e) => setNewPrice(e.target.value)}
             ></input>
             <button className="btn-aceptar-cambios" onClick={handleSaveChanges}>
