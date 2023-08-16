@@ -121,16 +121,7 @@ return (
                 <p>OPCIONES</p>
                 </div>
             </div>
-            <div className="title-qty">
-              <p>CANTIDAD</p>
-            </div>
-            <div className="title-price">
-              <p>PRECIO</p>
-            </div>
-            <div className="title-options">
-              <p>OPCIONES</p>
-            </div>
-          </div>
+  
           {products.map((product, index) => (
             <div className="container-listproducts" key={index}>
                 <p className="productId">{product.id}</p>
