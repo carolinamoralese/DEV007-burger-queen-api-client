@@ -120,7 +120,7 @@ function Pedidos() {
                 <div className="header-comanda">
                   <p className="pedido-producto">PRODUCTO</p>
                   <p className="pedido-cantidad">CANTIDAD</p>
-                  {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                  {userRole === "WAITER" && ( //condicional para solo mostrar el precio al mesero
                     <p className="pedido-precio">PRECIO</p>
                   )}
                 </div>
@@ -133,7 +133,7 @@ function Pedidos() {
                     <div className="container-comida" key={index}>
                       <p className="pedido-food">{producto.name}</p>
                       <p className="pedido-qty">{producto.quantity}</p>
-                      {userRole === "waiter" && ( //condicional para solo mostrar el precio al mesero
+                      {userRole === "WAITER" && ( //condicional para solo mostrar el precio al mesero
                         <p className="pedido-price">{producto.price}</p>
                       )}
                     </div>
@@ -143,7 +143,7 @@ function Pedidos() {
                   <p>Estado: {order.status}</p>
                 </div>
                 <div className="container-btnEstado">
-                  {userRole === "chef" &&
+                  {userRole === "CHEF" &&
                     order.status === "pending" && ( //condicional para solo mostrar el boton de actualizar al chef
                       <button
                         className="btnEstado"
@@ -152,7 +152,7 @@ function Pedidos() {
                         ACTUALIZAR
                       </button>
                     )}
-                  {userRole === "waiter" && order.status === "delivered" && (
+                  {userRole === "WAITER" && order.status === "delivered" && (
                     <button
                       className="btn-cerrar-orden"
                       onClick={() => deleteOrder(order.id)}
