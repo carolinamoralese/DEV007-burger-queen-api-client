@@ -10,14 +10,14 @@ const EditarEmpleados = ({ onSaveChanges }) => {
 
   //ESTA FX VA A GUARDAR LOS NUEVOS DATOS
   const handleSaveChanges = () => {
-    console.log(newRole,90)
-    if(!newRole || newRole == "ELIGA EL ROL"){
-      showAlertError("Por favor selecione el rol")
-      return
+    console.log(newRole, 90);
+    if (!newRole || newRole == "ELIGA EL ROL") {
+      showAlertError("Por favor selecione el rol");
+      return;
     }
-    if(!newPassword){
-      showAlertError("Por favor ingrese la contraseña")
-      return
+    if (!newPassword) {
+      showAlertError("Por favor ingrese la contraseña");
+      return;
     }
     onSaveChanges(newPassword, newRole); //SE LLAMA AL EJECUTAR EL MODAL
   };
@@ -37,7 +37,7 @@ const EditarEmpleados = ({ onSaveChanges }) => {
         value={newRole} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
         onChange={(e) => setNewRole(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
       >
-        <option className="option" selected>
+        <option className="option" disabled selected>
           ELIGA EL ROL
         </option>
         <option className="option">CHEF</option>

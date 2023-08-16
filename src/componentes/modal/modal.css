@@ -7,12 +7,13 @@
   height: 100vh;
   display: grid;
   place-items: center;
+  z-index: 2;
 }
 
 .modal-body {
   background-color: white;
   width: 80%;
-  height: 60%;
+  height: 65%;
   min-width: 400px;
   position: relative;
   padding: 1rem;
