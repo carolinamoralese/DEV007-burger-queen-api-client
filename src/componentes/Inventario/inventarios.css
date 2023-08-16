@@ -16,6 +16,7 @@
   padding-bottom: 3%;
   height: 65%;
   overflow: auto;
+  scrollbar-color: #ffd930 #303030;
 }
 
 .info-products {
