@@ -3,6 +3,7 @@ import logo from "../../Imagenes/logo.png";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
 import { showAlertError, showAlertSucces} from "../../alert/alerts";
+import { peticionLogin } from "../../servicios/servicios";
 
 
 function Login() {
@@ -40,33 +41,14 @@ function Login() {
       showAlertError("Por favor ingrese su contraseña");
       return;
     }
-
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    };
-
-    fetch("http://localhost:8080/login", requestOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        if (responseJson.user) {
-          localStorage.setItem("token", responseJson.accessToken);
-          localStorage.setItem("role", responseJson.user.role); //CAMBIOS
-          setUser(true);
+  
+    peticionLogin(email, password, setUser)
+      .then((loginSuccessful) => {
+        if (loginSuccessful) {
           showAlertSucces("Usuario logueado");
         } else {
-          showAlertError(
-            "Autenticacion fallida,  verifica tus datos de acceso!"
-          );
+          showAlertError("Autenticación fallida, verifica tus datos de acceso!");
         }
-      })
-      .catch((error) => {
-        console.error(error);
       });
   }
 

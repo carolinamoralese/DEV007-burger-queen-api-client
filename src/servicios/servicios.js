@@ -1,4 +1,4 @@
-import { showAlertError, showAlertSucces} from "../alert/alerts";
+import { showAlertError, showAlertSucces, showAlertOrderConfirm} from "../alert/alerts";
 
 export function getRequestOptions(method) {
     const bearerToken = localStorage.getItem("token");
@@ -109,5 +109,69 @@ export function deleteUseRequest(userId, bearerToken, options) {
       })
       .catch((error) => {
         console.log("no sirve");
+      });
+  }
+
+ export function peticionPostOrders(client, order) {
+    const bearerToken = localStorage.getItem("token");
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + bearerToken,
+      },
+      body: JSON.stringify({
+        client: client,
+        products: order.productos,
+        status: "pending",
+        dataEntry: new Date().toLocaleString(),
+        cantidad: order.quantity,
+        startTime: new Date(),
+      }),
+    };
+
+    return new Promise((resolve, reject) => {
+      showAlertOrderConfirm().then((orderConfirmed) => {
+        if (orderConfirmed) {
+          fetch("http://localhost:8080/orders", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              resolve(data); // Resuelve la promesa con los datos recibidos
+            })
+            .catch((error) => {
+              reject(error); // Rechaza la promesa en caso de error
+            });
+        } else {
+          reject(new Error("La orden no fue confirmada"));
+        }
+      });
+    });
+  }
+
+export function peticionLogin(email, password, setUser) {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    };
+  
+    return fetch("http://localhost:8080/login", requestOptions)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.user) {
+          localStorage.setItem("token", responseJson.accessToken);
+          localStorage.setItem("role", responseJson.user.role);
+          setUser(true);
+          return true; // Indica que el inicio de sesión fue exitoso
+        } else {
+          return false; // Indica que el inicio de sesión falló
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        return false; // Indica que hubo un error en la petición
       });
   }
