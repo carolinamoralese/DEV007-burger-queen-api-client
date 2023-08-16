@@ -59,11 +59,8 @@
 .btn-aceptar-cambios {
   grid-area: btnAceptar;
   background-color: rgb(8, 197, 8);
-}
-
-.btn-aceptar-cambios {
   width: 70%;
-  height: 40%;
+  height: 30%;
   position: relative;
   left: 15%;
   top: 20%;
