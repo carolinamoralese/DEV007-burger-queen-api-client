@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../../servicios/products";
+import { getProducts } from "../../servicios/servicios.js";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../Header/Header.jsx";
 import "../Inventario/inventarios.css";

@@ -27,4 +27,3 @@ export const ButtonComidas = (props) => {
     </>
   );
 };
-/// este es un comentario

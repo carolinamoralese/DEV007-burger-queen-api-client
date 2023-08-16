@@ -11,7 +11,6 @@ const AgregarEmpleado = ({onSaveChanges})=>{
   };
 
   return (
-    // <h1>Holajaja</h1>
   <div className="container-editor-empleados">
       <h1 className="title-editar">AGREGAR EMPLEADOS</h1>
       <input
@@ -31,7 +30,7 @@ const AgregarEmpleado = ({onSaveChanges})=>{
         value={role} //MUY IMPORTANTE GUARDAR EL VALOR CON EL NOMBRE
         onChange={(e) => setRole(e.target.value)} //GUARDARÁ EL VALOR INGRESADO
       >
-        <option disabled selected>
+        <option className="option" selected>
           ELIGA EL ROL
         </option>
         <option className="option">CHEF</option>
