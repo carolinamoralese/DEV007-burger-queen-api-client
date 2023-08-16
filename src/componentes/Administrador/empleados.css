@@ -12,10 +12,12 @@
 
 .container-employed {
   background-color: #4d263d;
+  height: 60%;
   margin: 15px;
   padding-bottom: 3%;
-  /* z-index: 2; */
   position: relative;
+  overflow: auto;
+  scrollbar-color: #ffd930 #303030;
 }
 
 .info-employe {
@@ -118,5 +120,4 @@
   display: flex;
   font-size: 20px;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  /* z-index: 1; */
 }

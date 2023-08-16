@@ -101,11 +101,11 @@ function DeleteProduct(productId) {
 
 return (
     <>
-    <div className="container-inventario">
-    <Encabezado />
-    <div className="container-title-productos">
-        <h1 className="title">PRODUCTOS</h1>
-    </div>
+      <div className="container-inventario">
+        <Encabezado />
+        <div className="container-title-productos">
+          <h1 className="title">PRODUCTOS</h1>
+        </div>
         <div className="container-allproducts">
             <div className="info-products">
                 <div className="title-id">
@@ -121,7 +121,17 @@ return (
                 <p>OPCIONES</p>
                 </div>
             </div>
-            {products.map((product, index) => (
+            <div className="title-qty">
+              <p>CANTIDAD</p>
+            </div>
+            <div className="title-price">
+              <p>PRECIO</p>
+            </div>
+            <div className="title-options">
+              <p>OPCIONES</p>
+            </div>
+          </div>
+          {products.map((product, index) => (
             <div className="container-listproducts" key={index}>
                 <p className="productId">{product.id}</p>
                 <p className="productName">{product.name}</p>
@@ -145,10 +155,10 @@ return (
                 <button className="button-delete-product" onClick={() => DeleteProduct(product.id)}>ELIMINAR</button>
                 </div>
             </div>
-        ))}
+          ))}
         </div>
         <button className="add-product">AGREGAR PRODUCTO</button>
-    </div>
+      </div>
     </>
   );
 }

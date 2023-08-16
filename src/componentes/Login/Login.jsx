@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import logo from "../../Imagenes/logo.png";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
-import { showAlertError, showAlertSucces} from "../../alert/alerts";
+import { showAlertError, showAlertSucces } from "../../alert/alerts";
 import { peticionLogin } from "../../servicios/servicios";
-
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,18 +18,33 @@ function Login() {
      }
    }, [user]); */
 
-    useEffect(() => {
+  //   useEffect(() => {
+  //   //NUEVO
+  //   if (userRole == "WAITER") {
+  //     navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
+  //   } else if (userRole == "CHEF") {
+  //     navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
+  //   } else if (userRole == "ADMIN") {
+  //     navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
+  //   }
+  // }, [userRole, navigate]);
+
+  useEffect(() => {
     //NUEVO
-    if (userRole == "WAITER") {
-      navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
-    } else if (userRole == "CHEF") {
-      navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
-    } else if (userRole == "ADMIN") {
-      navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
+    if (user) {
+      const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
+
+      if (userRole == "WAITER") {
+        navigate("/Menu"); // Cambia la ruta a "/menu" si es mesero
+      } else if (userRole == "CHEF") {
+        navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
+      } else if (userRole == "ADMIN") {
+        navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
+      }
+    } else {
+      navigate("/");
     }
-  }, [userRole, navigate]); 
-
-
+  }, [user, navigate]);
 
   function handleLoginClick() {
     if (!email) {
