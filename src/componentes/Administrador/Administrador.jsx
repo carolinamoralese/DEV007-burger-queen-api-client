@@ -48,6 +48,7 @@ function Administrador() {
 
   };
 
+  /*------------------------------------- FUNCION PARA AGREGAR USERS --------------------------------------*/
   const handleAddUsers = (email, password, role) => {
     if (!email) {
       showAlertError("ingresa el correo");
@@ -74,7 +75,8 @@ function Administrador() {
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
-  //funcion para editar empleados
+
+  /*------------------------------------- FUNCION PARA EDITAR USERS --------------------------------------*/s
   function editUsers(userId, newPassword, newRole) {
     const options = {
       onSuccess: () => {
@@ -87,7 +89,7 @@ function Administrador() {
     editUser(userId, newPassword, newRole, bearerToken, options)
   }
 
-  /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
+  /*------------------------------------- FUNCION PARA ELIMINAR USERS --------------------------------------*/
   function deleteUser(userId) {
     const options = {
       onSuccess: () => {
@@ -100,7 +102,7 @@ function Administrador() {
   deleteUseRequest(userId,bearerToken, options);
 
   }
-  /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
+  /*------------------------------------- RENDERIZA COMPONENTE --------------------------------------*/
 
   return (
     <>
