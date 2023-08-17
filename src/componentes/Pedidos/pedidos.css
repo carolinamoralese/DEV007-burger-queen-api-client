@@ -25,7 +25,6 @@
   gap: 40px;
   justify-content: center;
   overflow: auto;
-  scrollbar-color: #ffd930 #303030;
 }
 
 .pedido {

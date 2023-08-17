@@ -1,11 +1,35 @@
-::-webkit-scrollbar {
-  width: 5px; /* Ancho de la barra de desplazamiento */
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #303030; /* Color del track (fondo) */
+body {
+  min-height: 100vh;
+  width: 100%;
+  background-color: black;
+} */
+
+/* .container-totalMenu {
+  max-height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 15% 1fr;
+  grid-template-areas:
+    "header header"
+    "carta comanda";
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #ffd930; /* Color del thumb */
+.menu-header {
+  grid-area: header;
 }
+
+.menu-carta {
+  grid-area: carta;
+}
+
+.menu-comanda {
+  grid-area: comanda;
+} */

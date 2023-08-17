@@ -9,7 +9,9 @@
   bottom: 67.5%;
   left: 51%;
   overflow: auto;
-  scrollbar-color: #ffd930 #303030;
+  /*   height: 50%; */
+  /*   margin-top: -50%;
+  margin-left: 0%; */
 }
 
 .container-order {

@@ -21,11 +21,11 @@ function Comanda({
     (suma, producto) => suma + producto.quantity * producto.price,
     0
   );
-
+// AGREGA PRODUCTOS AL PEDIDO
   function addProduct(product) {
     onAddProduct(product);
   }
-
+//ELIMINA PRODUCTO DEL PEDIDO
   function lessProduct(product) {
     onLessProduct(product);
   }
@@ -40,7 +40,7 @@ function Comanda({
     }
   };
 
-  //guarda el pedido
+  //GUARDA EL PEDIDO
   function PostOrders() {
     // const bearerToken = localStorage.getItem("token");
     if (!client) {
@@ -58,7 +58,7 @@ function Comanda({
       setClient("");
     })
   }
-
+// RENDERIZA EL COMPONENTE
   return (
     <div className="container-principal">
       <div className="container-order">
