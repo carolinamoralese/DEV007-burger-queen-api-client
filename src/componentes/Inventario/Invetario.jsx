@@ -43,7 +43,13 @@ const handleEditProducts = (productId, newPrice) => {
     setOpenModalId(null);
 };
 
-    //Peticion para editar produtos
+    //Ejecuta la peticion y le pasa los paramentros necesarios **ME QUEDE AQUI
+const handleAddProducts = (productId, name, price, image, type) => {
+    addProducts(productId, name, price, image, type);
+    setOpenModalId(null);
+};
+
+    /*------------------------------------- PETICIÓN PARA EDITAR USERS --------------------------------------*/
     function EditProducts(productId, newPrice) {
     const EditProductOptions = {
         method: "PATCH",
@@ -73,7 +79,7 @@ const handleEditProducts = (productId, newPrice) => {
 }
 
 
-//Peticion para eliminar producto
+    /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
 function DeleteProduct(productId) {
     const deleteProductoptions = {
         method: "DELETE",
@@ -96,7 +102,32 @@ function DeleteProduct(productId) {
     });
 }
 
-//Peticion para agregar producto
+    /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
+function AddProduct(productId, name, price, image, type) {
+    const AddProductsOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + bearerToken,
+        },
+        body: JSON.stringify({
+            id: productId,
+            name: name,
+            price: price,
+            image: image,
+            type: type,
+        }),
+    };
+
+    fetch(`http://localhost:8080/products/${productId}`,AddProductsOptions)
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log('producto creado');
+        })
+    .catch((error) => {
+        console.log('producto no creado');
+    });
+}
 
 
 return (

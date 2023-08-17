@@ -48,7 +48,6 @@ function Administrador() {
 
   };
 
-  /*------------------------------------- FUNCION PARA AGREGAR USERS --------------------------------------*/
   const handleAddUsers = (email, password, role) => {
     if (!email) {
       showAlertError("ingresa el correo");
@@ -89,7 +88,7 @@ function Administrador() {
     editUser(userId, newPassword, newRole, bearerToken, options)
   }
 
-  /*------------------------------------- FUNCION PARA ELIMINAR USERS --------------------------------------*/
+  /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
   function deleteUser(userId) {
     const options = {
       onSuccess: () => {
@@ -102,7 +101,7 @@ function Administrador() {
   deleteUseRequest(userId,bearerToken, options);
 
   }
-  /*------------------------------------- RENDERIZA COMPONENTE --------------------------------------*/
+  /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
 
   return (
     <>

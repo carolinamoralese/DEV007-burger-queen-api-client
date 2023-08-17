@@ -12,11 +12,11 @@ function Login() {
   const [user, setUser] = useState(null);
   const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
-  useEffect(() => {
+/*   useEffect(() => {
     if (user) {
-      navigate("/Menu");
-    }
-  }, [user]);
+       navigate("/Menu");
+     }
+   }, [user]); */
 
   //   useEffect(() => {
   //   //NUEVO
@@ -27,9 +27,24 @@ function Login() {
   //   } else if (userRole == "ADMIN") {
   //     navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
   //   }
-  // }, [userRole, navigate]); 
+  // }, [userRole, navigate]);
 
+  useEffect(() => {
+    //NUEVO
+    if (user) {
+      const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
+      if (userRole == "WAITER") {
+        navigate("/Menu"); // Cambia la ruta a "/menu" si es mesero
+      } else if (userRole == "CHEF") {
+        navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
+      } else if (userRole == "ADMIN") {
+        navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
+      }
+    } else {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   function handleLoginClick() {
     if (!email) {
