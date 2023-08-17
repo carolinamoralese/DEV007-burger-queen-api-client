@@ -61,6 +61,7 @@
   justify-content: space-around;
   align-items: center;
   overflow: auto;
+  scrollbar-color: #ffd930 #303030;
 }
 
 .product {

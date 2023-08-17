@@ -1,16 +1,15 @@
-.container-editor-empleados {
-  width: 90%;
-  height: 100%;
-  display: grid;
-  left: 5%;
-  position: relative;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 150px 100px 100px 1fr;
-  grid-template-areas:
-    "titulo titulo"
-    "contraseña contraseña"
-    "rol rol"
-    "btnAceptar btnAceptar";
+.container-editor-productos {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    left: 5%;
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 150px 100px 100px 1fr;
+    grid-template-areas:
+      "titulo titulo"
+      "precio precio"
+      "btnAceptar btnAceptar";
 }
 
 .title-editar {
@@ -24,8 +23,8 @@
   letter-spacing: 10px;
 }
 
-.nueva-contraseña {
-  grid-area: contraseña;
+.nuevo-precio {
+  grid-area: precio;
   width: 80%;
   height: 50%;
   position: relative;
@@ -36,31 +35,16 @@
   border: solid 3px black;
   font-size: 20px;
   color: black;
-}
-
-.nuevo-rol {
-  grid-area: rol;
-  width: 80%;
-  height: 50%;
-  position: relative;
-  left: 10%;
-  top: 20%;
-  color: black;
-  text-align: center;
-  background-color: white;
-  border: solid 3px black;
-  font-size: 20px;
-}
-
-.option {
-  font-size: 15px;
 }
 
 .btn-aceptar-cambios {
   grid-area: btnAceptar;
   background-color: rgb(8, 197, 8);
+}
+
+.btn-aceptar-cambios {
   width: 70%;
-  height: 30%;
+  height: 40%;
   position: relative;
   left: 15%;
   top: 20%;
