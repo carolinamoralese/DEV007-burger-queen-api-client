@@ -76,7 +76,7 @@ function Administrador() {
   };
 
 
-  /*------------------------------------- FUNCION PARA EDITAR USERS --------------------------------------*/s
+  /*------------------------------------- FUNCION PARA EDITAR USERS --------------------------------------*/
   function editUsers(userId, newPassword, newRole) {
     const options = {
       onSuccess: () => {
