@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Pedidos/pedidos.css";
 import Encabezado from "../Header/Header";
+import {
+  peticionUpdateOrder,
+  peticionGetOrders,
+  peticionDeleteOrder,
+} from "../../servicios/servicios";
 
+  /*------------------------------------- FUNCION PARA CALCULAR EL TIEMPO DE LA ORDEN  --------------------------------------*/
 function calculateOrderTime(startTime) {
   const now = new Date();
   const orderTimeDifference = now - new Date(startTime);
@@ -18,88 +24,53 @@ function Pedidos() {
   const [requestStatus, setRequestStatus] = useState("pending");
   const userRole = localStorage.getItem("role"); //NUEVO traemos el rol del local
   const bearerToken = localStorage.getItem("token");
+  
   useEffect(() => {
     if (!bearerToken) {
       navigate("/");
       return;
     }
-
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + bearerToken,
-      },
-    };
-
-    fetch("http://localhost:8080/orders", requestOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("respuesta exitosa", responseJson);
-        setOrders(responseJson);
-        setRequestStatus("success");
-      })
-      .catch((error) => {
-        setRequestStatus("error");
-      });
-
-    setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000); // Actualizar cada segundo
+    peticionGetOrders(bearerToken).then((orders) => {
+      setOrders(orders);
+      setRequestStatus("success")
+    });
   }, []);
 
-  //Petición para actualizar el estado de la orden
+
+  /*------------------------------------- FUNCION PARA ACTUALIZAR EL ESTADO DE LA ORDEN --------------------------------------*/
   function updateOrder(orderId, newStatus) {
-    const updateOrderOptions = {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + bearerToken,
+    const options = {
+      onSuccess: () => {
+        peticionGetOrders(bearerToken, options).then((orders) => {
+          setOrders(orders);
+          setRequestStatus("success")
+        });
       },
-      body: JSON.stringify({
-        id: orderId,
-        status: newStatus,
-      }),
-    };
-
-    fetch(`http://localhost:8080/orders/${orderId}`, updateOrderOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("respuesta exitosa", responseJson);
-        // Actualizar el estado de las órdenes
-        const updatedOrders = orders.map((order) =>
-          order.id === orderId ? { ...order, status: newStatus } : order
-        );
-        setOrders(updatedOrders);
-      })
-      .catch((error) => {
+      onError: () => {
         setRequestStatus("error");
-      });
+      },
+    };
+    peticionUpdateOrder(orderId, newStatus, bearerToken, options);
   }
 
-  //Petición para ELIMINAR la orden
+
+  /*------------------------------------- FUNCION PARA ELIMINAR LA ORDEN --------------------------------------*/
   function deleteOrder(orderId) {
-    const deleteOrderOptions = {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + bearerToken,
+    const options = {
+      onSuccess: () => {
+        peticionGetOrders(bearerToken, options).then((orders) => {
+          setOrders(orders);
+          setRequestStatus("success")
+        });
+      },
+      onError: () => {
+        setRequestStatus("error");
       },
     };
-
-    fetch(`http://localhost:8080/orders/${orderId}`, deleteOrderOptions)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log("eliminación exitosa", responseJson);
-
-        const updatedOrders = orders.filter((order) => order.id !== orderId);
-        setOrders(updatedOrders);
-      })
-      .catch((error) => {
-        setRequestStatus("error");
-      });
+    peticionDeleteOrder(orderId, bearerToken, options);
   }
 
+  /*------------------------------------- RENDERIZAR COMPONENTE --------------------------------------*/
   return (
     <>
       <Encabezado />
