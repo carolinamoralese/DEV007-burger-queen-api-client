@@ -5,11 +5,13 @@ import Encabezado from "../Header/Header.jsx";
 import "../Inventario/inventarios.css";
 import Modal from "../modal/Modal.jsx";
 import EditarProductos from "./EditarProductos";
+import AgregarProducto from "./AgregarProducto.jsx";
 
 function Inventario() {
   const [products, setProductos] = useState([]);
   const navigate = useNavigate();
   const bearerToken = localStorage.getItem("token");
+  const [AddProduct, setAddProduct] = useState(false);
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -44,8 +46,8 @@ const handleEditProducts = (productId, newPrice) => {
 };
 
     //Ejecuta la peticion y le pasa los paramentros necesarios **ME QUEDE AQUI
-const handleAddProducts = (productId, name, price, image, type) => {
-    addProducts(productId, name, price, image, type);
+const handleAddProducts = (name, price, image, type) => {
+    AddProducts(name, price, image, type);
     setOpenModalId(null);
 };
 
@@ -103,7 +105,7 @@ function DeleteProduct(productId) {
 }
 
     /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
-function AddProduct(productId, name, price, image, type) {
+function AddProducts(name, price, image, type) {
     const AddProductsOptions = {
         method: "POST",
         headers: {
@@ -111,21 +113,25 @@ function AddProduct(productId, name, price, image, type) {
             Authorization: "Bearer " + bearerToken,
         },
         body: JSON.stringify({
-            id: productId,
             name: name,
             price: price,
             image: image,
             type: type,
         }),
     };
+   
+    if (!type) {
+        return;
+      }
 
-    fetch(`http://localhost:8080/products/${productId}`,AddProductsOptions)
+    fetch(`http://localhost:8080/products/`,AddProductsOptions)
     .then((response) => response.json())
     .then((responseJson) => {
-        console.log('producto creado');
-        })
+        console.log('producto creado', responseJson);
+        setProductos((prevProducts) => [...prevProducts, responseJson]);
+    })
     .catch((error) => {
-        console.log('producto no creado');
+        console.log('producto no creado', error);
     });
 }
 
@@ -179,7 +185,10 @@ return (
             </div>
           ))}
         </div>
-        <button className="add-product">AGREGAR PRODUCTO</button>
+        <button className="add-product" onClick={() => setAddProduct(true)}>AGREGAR PRODUCTO</button>
+        <Modal isOpen={AddProduct} onClose={() => setAddProduct(false)}>
+          <AgregarProducto onSaveChanges= {handleAddProducts} />
+        </Modal>
       </div>
     </>
   );
