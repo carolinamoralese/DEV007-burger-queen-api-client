@@ -3,13 +3,10 @@ import { getProducts } from "../../servicios/servicios.js";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../Header/Header.jsx";
 import "../Inventario/inventarios.css";
-import Modal from "../modal/Modal.jsx";
-import EditarProductos from "./EditarProductos";
 
 function Inventario() {
   const [products, setProductos] = useState([]);
   const navigate = useNavigate();
-  const bearerToken = localStorage.getItem("token");
 
   useEffect(() => {
     const bearerToken = localStorage.getItem("token");
@@ -130,22 +127,20 @@ function AddProduct(productId, name, price, image, type) {
 }
 
 
-
 return (
     <>
-      <div className="container-inventario">
-
-        <Encabezado />
-        <div className="container-title-productos">
-          <h1 className="title">PRODUCTOS</h1>
-        </div>
+    <div className="container-inventario">
+    <Encabezado />
+    <div className="container-title-productos">
+        <h1 className="title">PRODUCTOS</h1>
+    </div>
         <div className="container-allproducts">
             <div className="info-products">
-                <div className="title-id">
-                <p>ID</p>
-                </div>
                 <div className="title-product">
                 <p>PRODUCTO</p>
+                </div>
+                <div className="title-qty">
+                <p>CANTIDAD</p>
                 </div>
                 <div className="title-price">
                 <p>PRECIO</p>
@@ -154,11 +149,10 @@ return (
                 <p>OPCIONES</p>
                 </div>
             </div>
-  
-          {products.map((product, index) => (
+            {products.map((product, index) => (
             <div className="container-listproducts" key={index}>
-                <p className="productId">{product.id}</p>
                 <p className="productName">{product.name}</p>
+                <p className="productQty">{product.quantity}</p>
                 <p className="productPrice">{product.price}</p>
                 <div className="button-option-product">
                 <button className="button-edit-product"
