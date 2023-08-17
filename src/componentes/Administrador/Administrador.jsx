@@ -74,7 +74,8 @@ function Administrador() {
     setOpenModalId(null); // Cerrar el modal después de editar
   };
 
-  //funcion para editar empleados
+
+  /*------------------------------------- FUNCION PARA EDITAR USERS --------------------------------------*/
   function editUsers(userId, newPassword, newRole) {
     const options = {
       onSuccess: () => {
