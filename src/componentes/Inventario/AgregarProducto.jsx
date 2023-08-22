@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import "./agregarProductos.css";
 
 const AgregarProducto = ({ onSaveChanges }) => {
     const [name, setName] = useState("");
@@ -12,7 +13,7 @@ const AgregarProducto = ({ onSaveChanges }) => {
 
     return (
         <div className="container-agregar-productos">
-            <h1 className="tittle-editar">AGREGAR PRODUCTO</h1>
+            <h1 className="tittle-editar-producto">AGREGAR PRODUCTO</h1>
             <input 
             className="name-producto"
             placeholder="Ingrese el nombre"
@@ -23,22 +24,22 @@ const AgregarProducto = ({ onSaveChanges }) => {
             className="price-producto"
             placeholder="Ingrese el precio"
             value={price}
-            onChange={(e) => setPrice(e.target.price)}
+            onChange={(e) => setPrice(e.target.value)}
             ></input>
             <input 
             className="image-producto"
             placeholder="Ingrese la url de la imagen"
             value={image}
-            onChange={(e) => setImage(e.target.image)}
+            onChange={(e) => setImage(e.target.value)}
             ></input>
             <select
             className="type-producto"
             value={type}
-            onChange={(e) => setType(e.target.type)}
+            onChange={(e) => setType(e.target.value)}
             >
-                <option className="opcion" disabled selected>
+            <option className="opcion" disabled selected>
                     ELIGE EL TIPO DE COMIDA
-                </option>
+                </option> 
                 <option className="opcion">Desayuno</option>
                 <option className="opcion">Almuerzo</option>
             </select>

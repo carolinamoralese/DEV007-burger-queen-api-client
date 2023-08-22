@@ -1,0 +1,101 @@
+.container-agregar-productos {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    left: 5%;
+    position: relative;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 120px 100px 100px 100px 1fr;
+    grid-template-areas:
+      "titulo titulo"
+      "name name"
+      "price price"
+      "image image"
+      "type type"
+      "btnAceptar btnAceptar";
+}
+
+.tittle-editar-producto {
+    grid-area: titulo;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Metal Mania", cursive;
+    font-size: 45px;
+    letter-spacing: 10px;
+}
+
+.name-producto {
+    grid-area: name;
+    width: 80%;
+    height: 50%;
+    position: relative;
+    left: 10%;
+    top: 20%;
+    text-align: center;
+    background-color: white;
+    border: solid 3px black;
+    font-size: 20px;
+    color: black;
+}
+
+.price-producto {
+    grid-area: price;
+    width: 80%;
+    height: 50%;
+    position: relative;
+    left: 10%;
+    top: 20%;
+    text-align: center;
+    background-color: white;
+    border: solid 3px black;
+    font-size: 20px;
+    color: black;
+}
+
+.image-producto {
+    grid-area: image;
+    width: 80%;
+    height: 50%;
+    position: relative;
+    left: 10%;
+    top: 20%;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: solid 3px black;
+    font-size: 20px;
+}
+
+.type-producto {
+    grid-area: type;
+    width: 80%;
+    height: 50%;
+    position: relative;
+    left: 10%;
+    top: 20%;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border: solid 3px black;
+    font-size: 20px;
+}
+
+.opcion {
+    font-size: 15px;
+}
+
+.btn-aceptar-cambios3 {
+    grid-area: btnAceptar;
+    background-color: rgb(8, 197, 8);
+    width: 70%;
+    height: 100%;
+    position: relative;
+    left: 15%;
+    top: 20%;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    letter-spacing: 3px;
+}
