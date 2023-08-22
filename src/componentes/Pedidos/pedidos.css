@@ -24,7 +24,8 @@
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
-  overflow: auto;
+  /* overflow: auto; */
+  overflow: hidden;
   scrollbar-color: #ffd930 #303030;
 }
 
