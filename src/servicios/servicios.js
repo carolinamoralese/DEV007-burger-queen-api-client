@@ -259,3 +259,80 @@ export function peticionDeleteOrder(orderId, bearerToken, options) {
       if (options.onError) options.onError();
     });
 }
+
+///----------------------------------------------------PETICION PARA EDITAR PRODUCTOS-----------------------------------------////
+export function editProduct(
+  productId,
+  newPrice, 
+  bearerToken, 
+  options
+) {
+  const EditProductOptions = {
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + bearerToken,
+      },
+      body: JSON.stringify({
+        id: productId,
+        price: newPrice,
+      }),
+};
+
+fetch(`http://localhost:8080/products/${productId}`, EditProductOptions)
+    .then((response) => response.json())
+    .then((responseJson) => {
+        if(responseJson) {
+          if(options.onSuccess) options.onSuccess()
+        }
+    })
+    .catch((error) => {
+        if(options.onError) options.onError()
+    });
+}
+
+///----------------------------------------------------PETICION PARA ELIMINAR PRODUCTOS-----------------------------------------////
+export function deleteProductRequest (productId, bearerToken, options) {
+  const deleteProductOptions = {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + bearerToken,
+    },
+  };
+
+  fetch(`http://localhost:8080/products/${productId}`, deleteProductOptions)
+  .then((response) => response.json())
+  .then((responseJson) =>{
+      console.log("eliminar funciona", responseJson);
+      if(responseJson) {
+        if(options.onSuccess) options.onSuccess();
+      }
+  })
+  .catch((error) => {
+    console.log("no se ejecuto");
+  });
+}
+
+///----------------------------------------------------PETICION PARA AGREGAR PRODUCTOS-----------------------------------------////
+export function AddProducts(body, options, bearerToken) {
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + bearerToken,
+  },
+  body: JSON.stringify(body),
+  };
+
+  fetch(`http://localhost:8080/products/`, requestOptions)
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if(responseJson) {
+        if(options.onSuccess) options.onSuccess();
+      }
+    })
+    .catch((error) => {
+      console.log('producto no creado', error);
+  });
+}
