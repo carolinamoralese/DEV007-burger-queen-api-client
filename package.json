@@ -34,7 +34,7 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/mocks/fileMock.js",
-      "\\.(css|less)$": "C:/Users/lunap/OneDrive/Escritorio/Proyectos Laboratoria/DEV007-burger-queen-api-client/mocks/fileMock.js"
+      "\\.(css|less)$": "C:/Users/ACER/DEV007-burger-queen-api-client/mocks/fileMock.js"
     }
   }
 }

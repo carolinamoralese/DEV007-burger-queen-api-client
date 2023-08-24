@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getProducts } from "../../servicios/servicios.js";
+import { getProducts, editProduct, deleteProductRequest, AddProducts } from "../../servicios/servicios.js";
 import { useNavigate } from "react-router-dom";
 import Encabezado from "../Header/Header.jsx";
 import "../Inventario/inventarios.css";
 import Modal from "../modal/Modal.jsx";
 import EditarProductos from "./EditarProductos";
 import AgregarProducto from "./AgregarProducto.jsx";
+
 
 function Inventario() {
   const [products, setProductos] = useState([]);
@@ -25,7 +26,7 @@ function Inventario() {
     });
   }, []);
 
-/*-------------------------------------LÓGICA MODAL Y PETICIÓN PARA EDITAR USERS -----------------------*/
+/*-------------------------------------LÓGICA MODAL Y PETICIÓN PARA EDITAR PRODUCTOS -----------------------*/
 
 const [openModalId, setOpenModalId] = useState(null);
 
@@ -45,94 +46,46 @@ const handleEditProducts = (productId, newPrice) => {
     setOpenModalId(null);
 };
 
-    //Ejecuta la peticion y le pasa los paramentros necesarios **ME QUEDE AQUI
+    //Ejecuta la peticion y le pasa los paramentros necesarios
 const handleAddProducts = (name, price, image, type) => {
-    AddProducts(name, price, image, type);
+    const body = {name, price, image, type};
+    const options = {
+        onSuccess: () => {
+            setAddProduct(false);
+            getProducts().then((products) => {
+                setProductos(products);
+            });
+        },
+    };
+    AddProducts(body, options, bearerToken);
     setOpenModalId(null);
 };
 
-    /*------------------------------------- PETICIÓN PARA EDITAR USERS --------------------------------------*/
+
+    /*------------------------------------- PETICIÓN PARA EDITAR PRODUCTOS --------------------------------------*/
     function EditProducts(productId, newPrice) {
-    const EditProductOptions = {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + bearerToken,
-          },
-          body: JSON.stringify({
-            id: productId,
-            price: newPrice,
-          }),
+    const options = {
+        onSuccess: () => {
+            setAddProduct(false);
+            getProducts().then((products) => {
+                setProductos(products);
+            });
+        },
     };
-
-    fetch(`http://localhost:8080/products/${productId}`, EditProductOptions)
-    .then((response) => response.json())
-    .then((responseJson) => {
-        const updateProducts = products.map((product) =>
-        product.id === productId
-        ? { ...product, price: newPrice }
-        : product
-        );
-        setProductos(updateProducts);
-    })
-    .catch((error) => {
-        console.log("no se ejecuta")
-    });
+    editProduct(productId, newPrice, bearerToken, options)
 }
 
-
-    /*------------------------------------- PETICIÓN PARA ELIMINAR USERS --------------------------------------*/
+    /*------------------------------------- PETICIÓN PARA ELIMINAR PRODUCTOS --------------------------------------*/
 function DeleteProduct(productId) {
-    const deleteProductoptions = {
-        method: "DELETE",
-        headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + bearerToken,
+    const options = {
+        onSuccess: () => {
+            setAddProduct(false);
+            getProducts().then((products) => {
+                setProductos(products);
+            });
         },
     };
-
-    fetch(`http://localhost:8080/products/${productId}`, deleteProductoptions)
-    .then((response) => response.json())
-    .then((responseJson) =>{
-        console.log("eliminar funciona", responseJson);
-
-        const updateProducts = products.filter((product) => product.id !== productId);
-        setProductos(updateProducts);
-    })
-    .catch((error) => {
-        console.log("no se ejecuto");
-    });
-}
-
-    /*------------------------------------- PETICIÓN PARA AGREGAR USERS --------------------------------------*/
-function AddProducts(name, price, image, type) {
-    const AddProductsOptions = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + bearerToken,
-        },
-        body: JSON.stringify({
-            name: name,
-            price: price,
-            image: image,
-            type: type,
-        }),
-    };
-   
-    if (!type) {
-        return;
-      }
-
-    fetch(`http://localhost:8080/products/`,AddProductsOptions)
-    .then((response) => response.json())
-    .then((responseJson) => {
-        console.log('producto creado', responseJson);
-        setProductos((prevProducts) => [...prevProducts, responseJson]);
-    })
-    .catch((error) => {
-        console.log('producto no creado', error);
-    });
+    deleteProductRequest(productId,bearerToken, options);
 }
 
 
