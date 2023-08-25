@@ -113,7 +113,7 @@ return (
             </div>
   
           {products.map((product, index) => (
-            <div className="container-listproducts" key={index}>
+            <div className="container-listproducts" key={index} data-testid="product-container">
                 <p className="productId">{product.id}</p>
                 <p className="productName">{product.name}</p>
                 <p className="productPrice">{product.price}</p>
@@ -148,3 +148,5 @@ return (
 }
 
 export default Inventario;
+
+
