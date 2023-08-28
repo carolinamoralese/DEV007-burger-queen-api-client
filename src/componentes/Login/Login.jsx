@@ -12,23 +12,6 @@ function Login() {
   const [user, setUser] = useState(null);
   const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
-/*   useEffect(() => {
-    if (user) {
-       navigate("/Menu");
-     }
-   }, [user]); */
-
-  //   useEffect(() => {
-  //   //NUEVO
-  //   if (userRole == "WAITER") {
-  //     navigate("/menu"); // Cambia la ruta a "/menu" si es mesero
-  //   } else if (userRole == "CHEF") {
-  //     navigate("/Cocinero"); // Cambia la ruta a "/cocinero" si es chef
-  //   } else if (userRole == "ADMIN") {
-  //     navigate("/Administrador"); // Cambia la ruta a "/menu" si es mesero
-  //   }
-  // }, [userRole, navigate]);
-
   useEffect(() => {
     //NUEVO
     if (user) {
@@ -55,16 +38,15 @@ function Login() {
       showAlertError("Por favor ingrese su contraseña");
       return;
     }
-  
-    peticionLogin(email, password, setUser)
-      .then((loginSuccessful) => {
-        if (loginSuccessful) {
-          console.log(loginSuccessful);
-          showAlertSucces("Usuario logueado");
-        } else {
-          showAlertError("Autenticación fallida, verifica tus datos de acceso!");
-        }
-      });
+
+    peticionLogin(email, password, setUser).then((loginSuccessful) => {
+      if (loginSuccessful) {
+        console.log(loginSuccessful);
+        showAlertSucces("Usuario logueado");
+      } else {
+        showAlertError("Autenticación fallida, verifica tus datos de acceso!");
+      }
+    });
   }
 
   return (
