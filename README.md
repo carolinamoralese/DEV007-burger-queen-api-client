@@ -163,7 +163,7 @@ para mantener actualizado el menú.
 
 ## 4. Depliegue de la aplicación
 
-La página se encuentrea desplegada en Vercel: [https://vercel.com/paosluna/dev-007-burger-queen-api-client/4GVdhJXo4PPaya6QN6iERb5tNNC1](https://dev-007-burger-queen-api-client-jdmvvy26x-paosluna.vercel.app/)
+La página se encuentrea desplegada en Vercel: [https://dev-007-burger-queen-api-client-delta.vercel.app/](https://dev-007-burger-queen-api-client-delta.vercel.app/)
 
 Para poder ingresar existen los siguientes usuarios: 
 
