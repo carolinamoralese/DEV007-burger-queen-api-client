@@ -10,7 +10,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
+  // const userRole = localStorage.getItem("role"); //llamamos al rol guardado en el local
 
   useEffect(() => {
     //NUEVO
